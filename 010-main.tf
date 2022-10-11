@@ -10,6 +10,13 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     azurerm_network_interface.vm_nic.id,
   ]
 
+ plan {
+    name                                            = var.marketplace_sku
+    publisher                                       = var.marketplace_publisher
+    product                                         = var.marketplace_product
+  }
+
+
   os_disk {
     caching              = var.os_disk_type
     storage_account_type = var.os_disk_storage_account_type

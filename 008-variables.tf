@@ -60,15 +60,24 @@ variable "boot_diagnostics_enabled" {
 }
 variable "boot_storage_uri" {}
 
+variable "marketplace_sku" {
+  default =null
+}
+variable "marketplace_publisher" {
+  default =null
+}
+variable "marketplace_product" {
+  default =null
+}
 
 
 variable "managed_disks" {
   type = map
   default = {
   datadisk1 = {
-        name            = "${local.vm_name}-datadisk-01"
-        location        = local.vm_location
-        resource_group_name = local.vm_resource_group
+        name            = "vm-datadisk-01"
+        location        = "uksouth"
+        resource_group_name = "rg-test"
         storage_account_type = "Standard_LRS"
         disk_create_option = "Empty"
         disk_size_gb = "10"
