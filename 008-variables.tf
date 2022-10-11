@@ -34,9 +34,7 @@ variable "privateip_allocation" {
 variable "os_disk_type" {
   default = "ReadWrite"
 }
-variable "os_disk_type" {
-  default = "ReadWrite"
-}
+
 variable "os_disk_storage_account_type" {
   default = "Standard_LRS"
 }
@@ -54,13 +52,15 @@ variable "vm_offer" {
 
 variable "vm_sku" {
 }
+variable "vm_version" {}
+
 
 variable "boot_diagnostics_enabled" {
   default = true
 }
-
 variable "boot_storage_uri" {}
-variable "vm_version" {}
+
+
 
 variable "managed_disks" {
   type = map
@@ -71,7 +71,7 @@ variable "managed_disks" {
         resource_group_name = local.vm_resource_group
         storage_account_type = "Standard_LRS"
         disk_create_option = "Empty"
-        disk_size_gb = "1"
+        disk_size_gb = "10"
         disk_tier = ""
         disk_zone = "1"
         source_resource_id = null
