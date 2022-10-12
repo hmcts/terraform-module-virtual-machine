@@ -22,11 +22,14 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     storage_account_type = var.os_disk_storage_account_type
   }
 
+        # Either use a custom image
+      source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+
+
 dynamic "source_image_reference" {
     for_each = local.dynamic_storage_image
     content {
-      # Either use a custom image
-      source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+
 
       # Or use a market place image
       publisher = var.custom_image_id != "" ? "" : var.vm_publisher_name
@@ -65,11 +68,13 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     storage_account_type = var.os_disk_storage_account_type
   }
 
+  # Either use a custom image
+      source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+
 dynamic "source_image_reference" {
     for_each = local.dynamic_storage_image
     content {
-      # Either use a custom image
-      source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+    
 
       # Or use a market place image
       publisher = var.custom_image_id != "" ? "" : var.vm_publisher_name
