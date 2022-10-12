@@ -26,7 +26,7 @@ resource "azurerm_managed_disk" "managed_disks" {
 resource "azurerm_virtual_machine_data_disk_attachment" "data_disk_attachments" {
   for_each            = var.managed_disks
   managed_disk_id    = azurerm_managed_disk.managed_disks[each.key].id
-  virtual_machine_id = var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm.id : azurerm_windows_virtual_machine.winvm.id
+  virtual_machine_id = var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
   lun                = each.value.disk_lun
   caching            = each.value.disk_caching
 
