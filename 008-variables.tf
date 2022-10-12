@@ -166,6 +166,6 @@ variable "nessus_groups" {
 variable "tags" {}
 
 locals {
-#   dynamic_storage_image    = var.custom_image_id != "" || var.vm_publisher_name != "" ? { dummy_create = true } : {}
+  #   dynamic_storage_image    = var.custom_image_id != "" || var.vm_publisher_name != "" ? { dummy_create = true } : {}
   dynamic_boot_diagnostics = var.boot_diagnostics_enabled == true ? { dummy_create = true } : {}
 }

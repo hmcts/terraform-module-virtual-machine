@@ -10,24 +10,18 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     azurerm_network_interface.vm_nic.id,
   ]
 
-  plan {
-    name      = var.marketplace_sku
-    publisher = var.marketplace_publisher
-    product   = var.marketplace_product
-  }
-
 
   os_disk {
     caching              = var.os_disk_type
     storage_account_type = var.os_disk_storage_account_type
   }
 
-source_image_reference {
+  source_image_reference {
 
-      publisher = var.vm_publisher_name
-      offer     = var.vm_offer
-      sku       = var.vm_sku
-      version   = var.vm_version
+    publisher = var.vm_publisher_name
+    offer     = var.vm_offer
+    sku       = var.vm_sku
+    version   = var.vm_version
 
   }
 
@@ -66,11 +60,11 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   source_image_reference {
     # for_each = local.dynamic_storage_image
     # content {
-      # Or use a market place image
-      publisher =  var.vm_publisher_name
-      offer     =  var.vm_offer
-      sku       =  var.vm_sku
-      version   =  var.vm_version
+    # Or use a market place image
+    publisher = var.vm_publisher_name
+    offer     = var.vm_offer
+    sku       = var.vm_sku
+    version   = var.vm_version
     # }
   }
 
