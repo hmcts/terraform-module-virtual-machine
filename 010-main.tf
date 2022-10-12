@@ -22,7 +22,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     storage_account_type = var.os_disk_storage_account_type
   }
 
-dynamic "storage_image_reference" {
+dynamic "source_image_reference" {
     for_each = local.dynamic_storage_image
     content {
       # Either use a custom image
@@ -38,10 +38,9 @@ dynamic "storage_image_reference" {
 
   dynamic "boot_diagnostics" {
     for_each = local.dynamic_boot_diagnostics
-    content {
-      enabled     = true
-      storage_uri = var.boot_storage_uri
-    }
+    
+      storage_account_uri = var.boot_storage_uri
+    
   }
 
   tags = var.tags
@@ -66,7 +65,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     storage_account_type = var.os_disk_storage_account_type
   }
 
-dynamic "storage_image_reference" {
+dynamic "source_image_reference" {
     for_each = local.dynamic_storage_image
     content {
       # Either use a custom image
@@ -82,10 +81,9 @@ dynamic "storage_image_reference" {
 
   dynamic "boot_diagnostics" {
     for_each = local.dynamic_boot_diagnostics
-    content {
-      enabled     = true
-      storage_uri = var.boot_storage_uri
-    }
+
+      storage_account_uri = var.boot_storage_uri
+    
   }
 
   tags = var.tags
