@@ -22,21 +22,20 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     storage_account_type = var.os_disk_storage_account_type
   }
 
-  # Either use a custom image
-  source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+  # # Either use a custom image
+  # source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
 
 
-  dynamic "source_image_reference" {
-    for_each = local.dynamic_storage_image
-    content {
+source_image_reference {
+    # for_each = local.dynamic_storage_image
+    # content {
 
 
-      # Or use a market place image
-      publisher = var.custom_image_id != "" ? "" : var.vm_publisher_name
-      offer     = var.custom_image_id != "" ? "" : var.vm_offer
-      sku       = var.custom_image_id != "" ? "" : var.vm_sku
-      version   = var.custom_image_id != "" ? "" : var.vm_version
-    }
+      publisher = var.vm_publisher_name
+      offer     = var.vm_offer
+      sku       = var.vm_sku
+      version   = var.vm_version
+    # }
   }
 
   dynamic "boot_diagnostics" {
@@ -69,19 +68,17 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   }
 
   # Either use a custom image
-  source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+  # source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
 
-  dynamic "source_image_reference" {
-    for_each = local.dynamic_storage_image
-    content {
-
-
+  source_image_reference {
+    # for_each = local.dynamic_storage_image
+    # content {
       # Or use a market place image
-      publisher = var.custom_image_id != "" ? "" : var.vm_publisher_name
-      offer     = var.custom_image_id != "" ? "" : var.vm_offer
-      sku       = var.custom_image_id != "" ? "" : var.vm_sku
-      version   = var.custom_image_id != "" ? "" : var.vm_version
-    }
+      publisher =  var.vm_publisher_name
+      offer     =  var.vm_offer
+      sku       =  var.vm_sku
+      version   =  var.vm_version
+    # }
   }
 
   dynamic "boot_diagnostics" {
