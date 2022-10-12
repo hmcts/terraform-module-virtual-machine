@@ -31,6 +31,10 @@ variable "vm_subnet_id" {
 variable "privateip_allocation" {
   default = "Static"
 }
+variable "vm_private_ip" {
+  default = null
+}
+
 variable "os_disk_type" {
   default = "ReadWrite"
 }
