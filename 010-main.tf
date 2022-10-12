@@ -79,13 +79,13 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   tags = var.tags
 }
 
-resource "azurerm_marketplace_agreement" "this" {
-  publisher = var.vm_publisher_name
-  offer     = var.vm_offer
-  plan      = var.marketplace_sku
+# resource "azurerm_marketplace_agreement" "this" {
+#   publisher = var.vm_publisher_name
+#   offer     = var.vm_offer
+#   plan      = var.marketplace_sku
 
-  depends_on = [
-    azurerm_linux_virtual_machine.linvm,
-    azurerm_windows_virtual_machine.winvm
-  ]
-}
+#   depends_on = [
+#     azurerm_linux_virtual_machine.linvm,
+#     azurerm_windows_virtual_machine.winvm
+#   ]
+# }
