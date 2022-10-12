@@ -22,20 +22,13 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     storage_account_type = var.os_disk_storage_account_type
   }
 
-  # # Either use a custom image
-  # source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
-
-
 source_image_reference {
-    # for_each = local.dynamic_storage_image
-    # content {
-
 
       publisher = var.vm_publisher_name
       offer     = var.vm_offer
       sku       = var.vm_sku
       version   = var.vm_version
-    # }
+
   }
 
   dynamic "boot_diagnostics" {
@@ -90,4 +83,15 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   }
 
   tags = var.tags
+}
+
+resource "azurerm_marketplace_agreement" "this" {
+  publisher = var.vm_publisher_name
+  offer     = var.vm_offer
+  plan      = var.marketplace_sku
+
+  depends_on = [
+    azurerm_linux_virtual_machine.linvm,
+    azurerm_windows_virtual_machine.winvm
+  ]
 }
