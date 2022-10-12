@@ -18,7 +18,8 @@ resource "azurerm_managed_disk" "managed_disks" {
   tags               = var.tags
 
       depends_on = [
-    var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm : azurerm_windows_virtual_machine.winvm
+    azurerm_linux_virtual_machine.linvm,
+    azurerm_windows_virtual_machine.winvm
   ]
 }
 
@@ -33,6 +34,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "data_disk_attachments" 
   create_option =  each.value.attachment_create_option
 
   depends_on = [
-    var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm : azurerm_windows_virtual_machine.winvm
+    azurerm_linux_virtual_machine.linvm,
+    azurerm_windows_virtual_machine.winvm
   ]
 }
