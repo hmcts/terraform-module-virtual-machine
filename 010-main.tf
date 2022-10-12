@@ -1,5 +1,5 @@
 resource "azurerm_windows_virtual_machine" "winvm" {
-  count  = var.vm_type == "windows" ? 1 : 0
+  count               = var.vm_type == "windows" ? 1 : 0
   name                = var.vm_name
   resource_group_name = var.vm_resource_group
   location            = var.vm_location
@@ -10,10 +10,10 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     azurerm_network_interface.vm_nic.id,
   ]
 
- plan {
-    name                                            = var.marketplace_sku
-    publisher                                       = var.marketplace_publisher
-    product                                         = var.marketplace_product
+  plan {
+    name      = var.marketplace_sku
+    publisher = var.marketplace_publisher
+    product   = var.marketplace_product
   }
 
 
@@ -22,11 +22,11 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     storage_account_type = var.os_disk_storage_account_type
   }
 
-        # Either use a custom image
-      source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+  # Either use a custom image
+  source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
 
 
-dynamic "source_image_reference" {
+  dynamic "source_image_reference" {
     for_each = local.dynamic_storage_image
     content {
 
@@ -50,13 +50,13 @@ dynamic "source_image_reference" {
 }
 
 resource "azurerm_linux_virtual_machine" "linvm" {
-  count  = var.vm_type == "linux" ? 1 : 0
-   name                = var.vm_name
-  resource_group_name = var.vm_resource_group
-  location            = var.vm_location
-  size                = var.vm_size
-  admin_username      = var.vm_admin_name
-  admin_password      = var.vm_admin_password
+  count                           = var.vm_type == "linux" ? 1 : 0
+  name                            = var.vm_name
+  resource_group_name             = var.vm_resource_group
+  location                        = var.vm_location
+  size                            = var.vm_size
+  admin_username                  = var.vm_admin_name
+  admin_password                  = var.vm_admin_password
   disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
@@ -69,12 +69,12 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   }
 
   # Either use a custom image
-      source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+  source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
 
-dynamic "source_image_reference" {
+  dynamic "source_image_reference" {
     for_each = local.dynamic_storage_image
     content {
-    
+
 
       # Or use a market place image
       publisher = var.custom_image_id != "" ? "" : var.vm_publisher_name

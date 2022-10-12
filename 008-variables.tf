@@ -1,6 +1,6 @@
 variable "vm_type" {
-    type = string
-    description = "Enter Type of the VM"
+  type        = string
+  description = "Enter Type of the VM"
 }
 
 
@@ -61,37 +61,37 @@ variable "boot_diagnostics_enabled" {
 variable "boot_storage_uri" {}
 
 variable "marketplace_sku" {
-  default =null
+  default = null
 }
 variable "marketplace_publisher" {
-  default =null
+  default = null
 }
 variable "marketplace_product" {
-  default =null
+  default = null
 }
 
 
 variable "managed_disks" {
-  type = map
+  type = map(any)
   default = {
-  datadisk1 = {
-        name            = "vm-datadisk-01"
-        location        = "uksouth"
-        resource_group_name = "rg-test"
-        storage_account_type = "Standard_LRS"
-        disk_create_option = "Empty"
-        disk_size_gb = "10"
-        disk_tier = ""
-        disk_zone = "1"
-        source_resource_id = null
-        storage_account_id = null
-        hyper_v_generation = null
-        os_type = null
-        disk_lun = ""
-        disk_caching =""
-        attachment_create_option=null
+    datadisk1 = {
+      name                     = "vm-datadisk-01"
+      location                 = "uksouth"
+      resource_group_name      = "rg-test"
+      storage_account_type     = "Standard_LRS"
+      disk_create_option       = "Empty"
+      disk_size_gb             = "10"
+      disk_tier                = ""
+      disk_zone                = "1"
+      source_resource_id       = null
+      storage_account_id       = null
+      hyper_v_generation       = null
+      os_type                  = null
+      disk_lun                 = ""
+      disk_caching             = ""
+      attachment_create_option = null
     }
- }
+  }
 }
 
 
@@ -111,13 +111,13 @@ variable "splunk_pass4symmkey" {
   default = null
 }
 variable "splunk_group" {
- default =  "hmcts_forwarders"
+  default = "hmcts_forwarders"
 }
 #dynatrace
 
 variable "install_dynatrace_oneagent" {
-type = bool
-default = true
+  type    = bool
+  default = true
 }
 
 variable "dynatrace_hostgroup" {
@@ -162,6 +162,6 @@ variable "nessus_groups" {
 variable "tags" {}
 
 locals {
-    dynamic_storage_image    = var.custom_image_id != "" || var.vm_publisher_name != "" ? { dummy_create = true } : {}
-    dynamic_boot_diagnostics = var.boot_diagnostics_enabled == true ? { dummy_create = true } : {}
+  dynamic_storage_image    = var.custom_image_id != "" || var.vm_publisher_name != "" ? { dummy_create = true } : {}
+  dynamic_boot_diagnostics = var.boot_diagnostics_enabled == true ? { dummy_create = true } : {}
 }
