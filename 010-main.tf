@@ -26,7 +26,7 @@ dynamic "source_image_reference" {
     for_each = local.dynamic_storage_image
     content {
       # Either use a custom image
-      id = var.custom_image_id != "" ? var.custom_image_id : ""
+      source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
 
       # Or use a market place image
       publisher = var.custom_image_id != "" ? "" : var.vm_publisher_name
@@ -38,9 +38,9 @@ dynamic "source_image_reference" {
 
   dynamic "boot_diagnostics" {
     for_each = local.dynamic_boot_diagnostics
-    
+    content {
       storage_account_uri = var.boot_storage_uri
-    
+    }
   }
 
   tags = var.tags
@@ -69,7 +69,7 @@ dynamic "source_image_reference" {
     for_each = local.dynamic_storage_image
     content {
       # Either use a custom image
-      id = var.custom_image_id != "" ? var.custom_image_id : ""
+      source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
 
       # Or use a market place image
       publisher = var.custom_image_id != "" ? "" : var.vm_publisher_name
@@ -81,9 +81,10 @@ dynamic "source_image_reference" {
 
   dynamic "boot_diagnostics" {
     for_each = local.dynamic_boot_diagnostics
+    content {
 
       storage_account_uri = var.boot_storage_uri
-    
+    }
   }
 
   tags = var.tags
