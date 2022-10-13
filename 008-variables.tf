@@ -40,7 +40,7 @@ variable "os_disk_type" {
 }
 
 variable "os_disk_storage_account_type" {
-  default = "Standard_LRS"
+  default = "StandardSSD_LRS"
 }
 
 variable "custom_image_id" {
