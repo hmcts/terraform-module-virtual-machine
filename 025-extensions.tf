@@ -20,4 +20,6 @@ module "vm-bootstrap" {
   dynatrace_server    = var.dynatrace_server
   dynatrace_tenant_id = var.dynatrace_tenant_id
   dynatrace_token     = var.dynatrace_token
+
+  common_tags = var.tags
 }
