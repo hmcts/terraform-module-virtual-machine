@@ -44,7 +44,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   size                            = var.vm_size
   admin_username                  = var.vm_admin_name
   admin_password                  = var.vm_admin_password
-  zone                           = length(var.vm_availabilty_zones) > 0 ? [var.vm_availabilty_zones] : []
+  zone                           = var.vm_availabilty_zones
   disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
