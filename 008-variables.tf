@@ -157,7 +157,7 @@ variable "nessus_groups" {
   default = null
 }
 
-
+variable "vm_availabilty_zones" {}
 
 ############
 
