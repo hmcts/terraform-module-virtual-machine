@@ -1,7 +1,7 @@
 
 module "vm-bootstrap" {
   count  = var.install_splunk_uf == true || var.nessus_install == true ? 1 : 0
-  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
+  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=added-run_command"
 
   virtual_machine_type       = "vm"
   virtual_machine_id         = var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
@@ -21,6 +21,12 @@ module "vm-bootstrap" {
   dynatrace_server    = var.dynatrace_server
   dynatrace_tenant_id = var.dynatrace_tenant_id
   dynatrace_token     = var.dynatrace_token
+
+  run_command = var.run_command
+  run_as = var.run_as
+  rc_command = var.rc_command
+  rc_script_file = var.rc_script_file
+
 
   common_tags = var.tags
 }

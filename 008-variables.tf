@@ -161,6 +161,15 @@ variable "vm_availabilty_zones" {}
 
 ############
 
+########### Run Command #########
+variable "run_command" {
+  default = null
+}
+variable "run_as"{ default = null}
+variable "rc_command"{ default = null}
+variable "rc_script_file"{ default = null}
+
+#########################
 
 
 variable "tags" {}
