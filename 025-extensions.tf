@@ -22,7 +22,7 @@ module "vm-bootstrap" {
   dynatrace_tenant_id = var.dynatrace_tenant_id
   dynatrace_token     = var.dynatrace_token
 
-
+  run_command    = var.run_command
   rc_script_file = var.rc_script_file
   rc_vm_name     = var.rc_vm_name
   common_tags    = var.tags
