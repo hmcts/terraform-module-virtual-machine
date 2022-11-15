@@ -165,7 +165,6 @@ variable "vm_availabilty_zones" {}
 variable "run_command" {
   default = false
 }
-variable "rc_vm_name" { default = null }
 variable "rc_script_file" { default = null }
 
 #########################
