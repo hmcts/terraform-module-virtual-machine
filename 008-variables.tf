@@ -167,6 +167,9 @@ variable "run_command" {
 }
 variable "rc_script_file" { default = null }
 
+variable "rc_os_sku" {
+  default = null
+}
 #########################
 
 

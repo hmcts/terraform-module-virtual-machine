@@ -24,5 +24,7 @@ module "vm-bootstrap" {
 
   run_command    = var.run_command
   rc_script_file = var.rc_script_file
+  rc_os_sku = var.rc_os_sku
+  
   common_tags    = var.tags
 }
