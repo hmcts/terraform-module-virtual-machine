@@ -8,7 +8,7 @@ data "azurerm_key_vault" "enc_kv" {
 resource "azurerm_key_vault_key" "disk_enc_key" {
   count        = var.encrypt_disks ? 1 : 0
   name         = "disk-encrypt-${var.kv_name}"
-  key_vault_id = data.azurerm_key_vault.enc_kv.id
+  key_vault_id = data.azurerm_key_vault.enc_kv[0].id
   key_type     = "RSA"
   key_size     = 2048
 
@@ -27,7 +27,7 @@ resource "azurerm_disk_encryption_set" "disk_enc_set" {
   name                = "disk_enc_set"
   resource_group_name = var.vm_resource_group
   location            = var.vm_location
-  key_vault_key_id    = azurerm_key_vault_key.disk_enc_key.id
+  key_vault_key_id    = azurerm_key_vault_key.disk_enc_key[0].id
   identity {
     type = "SystemAssigned"
   }
@@ -36,10 +36,10 @@ resource "azurerm_disk_encryption_set" "disk_enc_set" {
 
 resource "azurerm_key_vault_access_policy" "disk_policy" {
   count        = var.encrypt_disks ? 1 : 0
-  key_vault_id = data.azurerm_key_vault.enc_kv.id
+  key_vault_id = data.azurerm_key_vault.enc_kv[0].id
 
-  tenant_id = azurerm_disk_encryption_set.disk_enc_set.identity.0.tenant_id
-  object_id = azurerm_disk_encryption_set.disk_enc_set.identity.0.principal_id
+  tenant_id = azurerm_disk_encryption_set.disk_enc_set[0].identity.0.tenant_id
+  object_id = azurerm_disk_encryption_set.disk_enc_set[0].identity.0.principal_id
 
   key_permissions = [
     "Get",
