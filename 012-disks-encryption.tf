@@ -23,7 +23,7 @@ resource "azurerm_key_vault_key" "disk_enc_key" {
 }
 
 resource "azurerm_disk_encryption_set" "disk_enc_set" {
-  count               = var.encrypt_disks ? 1 : 0
+  count               = var.create_disk_set ? 1 : 0
   name                = "disk_enc_set"
   resource_group_name = var.vm_resource_group
   location            = var.vm_location
