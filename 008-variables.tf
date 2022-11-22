@@ -185,10 +185,7 @@ variable "kv_rg_name" {
   type       = string
   default = null
 }
-variable "create_disk_set" {
-  type    = bool
-  default = false
-}
+
 ##########
 
 
