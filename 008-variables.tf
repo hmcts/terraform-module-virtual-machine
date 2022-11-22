@@ -172,6 +172,22 @@ variable "rc_os_sku" {
 }
 #########################
 
+##### disk encryption #####
+variable "encrypt_disks" {
+  type    = bool
+  default = false
+}
+variable "kv_name" {
+  type    = string
+  default = null
+}
+variable "kv_rg_name" {
+  type       = string
+  defdefault = null
+}
+
+##########
+
 
 variable "tags" {}
 
