@@ -13,8 +13,9 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 
 
   os_disk {
-    caching              = var.os_disk_type
-    storage_account_type = var.os_disk_storage_account_type
+    caching                = var.os_disk_type
+    storage_account_type   = var.os_disk_storage_account_type
+    disk_encryption_set_id = var.encrypt_disks ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
   }
 
   source_image_reference {
@@ -33,7 +34,8 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     }
   }
 
-  tags = var.tags
+  tags       = var.tags
+  depends_on = [azurerm_disk_encryption_set.disk_enc_set]
 }
 
 resource "azurerm_linux_virtual_machine" "linvm" {
@@ -52,22 +54,19 @@ resource "azurerm_linux_virtual_machine" "linvm" {
 
 
   os_disk {
-    caching              = var.os_disk_type
-    storage_account_type = var.os_disk_storage_account_type
+    caching                = var.os_disk_type
+    storage_account_type   = var.os_disk_storage_account_type
+    disk_encryption_set_id = var.encrypt_disks ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
   }
 
-  # Either use a custom image
-  # source_image_id = var.custom_image_id != "" ? var.custom_image_id : ""
+
 
   source_image_reference {
-    # for_each = local.dynamic_storage_image
-    # content {
-    # Or use a market place image
+
     publisher = var.vm_publisher_name
     offer     = var.vm_offer
     sku       = var.vm_sku
     version   = var.vm_version
-    # }
   }
 
   dynamic "boot_diagnostics" {
@@ -78,7 +77,8 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     }
   }
 
-  tags = var.tags
+  tags       = var.tags
+  depends_on = [azurerm_disk_encryption_set.disk_enc_set]
 }
 
 # resource "azurerm_marketplace_agreement" "this" {

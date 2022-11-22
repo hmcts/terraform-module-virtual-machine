@@ -8,14 +8,16 @@ resource "azurerm_managed_disk" "managed_disks" {
   # Valid options are Import, Empty, Copy, FromImage, Restore
   create_option = each.value.disk_create_option
 
-  disk_size_gb       = each.value.disk_size_gb
-  tier               = each.value.disk_tier
-  zone               = each.value.disk_zone
-  source_resource_id = each.value.source_resource_id
-  storage_account_id = each.value.storage_account_id
-  hyper_v_generation = each.value.hyper_v_generation
-  os_type            = each.value.os_type
-  tags               = var.tags
+  disk_size_gb           = each.value.disk_size_gb
+  tier                   = each.value.disk_tier
+  zone                   = each.value.disk_zone
+  source_resource_id     = each.value.source_resource_id
+  storage_account_id     = each.value.storage_account_id
+  hyper_v_generation     = each.value.hyper_v_generation
+  os_type                = each.value.os_type
+  disk_encryption_set_id = var.encrypt_disks ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
+
+  tags = var.tags
 
   depends_on = [
     azurerm_linux_virtual_machine.linvm,
