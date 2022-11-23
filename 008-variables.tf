@@ -182,8 +182,13 @@ variable "kv_name" {
   default = null
 }
 variable "kv_rg_name" {
-  type       = string
+  type    = string
   default = null
+}
+
+variable "encrypt_ADE" {
+  type    = bool
+  default = false
 }
 
 ##########

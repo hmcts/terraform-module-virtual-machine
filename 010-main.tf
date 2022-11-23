@@ -35,7 +35,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
   }
 
   tags       = var.tags
-  depends_on = [azurerm_disk_encryption_set.disk_enc_set,azurerm_key_vault_access_policy.disk_policy]
+  depends_on = [azurerm_disk_encryption_set.disk_enc_set, azurerm_key_vault_access_policy.disk_policy]
 }
 
 resource "azurerm_linux_virtual_machine" "linvm" {
