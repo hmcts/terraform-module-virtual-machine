@@ -18,10 +18,10 @@ resource "azurerm_virtual_machine_extension" "vmextension" {
   settings = jsonencode({
     "EncryptionOperation"    = "EnableEncryption"
     "KeyEncryptionAlgorithm" = "RSA-OAEP"
-    "KeyVaultURL"            = azurerm_key_vault.enc_kv.vault_uri
-    "KeyVaultResourceId"     = azurerm_key_vault.enc_kv.id
-    "KeyEncryptionKeyURL"    = azurerm_key_vault_key.disk_enc_key.id
-    "KekVaultResourceId"     = azurerm_key_vault.enc_kv.id
+    "KeyVaultURL"            = data.azurerm_key_vault.enc_kv[0].vault_uri
+    "KeyVaultResourceId"     = data.azurerm_key_vault.enc_kv[0].id
+    "KeyEncryptionKeyURL"    = azurerm_key_vault_key.disk_enc_key[0].id
+    "KekVaultResourceId"     = data.azurerm_key_vault.enc_kv[0].id
     "VolumeType"             = "All"
   })
 
