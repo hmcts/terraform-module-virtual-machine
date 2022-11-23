@@ -7,9 +7,7 @@ resource "random_string" "password" {
 resource "azurerm_virtual_machine_extension" "vmextension" {
   count                      = var.encrypt_ADE ? 1 : 0
   name                       = "azure-disk-encrypt-${random_string.password.result}"
-  location                   = var.vm_location
-  resource_group_name        = var.vm_resource_group
-  virtual_machine_name       = var.vm_name
+  virtual_machine_id         = lower(var.vm_type) == "windows" ? azurerm_windows_virtual_machine.winvm.id : azurerm_windows_virtual_machine.linvm.id
   publisher                  = "Microsoft.Azure.Security"
   type                       = lower(var.vm_type) == "windows" ? "AzureDiskEncryption" : "AzureDiskEncryptionForLinux"
   type_handler_version       = lower(var.vm_type) == "windows" ? "2.2" : "1.1"
