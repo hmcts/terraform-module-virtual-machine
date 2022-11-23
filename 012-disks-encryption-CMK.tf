@@ -1,12 +1,12 @@
 
 data "azurerm_key_vault" "enc_kv" {
-  count               = var.encrypt_disks ? 1 : 0
+  count               = var.encrypt_disks || var.encrypt_ADE ? 1 : 0
   name                = var.kv_name
   resource_group_name = var.kv_rg_name
 }
 
 resource "azurerm_key_vault_key" "disk_enc_key" {
-  count        = var.encrypt_disks ? 1 : 0
+  count        = var.encrypt_disks || var.encrypt_ADE  ? 1 : 0
   name         = "disk-encrypt-${var.kv_name}"
   key_vault_id = data.azurerm_key_vault.enc_kv[0].id
   key_type     = "RSA"
