@@ -38,8 +38,8 @@ resource "azurerm_key_vault_access_policy" "disk_policy" {
   count        = var.encrypt_disks ? 1 : 0
   key_vault_id = data.azurerm_key_vault.enc_kv[0].id
 
-  tenant_id = azurerm_disk_encryption_set.disk_enc_set[0].identity.0.tenant_id
-  object_id = azurerm_disk_encryption_set.disk_enc_set[0].identity.0.principal_id
+  tenant_id = var.encrypt_disks ? azurerm_disk_encryption_set.disk_enc_set[0].identity.0.tenant_id : null
+  object_id = var.encrypt_disks ? azurerm_disk_encryption_set.disk_enc_set[0].identity.0.principal_id : null
 
   key_permissions = [
     "Get",
