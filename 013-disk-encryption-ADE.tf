@@ -5,7 +5,7 @@ resource "random_string" "password" {
 
 
 resource "azurerm_virtual_machine_extension" "vmextension" {
-  count                      =  var.encrypt_ADE ? 1 : 0
+  count                      = var.encrypt_ADE ? 1 : 0
   name                       = "azure-disk-encrypt-${random_string.password.result}"
   location                   = var.vm_location
   resource_group_name        = var.vm_resource_group
@@ -15,7 +15,7 @@ resource "azurerm_virtual_machine_extension" "vmextension" {
   type_handler_version       = lower(var.vm_type) == "windows" ? "2.2" : "1.1"
   auto_upgrade_minor_version = true
 
-  settings =jsonencode({
+  settings = jsonencode({
     "EncryptionOperation"    = "EnableEncryption"
     "KeyEncryptionAlgorithm" = "RSA-OAEP"
     "KeyVaultURL"            = azurerm_key_vault.enc_kv.vault_uri
