@@ -1,6 +1,7 @@
 module "diskencrypt" {
   count                = var.encrypt_ADE ? 1 : 0
   source               = "Azure/diskencrypt/azurerm"
+  version              = "2.0.0"
   resource_group_name  = var.vm_resource_group
   location             = var.vm_location
   vm_name              = var.vm_name
