@@ -25,6 +25,8 @@ resource "azurerm_virtual_machine_extension" "vmextension" {
 
 
   tags = var.tags
+
+  depends_on = [azurerm_windows_virtual_machine.winvm, azurerm_linux_virtual_machine.linvm, azurerm_virtual_machine_data_disk_attachment.data_disk_attachments]
 }
 
 # resource "azurerm_virtual_machine_extension" "vmextensionlinux" {
