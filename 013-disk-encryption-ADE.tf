@@ -8,5 +8,11 @@ module "diskencrypt" {
   encryption_algorithm = "RSA-OAEP"
   encryption_key_url   = azurerm_key_vault_key.disk_enc_key.id
 
-  tags = var.tags
+  tags = {
+    environment = "staging"
+    businessArea = "cross-cutting"
+    application = "martha"
+    builtFrom = "hmcts/martha-infra"
+    criticality = "high"
+  }
 }
