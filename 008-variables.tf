@@ -176,10 +176,6 @@ variable "rc_os_sku" {
 variable "encrypt_CMK" {
   type    = bool
   default = false
-  validation {
-    condition     = encrypt_CMK && encrypt_ADE
-    error_message = "You can NOT encrypt disks with CMK and ADE both, you can only encrypt either CMK or ADE"
-  }
 }
 variable "kv_name" {
   type    = string
@@ -193,10 +189,6 @@ variable "kv_rg_name" {
 variable "encrypt_ADE" {
   type    = bool
   default = false
-  validation {
-    condition     = encrypt_CMK && encrypt_ADE
-    error_message = "You can NOT encrypt disks with CMK and ADE both, you can only encrypt either CMK or ADE"
-  }
 }
 
 ##########
