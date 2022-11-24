@@ -173,7 +173,7 @@ variable "rc_os_sku" {
 #########################
 
 ##### disk encryption #####
-variable "encrypt_disks" {
+variable "encrypt_CMK" {
   type    = bool
   default = false
 }

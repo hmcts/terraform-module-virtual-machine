@@ -15,7 +15,7 @@ resource "azurerm_managed_disk" "managed_disks" {
   storage_account_id     = each.value.storage_account_id
   hyper_v_generation     = each.value.hyper_v_generation
   os_type                = each.value.os_type
-  disk_encryption_set_id = var.encrypt_disks ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
+  disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
 
   tags = var.tags
 
