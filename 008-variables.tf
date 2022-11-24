@@ -193,6 +193,9 @@ variable "encrypt_ADE" {
 
 ##########
 
+variable "additional_script_uri" {
+  default = null
+}
 
 variable "tags" {}
 
