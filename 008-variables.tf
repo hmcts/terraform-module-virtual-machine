@@ -196,7 +196,9 @@ variable "encrypt_ADE" {
 variable "additional_script_uri" {
   default = null
 }
-
+variable "additional_script_name" {
+  default = null
+}
 variable "tags" {}
 
 locals {
