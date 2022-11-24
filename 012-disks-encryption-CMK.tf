@@ -8,7 +8,7 @@ data "azurerm_key_vault" "enc_kv" {
 resource "azurerm_key_vault_key" "disk_enc_key" {
   count        = var.encrypt_CMK || var.encrypt_ADE ? 1 : 0
   name         = "disk-encrypt-${var.kv_name}"
-  key_vault_id = var.encrypt_CMK || var.encrypt_ADE  ? data.azurerm_key_vault.enc_kv[0].id : null
+  key_vault_id = var.encrypt_CMK || var.encrypt_ADE ? data.azurerm_key_vault.enc_kv[0].id : null
   key_type     = "RSA"
   key_size     = 2048
 
