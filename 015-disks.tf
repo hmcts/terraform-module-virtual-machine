@@ -23,6 +23,10 @@ resource "azurerm_managed_disk" "managed_disks" {
     azurerm_linux_virtual_machine.linvm,
     azurerm_windows_virtual_machine.winvm
   ]
+  lifecycle {
+    #ignore disk encryption changes because its get encrypted by the extension
+    ignore_changes = [encryption_settings]
+  }
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "data_disk_attachments" {
