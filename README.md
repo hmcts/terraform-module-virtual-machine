@@ -1,13 +1,12 @@
 # terraform-vm-module
 This is VM module let you deploy either Windows VM or Linux VM and also allow you to Disk Encryption either using Customer Managed Key (CMK) or Azure Disk Encryption (ADE).
 
-** Note: Please make sure if you are encrypting disk using ADE encryption on windows decice, you have to make sure that your disks are mounted and formatted before installing extension, please use this powershell script here **
+#### Note: Please make sure if you are encrypting disk using ADE encryption on windows device, you have to make sure that your disks are mounted and formatted before installing extension, please use this powershell script here ####
 ```shell
 https://github.com/hmcts/CIS-harderning/blob/master/windows-disk-mounting.ps1 
 ```
 ## Requirements
 
-A virtual machine only.
 
 | Name | Version |
 |------|---------|
