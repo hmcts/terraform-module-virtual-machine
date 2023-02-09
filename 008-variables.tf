@@ -86,7 +86,7 @@ variable "managed_disks" {
       resource_group_name      = "rg-test"
       storage_account_type     = "Standard_LRS"
       disk_create_option       = "Empty"
-      disk_size_gb             = "10"
+      disk_size_gb             = "128"
       disk_tier                = ""
       disk_zone                = "1"
       source_resource_id       = null
@@ -94,8 +94,8 @@ variable "managed_disks" {
       hyper_v_generation       = null
       os_type                  = null
       disk_lun                 = "10"
-      disk_caching             = ""
-      attachment_create_option = null
+      disk_caching             = "ReadWrite"
+      attachment_create_option = "Attach"
     }
   }
 }
