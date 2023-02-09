@@ -62,7 +62,9 @@ variable "vm_version" {}
 variable "boot_diagnostics_enabled" {
   default = true
 }
-variable "boot_storage_uri" {}
+variable "boot_storage_uri" {
+  default = null
+}
 
 variable "marketplace_sku" {
   default = null
@@ -91,7 +93,7 @@ variable "managed_disks" {
       storage_account_id       = null
       hyper_v_generation       = null
       os_type                  = null
-      disk_lun                 = ""
+      disk_lun                 = "10"
       disk_caching             = ""
       attachment_create_option = null
     }
