@@ -9,6 +9,7 @@ resource "azurerm_network_interface" "vm_nic" {
     subnet_id                     = var.vm_subnet_id
     private_ip_address_allocation = var.privateip_allocation
     private_ip_address            = var.vm_private_ip
+    public_ip_address_id          = var.vm_public_ip_address
   }
 
 

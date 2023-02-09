@@ -76,6 +76,9 @@ variable "marketplace_product" {
   default = null
 }
 
+variable "vm_public_ip_address" {
+  default = null
+}
 
 variable "managed_disks" {
   type = map(any)
