@@ -83,7 +83,7 @@ variable "managed_disks" {
     datadisk1 = {
       name                     = "vm-datadisk-01"
       location                 = "uksouth"
-      resource_group_name      = "rg-test"
+      resource_group_name      = "update-management-center-test"
       storage_account_type     = "Standard_LRS"
       disk_create_option       = "Empty"
       disk_size_gb             = "128"
