@@ -166,6 +166,11 @@ variable "vm_availabilty_zones" {}
 
 ############
 
+
+variable "install_azure_monitor" {
+  default = true
+}
+
 ########### Run Command #########
 variable "run_command" {
   default = false

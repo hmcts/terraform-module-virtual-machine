@@ -1,6 +1,6 @@
 
 module "vm-bootstrap" {
-  count  = var.install_splunk_uf == true || var.nessus_install == true ? 1 : 0
+  count  = var.install_splunk_uf == true || var.nessus_install == true || var.install_azure_monitor == true ? 1 : 0
   source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
 
   virtual_machine_type       = "vm"
@@ -13,8 +13,8 @@ module "vm-bootstrap" {
   nessus_server              = var.nessus_server
   nessus_key                 = var.nessus_key
   nessus_groups              = var.nessus_groups
-  install_dynatrace_oneagent = true
-  install_azure_monitor      = true
+  install_dynatrace_oneagent = var.install_dynatrace_oneagent
+  install_azure_monitor      = var.install_azure_monitor
   install_nessus_agent       = var.nessus_install
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
