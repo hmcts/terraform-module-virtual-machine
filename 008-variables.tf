@@ -209,6 +209,11 @@ variable "additional_script_uri" {
 variable "additional_script_name" {
   default = null
 }
+
+variable "accelerated_networking_enabled" {
+  default = false
+}
+
 variable "tags" {}
 
 locals {
