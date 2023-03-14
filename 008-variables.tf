@@ -214,6 +214,10 @@ variable "accelerated_networking_enabled" {
   default = false
 }
 
+variable "custom_data" {
+  default = null
+}
+
 variable "tags" {}
 
 locals {
