@@ -23,6 +23,11 @@ variable "vm_admin_password" {
 }
 variable "nic_name" {
 }
+variable "dns_servers" {
+  type        = list(string)
+  description = "DNS servers to use, will override DNS servers set at the VNET level"
+  default     = null
+}
 variable "ipconfig_name" {
 }
 
