@@ -223,6 +223,8 @@ variable "custom_data" {
   default = null
 }
 
+variable "identity" {}
+
 variable "tags" {}
 
 locals {
