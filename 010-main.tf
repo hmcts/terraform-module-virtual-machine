@@ -24,7 +24,6 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     identity_ids = var.identity
   }
 
-
   source_image_reference {
 
     publisher = var.vm_publisher_name

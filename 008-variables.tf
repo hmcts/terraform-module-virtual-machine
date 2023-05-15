@@ -223,7 +223,9 @@ variable "custom_data" {
   default = null
 }
 
-variable "identity" {}
+variable "identity" {
+  default = null
+}
 
 variable "tags" {}
 
