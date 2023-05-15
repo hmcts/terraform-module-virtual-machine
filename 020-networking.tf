@@ -1,8 +1,10 @@
 
 resource "azurerm_network_interface" "vm_nic" {
-  name                = var.nic_name
-  location            = var.vm_location
-  resource_group_name = var.vm_resource_group
+  name                          = var.nic_name
+  location                      = var.vm_location
+  resource_group_name           = var.vm_resource_group
+  enable_accelerated_networking = var.accelerated_networking_enabled
+  dns_servers                   = var.dns_servers
 
   ip_configuration {
     name                          = var.ipconfig_name

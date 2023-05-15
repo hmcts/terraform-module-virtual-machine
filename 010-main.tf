@@ -7,16 +7,23 @@ resource "azurerm_windows_virtual_machine" "winvm" {
   admin_username      = var.vm_admin_name
   admin_password      = var.vm_admin_password
   zone                = var.vm_availabilty_zones
+  custom_data         = var.custom_data
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
   ]
-
 
   os_disk {
     caching                = var.os_disk_type
     storage_account_type   = var.os_disk_storage_account_type
     disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
   }
+
+  identity {
+    count        = var.identity != null ? 1 : 0
+    type         = "SystemAssigned, UserAssigned"
+    identity_ids = var.identity
+  }
+
 
   source_image_reference {
 
@@ -53,6 +60,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   admin_username                  = var.vm_admin_name
   admin_password                  = var.vm_admin_password
   zone                            = var.vm_availabilty_zones
+  custom_data                     = var.custom_data
   disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
@@ -65,7 +73,11 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
   }
 
-
+  identity {
+    count        = var.identity != null ? 1 : 0
+    type         = "SystemAssigned, UserAssigned"
+    identity_ids = var.identity
+  }
 
   source_image_reference {
 
