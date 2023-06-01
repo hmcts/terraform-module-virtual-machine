@@ -276,7 +276,7 @@ variable "custom_data" {
 variable "userassigned_identity_ids" {
   type        = list(string)
   description = "List of User Manager Identity IDs to associate with the virtual machine."
-  default     = null
+  default     = []
 }
 
 variable "systemassigned_identity" {
