@@ -37,8 +37,8 @@ resource "azurerm_windows_virtual_machine" "winvm" {
   dynamic "identity" {
     for_each = local.identity
     content {
-      type         = each.value.type
-      identity_ids = each.value.identity_ids
+      type         = identity.value.type
+      identity_ids = identity.value.identity_ids
     }
   }
 
@@ -92,8 +92,8 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   dynamic "identity" {
     for_each = local.identity
     content {
-      type         = each.value.type
-      identity_ids = each.value.identity_ids
+      type         = identity.value.type
+      identity_ids = identity.value.identity_ids
     }
   }
 
