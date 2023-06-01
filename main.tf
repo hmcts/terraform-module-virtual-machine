@@ -88,14 +88,3 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   tags       = var.tags
   depends_on = [azurerm_disk_encryption_set.disk_enc_set]
 }
-
-# resource "azurerm_marketplace_agreement" "this" {
-#   publisher = var.vm_publisher_name
-#   offer     = var.vm_offer
-#   plan      = var.marketplace_sku
-
-#   depends_on = [
-#     azurerm_linux_virtual_machine.linvm,
-#     azurerm_windows_virtual_machine.winvm
-#   ]
-# }
