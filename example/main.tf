@@ -9,6 +9,7 @@ module "virtual-machine" {
   vm_publisher_name   = "Canonical"
   vm_offer            = "UbuntuServer"
   vm_sku              = "22.04-LTS"
+  vm_size             = "D2ds_v5"
   vm_version          = "latest"
   vm_availabilty_zone = "1"
   tags                = var.common_tags
