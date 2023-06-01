@@ -99,7 +99,9 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_splunk_pass4symmkey"></a> [splunk\_pass4symmkey](#input\_splunk\_pass4symmkey) | The pass4symmkey to use when communicating with splunk. | `string` | `null` | no |
 | <a name="input_splunk_password"></a> [splunk\_password](#input\_splunk\_password) | The password to use when communicating with splunk. | `string` | `null` | no |
 | <a name="input_splunk_username"></a> [splunk\_username](#input\_splunk\_username) | The username to use when communicating with splunk. | `string` | `null` | no |
+| <a name="input_systemassigned_identity"></a> [systemassigned\_identity](#input\_systemassigned\_identity) | Enable System Assigned managed identity for the virtual machine. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | The tags to apply to the virtual machine and associated resources. | `map(string)` | n/a | yes |
+| <a name="input_userassigned_identity_ids"></a> [userassigned\_identity\_ids](#input\_userassigned\_identity\_ids) | List of User Manager Identity IDs to associate with the virtual machine. | `list(string)` | `null` | no |
 | <a name="input_vm_admin_name"></a> [vm\_admin\_name](#input\_vm\_admin\_name) | The name of the admin user. | `string` | `"VMAdmin"` | no |
 | <a name="input_vm_admin_password"></a> [vm\_admin\_password](#input\_vm\_admin\_password) | The Admin password for the virtual machine. | `string` | n/a | yes |
 | <a name="input_vm_availabilty_zones"></a> [vm\_availabilty\_zones](#input\_vm\_availabilty\_zones) | The availability zones to deploy the VM in | `string` | n/a | yes |
