@@ -16,6 +16,18 @@ variable "dns_servers" {
   default     = null
 }
 
+variable "nic_name" {
+  type        = string
+  description = "The name of the NIC to create & associate with the virtual machine."
+  default     = null
+}
+
+variable "ipconfig_name" {
+  type        = string
+  description = "The name of the IPConfig to asssoicate with the NIC."
+  default     = null
+}
+
 variable "privateip_allocation" {
   type        = string
   description = "The type of private IP allocation, either Static or Dynamic."
