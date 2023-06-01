@@ -272,3 +272,15 @@ variable "custom_data" {
   description = "Custom data to pass to the virtual machine."
   default     = null
 }
+
+variable "userassigned_identity_ids" {
+  type        = list(string)
+  description = "List of User Manager Identity IDs to associate with the virtual machine."
+  default     = null
+}
+
+variable "systemassigned_identity" {
+  type        = bool
+  description = "Enable System Assigned managed identity for the virtual machine."
+  default     = false
+}

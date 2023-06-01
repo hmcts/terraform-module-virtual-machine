@@ -12,7 +12,6 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     azurerm_network_interface.vm_nic.id,
   ]
 
-
   os_disk {
     caching                = var.os_disk_type
     storage_account_type   = var.os_disk_storage_account_type
@@ -32,6 +31,14 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     for_each = local.dynamic_boot_diagnostics
     content {
       storage_account_uri = var.boot_storage_uri
+    }
+  }
+
+  dynamic "identity" {
+    for_each = local.identity
+    content {
+      type         = each.value.type
+      identity_ids = each.value.identity_ids
     }
   }
 
@@ -60,14 +67,11 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     azurerm_network_interface.vm_nic.id,
   ]
 
-
   os_disk {
     caching                = var.os_disk_type
     storage_account_type   = var.os_disk_storage_account_type
     disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
   }
-
-
 
   source_image_reference {
 
@@ -82,6 +86,14 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     content {
 
       storage_account_uri = var.boot_storage_uri
+    }
+  }
+
+  dynamic "identity" {
+    for_each = local.identity
+    content {
+      type         = each.value.type
+      identity_ids = each.value.identity_ids
     }
   }
 
