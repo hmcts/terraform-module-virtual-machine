@@ -35,7 +35,7 @@ variable "privateip_allocation" {
 }
 variable "vm_private_ip" {
   type        = string
-  description = "The privat IP to assign to the virtual machine."
+  description = "The private IP to assign to the virtual machine."
   default     = null
 }
 
