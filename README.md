@@ -8,7 +8,7 @@ https://github.com/hmcts/CIS-harderning/blob/master/windows-disk-mounting.ps1
 
 ## Example
 ```terraform
-module "virtual-machine" {
+module "virtual_machine" {
   source               = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
 
   vm_type              = "linux"
