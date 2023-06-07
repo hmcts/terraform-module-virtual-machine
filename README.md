@@ -68,6 +68,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_additional_script_uri"></a> [additional\_script\_uri](#input\_additional\_script\_uri) | URI of a publically accessible script to run against the virtual machine. | `string` | `null` | no |
 | <a name="input_boot_diagnostics_enabled"></a> [boot\_diagnostics\_enabled](#input\_boot\_diagnostics\_enabled) | Whether to enable boot diagnostics. | `bool` | `true` | no |
 | <a name="input_boot_storage_uri"></a> [boot\_storage\_uri](#input\_boot\_storage\_uri) | The URI of the storage to use for boot diagnostics. | `string` | `null` | no |
+| <a name="input_computer_name"></a> [computer\_name](#input\_computer\_name) | Override the computer name of the VM. If not set, the computer name will be the same as the VM name truncated to 15 characters (Windows only). | `any` | `null` | no |
 | <a name="input_custom_data"></a> [custom\_data](#input\_custom\_data) | Custom data to pass to the virtual machine. | `string` | `null` | no |
 | <a name="input_custom_image_id"></a> [custom\_image\_id](#input\_custom\_image\_id) | The ID of a custom image to use. | `string` | `""` | no |
 | <a name="input_dns_servers"></a> [dns\_servers](#input\_dns\_servers) | DNS servers to use, will override DNS servers set at the VNET level | `list(string)` | `null` | no |
