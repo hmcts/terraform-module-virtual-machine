@@ -10,6 +10,11 @@ variable "vm_admin_name" {
   default     = "VMAdmin"
 }
 
+variable "computer_name" {
+  description = "Override the computer name of the VM. If not set, the computer name will be the same as the VM name truncated to 15 characters (Windows only)."
+  default     = null
+}
+
 variable "dns_servers" {
   type        = list(string)
   description = "DNS servers to use, will override DNS servers set at the VNET level"
