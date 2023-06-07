@@ -98,25 +98,7 @@ variable "managed_disks" {
     )
   )
   description = "A map of managed disks to create & attach to the virtual machine."
-  default = {
-    datadisk1 = {
-      name                     = "vm-datadisk-01"
-      location                 = "uksouth"
-      resource_group_name      = "update-management-center-test"
-      storage_account_type     = "Standard_LRS"
-      disk_create_option       = "Empty"
-      disk_size_gb             = "128"
-      disk_tier                = ""
-      disk_zone                = "1"
-      source_resource_id       = null
-      storage_account_id       = null
-      hyper_v_generation       = null
-      os_type                  = null
-      disk_lun                 = "10"
-      disk_caching             = "ReadWrite"
-      attachment_create_option = "Attach"
-    }
-  }
+  default = {}
 }
 
 variable "install_splunk_uf" {
