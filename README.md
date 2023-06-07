@@ -19,7 +19,7 @@ module "virtual_machine" {
   vm_publisher_name    = "canonical"
   vm_offer             = "0001-com-ubuntu-server-jammy"
   vm_sku               = "22_04-lts-gen2"
-  vm_size              = "D2ds_v5"
+  vm_size              = "Standard_D2ds_v5"
   vm_version           = "latest"
   vm_availabilty_zones = "1"
   tags                 = var.common_tags
