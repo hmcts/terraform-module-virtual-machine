@@ -1,6 +1,15 @@
+locals {
+  # see https://github.com/MicrosoftDocs/azure-docs/issues/91067#issuecomment-1089911200
+  # Windows Server has a 15 char computer name limit
+  # The portal truncates the name to 15 chars, but the API does not do this automatically
+  # Also make sure that the name is valid by removing any invalid characters after truncation
+  computer_name = replace(substr(var.vm_name, 0, 15), "-", "")
+}
+
 resource "azurerm_windows_virtual_machine" "winvm" {
   count               = var.vm_type == "windows" ? 1 : 0
   name                = var.vm_name
+  computer_name       = local.computer_name
   resource_group_name = var.vm_resource_group
   location            = var.vm_location
   size                = var.vm_size
