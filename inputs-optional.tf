@@ -98,7 +98,7 @@ variable "managed_disks" {
     )
   )
   description = "A map of managed disks to create & attach to the virtual machine."
-  default = {}
+  default     = {}
 }
 
 variable "install_splunk_uf" {
