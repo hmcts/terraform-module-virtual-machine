@@ -8,17 +8,17 @@ https://github.com/hmcts/CIS-harderning/blob/master/windows-disk-mounting.ps1
 
 ## Example
 ```terraform
-module "virtual-machine" {
-  source = "../"
+module "virtual_machine" {
+  source               = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
 
   vm_type              = "linux"
   vm_name              = "example-vm"
   vm_resource_group    = "example-resource-group"
   vm_admin_password    = "example-super-secure-password" # ideally from a secret store
   vm_subnet_id         = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/xxxx/providers/Microsoft.Network/virtualNetworks/xxxx/subnets/xxx"
-  vm_publisher_name    = "Canonical"
-  vm_offer             = "UbuntuServer"
-  vm_sku               = "22.04-LTS"
+  vm_publisher_name    = "canonical"
+  vm_offer             = "0001-com-ubuntu-server-jammy"
+  vm_sku               = "22_04-lts-gen2"
   vm_size              = "D2ds_v5"
   vm_version           = "latest"
   vm_availabilty_zones = "1"
