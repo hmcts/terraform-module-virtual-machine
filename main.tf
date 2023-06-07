@@ -4,6 +4,11 @@ locals {
   # The portal truncates the name to 15 chars, but the API does not do this automatically
   # Also make sure that the name is valid by removing any invalid characters after truncation
   computer_name = replace(substr(var.vm_name, 0, 15), "-", "")
+
+  # https://learn.microsoft.com/en-gb/azure/virtual-machines/automatic-vm-guest-patching#supported-os-images
+  # TODO switch to strcontains in tf 1.5.x
+  automatic_by_platform_supported = can(regex("^2022-datacenter.*", var.vm_sku))
+  patch_mode                      = local.automatic_by_platform_supported ? "AutomaticByPlatform" : null
 }
 
 resource "azurerm_windows_virtual_machine" "winvm" {
@@ -26,6 +31,8 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     storage_account_type   = var.os_disk_storage_account_type
     disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
   }
+
+  patch_mode = local.patch_mode
 
   source_image_reference {
 
