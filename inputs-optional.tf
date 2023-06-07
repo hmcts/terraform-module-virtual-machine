@@ -284,3 +284,20 @@ variable "systemassigned_identity" {
   description = "Enable System Assigned managed identity for the virtual machine."
   default     = false
 }
+
+variable "os_disk_caching" {
+  type    = string
+  default = "ReadWrite"
+}
+variable "source_image_publisher" {
+  type    = string
+  default = "MicrosoftWindowsServer"
+}
+variable "source_image_offer" {
+  type    = string
+  default = "WindowsServer"
+}
+variable "identity_type" {
+  type    = string
+  default = "SystemAssigned"
+}
