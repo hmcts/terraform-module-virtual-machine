@@ -36,7 +36,7 @@ variable "ipconfig_name" {
 variable "privateip_allocation" {
   type        = string
   description = "The type of private IP allocation, either Static or Dynamic."
-  default     = "Static"
+  default     = "Dynamic"
 }
 variable "vm_private_ip" {
   type        = string
@@ -271,3 +271,20 @@ variable "systemassigned_identity" {
   description = "Enable System Assigned managed identity for the virtual machine."
   default     = false
 }
+
+# Temporarily adding this 3 variables to fix pre shared infrastructure
+
+variable "marketplace_sku" {
+  default = null 
+}
+
+variable "marketplace_publisher" {
+  default = null 
+}
+
+variable "marketplace_product" {
+  default = null 
+}
+
+
+
