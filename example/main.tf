@@ -11,7 +11,7 @@ module "virtual-machine" {
   vm_sku               = "22.04-LTS"
   vm_size              = "D2ds_v5"
   vm_version           = "latest"
-  vm_availabilty_zones = "1"
+  vm_availability_zones = "1"
   tags                 = var.common_tags
 }
 

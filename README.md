@@ -21,7 +21,7 @@ module "virtual_machine" {
   vm_sku               = "22_04-lts-gen2"
   vm_size              = "Standard_D2ds_v5"
   vm_version           = "latest"
-  vm_availabilty_zones = "1"
+  vm_availability_zones = "1"
   tags                 = var.common_tags
 }
 ```
@@ -105,7 +105,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_userassigned_identity_ids"></a> [userassigned\_identity\_ids](#input\_userassigned\_identity\_ids) | List of User Manager Identity IDs to associate with the virtual machine. | `list(string)` | `[]` | no |
 | <a name="input_vm_admin_name"></a> [vm\_admin\_name](#input\_vm\_admin\_name) | The name of the admin user. | `string` | `"VMAdmin"` | no |
 | <a name="input_vm_admin_password"></a> [vm\_admin\_password](#input\_vm\_admin\_password) | The Admin password for the virtual machine. | `string` | n/a | yes |
-| <a name="input_vm_availabilty_zones"></a> [vm\_availabilty\_zones](#input\_vm\_availabilty\_zones) | The availability zones to deploy the VM in | `string` | n/a | yes |
+| <a name="input_vm_availability_zones"></a> [vm\_availability\_zones](#input\_vm\_availability\_zones) | The availability zones to deploy the VM in | `string` | n/a | yes |
 | <a name="input_vm_location"></a> [vm\_location](#input\_vm\_location) | The Azure Region to deploy the virtual machine in. | `string` | `"uksouth"` | no |
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | The name of the Virtual Machine | `string` | n/a | yes |
 | <a name="input_vm_offer"></a> [vm\_offer](#input\_vm\_offer) | The offer of the marketplace image to use. | `string` | n/a | yes |
