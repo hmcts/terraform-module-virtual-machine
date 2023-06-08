@@ -49,7 +49,7 @@ variable "vm_version" {
   description = "The version of the image to use."
 }
 
-variable "vm_availability_zones" {
+variable "vm_availabilty_zones" {
   type        = string
   description = "The availability zones to deploy the VM in"
 }
