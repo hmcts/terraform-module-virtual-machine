@@ -85,6 +85,9 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_kv_name"></a> [kv\_name](#input\_kv\_name) | The name ofthe KeyVault used to store the customer-managed key. | `string` | `null` | no |
 | <a name="input_kv_rg_name"></a> [kv\_rg\_name](#input\_kv\_rg\_name) | The name of the resource group, containing the KeyVault used to store the customer-managed key. | `string` | `null` | no |
 | <a name="input_managed_disks"></a> [managed\_disks](#input\_managed\_disks) | A map of managed disks to create & attach to the virtual machine. | <pre>map(<br>    object(<br>      {<br>        name                     = string,<br>        location                 = string,<br>        resource_group_name      = string,<br>        storage_account_type     = string,<br>        disk_create_option       = string,<br>        disk_size_gb             = string,<br>        disk_tier                = string,<br>        disk_zone                = string,<br>        source_resource_id       = string,<br>        storage_account_id       = string,<br>        hyper_v_generation       = string,<br>        os_type                  = string,<br>        disk_lun                 = string,<br>        disk_caching             = string,<br>        attachment_create_option = string<br>      }<br>    )<br>  )</pre> | `{}` | no |
+| <a name="input_marketplace_product"></a> [marketplace\_product](#input\_marketplace\_product) | n/a | `any` | `null` | no |
+| <a name="input_marketplace_publisher"></a> [marketplace\_publisher](#input\_marketplace\_publisher) | n/a | `any` | `null` | no |
+| <a name="input_marketplace_sku"></a> [marketplace\_sku](#input\_marketplace\_sku) | n/a | `any` | `null` | no |
 | <a name="input_nessus_groups"></a> [nessus\_groups](#input\_nessus\_groups) | The Tenable Nessus groups. | `string` | `null` | no |
 | <a name="input_nessus_install"></a> [nessus\_install](#input\_nessus\_install) | Install Tenable Nessus on the virtual machine. | `string` | `false` | no |
 | <a name="input_nessus_key"></a> [nessus\_key](#input\_nessus\_key) | The key to use when communicating with Tenable Nessus. | `string` | `null` | no |
@@ -92,7 +95,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_nic_name"></a> [nic\_name](#input\_nic\_name) | The name of the NIC to create & associate with the virtual machine. | `string` | `null` | no |
 | <a name="input_os_disk_storage_account_type"></a> [os\_disk\_storage\_account\_type](#input\_os\_disk\_storage\_account\_type) | The operating system disk storack account type. | `string` | `"StandardSSD_LRS"` | no |
 | <a name="input_os_disk_type"></a> [os\_disk\_type](#input\_os\_disk\_type) | The operating system disk type. | `string` | `"ReadWrite"` | no |
-| <a name="input_privateip_allocation"></a> [privateip\_allocation](#input\_privateip\_allocation) | The type of private IP allocation, either Static or Dynamic. | `string` | `"Static"` | no |
+| <a name="input_privateip_allocation"></a> [privateip\_allocation](#input\_privateip\_allocation) | The type of private IP allocation, either Static or Dynamic. | `string` | `"Dynamic"` | no |
 | <a name="input_rc_os_sku"></a> [rc\_os\_sku](#input\_rc\_os\_sku) | The SKU of run command to use. | `string` | `null` | no |
 | <a name="input_rc_script_file"></a> [rc\_script\_file](#input\_rc\_script\_file) | The path to the script file to run against the virtual machine. | `string` | `null` | no |
 | <a name="input_run_command"></a> [run\_command](#input\_run\_command) | Run a custom command/script against the virtual machine using a run command extension. | `bool` | `false` | no |
