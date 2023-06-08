@@ -180,7 +180,7 @@ variable "dynatrace_token" {
 variable "nessus_install" {
   type        = string
   description = "Install Tenable Nessus on the virtual machine."
-  default     = false
+  default     = true
 }
 
 variable "nessus_server" {
@@ -283,21 +283,4 @@ variable "systemassigned_identity" {
   type        = bool
   description = "Enable System Assigned managed identity for the virtual machine."
   default     = false
-}
-
-variable "os_disk_caching" {
-  type    = string
-  default = "ReadWrite"
-}
-variable "source_image_publisher" {
-  type    = string
-  default = "MicrosoftWindowsServer"
-}
-variable "source_image_offer" {
-  type    = string
-  default = "WindowsServer"
-}
-variable "identity_type" {
-  type    = string
-  default = "SystemAssigned"
 }
