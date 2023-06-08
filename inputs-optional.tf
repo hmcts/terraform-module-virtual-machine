@@ -36,7 +36,7 @@ variable "ipconfig_name" {
 variable "privateip_allocation" {
   type        = string
   description = "The type of private IP allocation, either Static or Dynamic."
-  default     = "Dynamic"
+  default     = "Static"
 }
 variable "vm_private_ip" {
   type        = string
