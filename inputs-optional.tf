@@ -271,3 +271,20 @@ variable "systemassigned_identity" {
   description = "Enable System Assigned managed identity for the virtual machine."
   default     = false
 }
+
+# Temporarily adding this 3 variables to fix pre shared infrastructure
+
+variable "marketplace_sku" {
+  default = null 
+}
+
+variable "marketplace_publisher" {
+  default = null 
+}
+
+variable "marketplace_product" {
+  default = null 
+}
+
+
+
