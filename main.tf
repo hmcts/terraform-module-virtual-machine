@@ -21,7 +21,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
   size                = var.vm_size
   admin_username      = var.vm_admin_name
   admin_password      = var.vm_admin_password
-  zone                = var.vm_availabilty_zones
+  zone                = var.vm_availability_zones
   custom_data         = var.custom_data
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
@@ -77,7 +77,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   size                            = var.vm_size
   admin_username                  = var.vm_admin_name
   admin_password                  = var.vm_admin_password
-  zone                            = var.vm_availabilty_zones
+  zone                            = var.vm_availability_zones
   custom_data                     = var.custom_data
   disable_password_authentication = false
   network_interface_ids = [
