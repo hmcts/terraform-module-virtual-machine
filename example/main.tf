@@ -1,18 +1,18 @@
 module "virtual-machine" {
   source = "../"
 
-  vm_type               = "linux"
-  vm_name               = "example-vm"
-  vm_resource_group     = "example-resource-group"
-  vm_admin_password     = "example-super-secure-password" # ideally from a secret store
-  vm_subnet_id          = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/xxxx/providers/Microsoft.Network/virtualNetworks/xxxx/subnets/xxx"
-  vm_publisher_name     = "Canonical"
-  vm_offer              = "UbuntuServer"
-  vm_sku                = "22.04-LTS"
-  vm_size               = "D2ds_v5"
-  vm_version            = "latest"
-  vm_availability_zones = "1"
-  tags                  = var.common_tags
+  vm_type              = "linux"
+  vm_name              = "example-vm"
+  vm_resource_group    = "example-resource-group"
+  vm_admin_password    = "example-super-secure-password" # ideally from a secret store
+  vm_subnet_id         = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/xxxx/providers/Microsoft.Network/virtualNetworks/xxxx/subnets/xxx"
+  vm_publisher_name    = "Canonical"
+  vm_offer             = "UbuntuServer"
+  vm_sku               = "22.04-LTS"
+  vm_size              = "D2ds_v5"
+  vm_version           = "latest"
+  vm_availabilty_zones = "1"
+  tags                 = var.common_tags
 }
 
 # only for use when building from ADO and as a quick example to get valid tags
