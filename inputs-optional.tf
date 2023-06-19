@@ -271,3 +271,9 @@ variable "systemassigned_identity" {
   description = "Enable System Assigned managed identity for the virtual machine."
   default     = false
 }
+
+variable "custom_script_extension_name" {
+  description = "Overwrite custom script extension name label in bootstrap module."
+  type        = string
+  default     = null
+}

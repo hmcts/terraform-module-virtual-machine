@@ -26,8 +26,8 @@ module "vm-bootstrap" {
   rc_script_file = var.rc_script_file
   rc_os_sku      = var.rc_os_sku
 
-  additional_script_uri  = var.additional_script_uri
-  additional_script_name = var.additional_script_name
-
-  common_tags = var.tags
+  additional_script_uri        = var.additional_script_uri
+  additional_script_name       = var.additional_script_name
+  custom_script_extension_name = var.custom_script_extension_name
+  common_tags                  = var.tags
 }
