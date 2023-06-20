@@ -79,6 +79,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_dynatrace_token"></a> [dynatrace\_token](#input\_dynatrace\_token) | The token to use when communicating with the Dynatrace ActiveGate. | `string` | `null` | no |
 | <a name="input_encrypt_ADE"></a> [encrypt\_ADE](#input\_encrypt\_ADE) | Encrypt the disks using Azure Disk Encryption. | `bool` | `false` | no |
 | <a name="input_encrypt_CMK"></a> [encrypt\_CMK](#input\_encrypt\_CMK) | Encrypt the disks with a customer-managed key. | `bool` | `false` | no |
+| <a name="input_install_app_proxy"></a> [install\_app\_proxy](#input\_install\_app\_proxy) | Install Azure App Proxy. | `bool` | `false` | no |
 | <a name="input_install_azure_monitor"></a> [install\_azure\_monitor](#input\_install\_azure\_monitor) | Install Azure Monitor on the virtual machine. | `bool` | `true` | no |
 | <a name="input_install_dynatrace_oneagent"></a> [install\_dynatrace\_oneagent](#input\_install\_dynatrace\_oneagent) | Install dynatrace oneagent on the virtual machine. | `bool` | `true` | no |
 | <a name="input_install_splunk_uf"></a> [install\_splunk\_uf](#input\_install\_splunk\_uf) | Insall splunk uniforwarder on the virtual machine. | `bool` | `false` | no |
