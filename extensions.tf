@@ -16,6 +16,7 @@ module "vm-bootstrap" {
   install_dynatrace_oneagent = var.install_dynatrace_oneagent
   install_azure_monitor      = var.install_azure_monitor
   install_nessus_agent       = var.nessus_install
+  install_app_proxy          = var.install_app_proxy
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
   dynatrace_server    = var.dynatrace_server
@@ -25,7 +26,6 @@ module "vm-bootstrap" {
   run_command    = var.run_command
   rc_script_file = var.rc_script_file
   rc_os_sku      = var.rc_os_sku
-
   additional_script_uri        = var.additional_script_uri
   additional_script_name       = var.additional_script_name
   custom_script_extension_name = var.custom_script_extension_name

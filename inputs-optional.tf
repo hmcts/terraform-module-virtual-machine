@@ -277,3 +277,9 @@ variable "custom_script_extension_name" {
   type        = string
   default     = null
 }
+
+variable "install_app_proxy" {
+  description = "Install Azure App Proxy."
+  default     = false
+  type        = bool
+}
