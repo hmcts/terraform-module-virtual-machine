@@ -10,7 +10,7 @@ resource "azurerm_virtual_machine_extension" "vmextension" {
   virtual_machine_id         = lower(var.vm_type) == "windows" ? azurerm_windows_virtual_machine.winvm[0].id : azurerm_linux_virtual_machine.linvm[0].id
   publisher                  = "Microsoft.Azure.Security"
   type                       = lower(var.vm_type) == "windows" ? "AzureDiskEncryption" : "AzureDiskEncryptionForLinux"
-  type_handler_version       = lower(var.vm_type) == "windows" ? "2.3.0.0" : "1.1"
+  type_handler_version       = lower(var.vm_type) == "windows" ? "2.3" : "1.1"
   auto_upgrade_minor_version = true
 
   settings = jsonencode({
