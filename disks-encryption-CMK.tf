@@ -10,7 +10,7 @@ resource "azurerm_key_vault_key" "disk_enc_key" {
   name         = "disk-encrypt-${var.vm_name}"
   key_vault_id = var.encrypt_CMK || var.encrypt_ADE ? data.azurerm_key_vault.enc_kv[0].id : null
   key_type     = "RSA"
-  key_size     = 3072
+  key_size     = 4096
 
   key_opts = [
     "decrypt",
