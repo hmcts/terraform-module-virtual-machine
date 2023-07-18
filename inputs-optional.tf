@@ -271,3 +271,9 @@ variable "systemassigned_identity" {
   description = "Enable System Assigned managed identity for the virtual machine."
   default     = false
 }
+
+variable "key_size" {
+  type        = number
+  description = "key size for the Disc encryption"
+  default     = 2048
+}
