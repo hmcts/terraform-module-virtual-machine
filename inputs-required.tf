@@ -13,6 +13,11 @@ variable "vm_resource_group" {
   description = "The name of the resource group to deploy the virtual machine in."
 }
 
+variable "env" {
+  description = "Environment name"
+  type        = string
+}
+
 variable "vm_admin_password" {
   type        = string
   sensitive   = true
