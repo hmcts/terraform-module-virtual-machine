@@ -277,9 +277,3 @@ variable "custom_script_extension_name" {
   type        = string
   default     = null
 }
-
-variable "env" {
-  description = "Environment name"
-  type        = string
-  default     = ""
-}

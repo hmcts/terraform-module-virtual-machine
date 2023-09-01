@@ -11,6 +11,7 @@ module "vm-bootstrap" {
 
   virtual_machine_type       = "vm"
   virtual_machine_id         = var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
+  env                        = var.env
   splunk_username            = var.splunk_username
   splunk_password            = var.splunk_password
   splunk_pass4symmkey        = var.splunk_pass4symmkey
