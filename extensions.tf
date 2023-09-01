@@ -7,7 +7,7 @@ module "vm-bootstrap" {
   }
 
   count  = var.install_splunk_uf == true || var.nessus_install == true ? 1 : 0
-  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
+  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=fix%2Fupdate-cnp-vault-rg"
 
   virtual_machine_type       = "vm"
   virtual_machine_id         = var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
@@ -23,7 +23,6 @@ module "vm-bootstrap" {
   install_dynatrace_oneagent = var.install_dynatrace_oneagent
   install_azure_monitor      = var.install_azure_monitor
   install_nessus_agent       = var.nessus_install
-
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
   dynatrace_server    = var.dynatrace_server
