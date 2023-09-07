@@ -7,7 +7,7 @@ module "vm-bootstrap" {
   }
 
   count  = var.install_splunk_uf == true || var.nessus_install == true ? 1 : 0
-  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=fix%2Fdont-read-secrets-if-not-required"
+  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=fix%2Fupdate-splunk"
 
   virtual_machine_type       = "vm"
   virtual_machine_id         = var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
