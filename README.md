@@ -1,10 +1,5 @@
 # terraform-module-virtual-machine
-This is VM module let you deploy either Windows VM or Linux VM and also allow you to Disk Encryption either using Customer Managed Key (CMK) or Azure Disk Encryption (ADE).
-
-#### Note: Please make sure if you are encrypting disk using ADE encryption on windows device, you have to make sure that your disks are mounted and formatted before installing extension, please use this powershell script here ####
-```shell
-https://github.com/hmcts/CIS-harderning/blob/master/windows-disk-mounting.ps1 
-```
+This module lets you deploy either a Windows VM or Linux VM and optionally allows you to Encrypt Disks using Customer Managed Key (CMK).
 
 ## Example
 ```terraform
@@ -77,7 +72,6 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_dynatrace_server"></a> [dynatrace\_server](#input\_dynatrace\_server) | The Dynatrace ActiveGate server URL. | `string` | `null` | no |
 | <a name="input_dynatrace_tenant_id"></a> [dynatrace\_tenant\_id](#input\_dynatrace\_tenant\_id) | The Dynatrace tenant ID. | `string` | `null` | no |
 | <a name="input_dynatrace_token"></a> [dynatrace\_token](#input\_dynatrace\_token) | The token to use when communicating with the Dynatrace ActiveGate. | `string` | `""` | no |
-| <a name="input_encrypt_ADE"></a> [encrypt\_ADE](#input\_encrypt\_ADE) | Encrypt the disks using Azure Disk Encryption. | `bool` | `false` | no |
 | <a name="input_encrypt_CMK"></a> [encrypt\_CMK](#input\_encrypt\_CMK) | Encrypt the disks with a customer-managed key. | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
 | <a name="input_install_azure_monitor"></a> [install\_azure\_monitor](#input\_install\_azure\_monitor) | Install Azure Monitor on the virtual machine. | `bool` | `true` | no |
