@@ -1,4 +1,10 @@
 module "virtual-machine" {
+  providers = {
+    azurerm     = azurerm
+    azurerm.cnp = azurerm.cnp
+    azurerm.soc = azurerm.soc
+  }
+  
   source = "../"
 
   vm_type              = "linux"
