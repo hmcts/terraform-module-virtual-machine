@@ -4,12 +4,13 @@ module "virtual-machine" {
     azurerm.cnp = azurerm.cnp
     azurerm.soc = azurerm.soc
   }
-  
+
   source = "../"
 
   vm_type              = "linux"
   vm_name              = "example-vm"
   vm_resource_group    = "example-resource-group"
+  env                  = "nonprod"
   vm_admin_password    = "example-super-secure-password" # ideally from a secret store
   vm_subnet_id         = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/xxxx/providers/Microsoft.Network/virtualNetworks/xxxx/subnets/xxx"
   vm_publisher_name    = "Canonical"
