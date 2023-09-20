@@ -230,6 +230,12 @@ variable "kv_rg_name" {
   default     = null
 }
 
+variable "encrypt_ADE" {
+  type        = bool
+  description = "Encrypt the disks using Azure Disk Encryption."
+  default     = false
+}
+
 variable "additional_script_uri" {
   type        = string
   description = "URI of a publically accessible script to run against the virtual machine."

@@ -61,6 +61,12 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 
   tags       = var.tags
   depends_on = [azurerm_disk_encryption_set.disk_enc_set, azurerm_key_vault_access_policy.disk_policy]
+  lifecycle {
+    precondition {
+      condition     = (var.encrypt_CMK && !var.encrypt_ADE) || (!var.encrypt_CMK && var.encrypt_ADE) || (!var.encrypt_CMK && !var.encrypt_ADE)
+      error_message = "You can either have Customer Managed Key Encryption or Azure Disk Encryption, you can not encrypt with both"
+    }
+  }
 }
 
 resource "azurerm_linux_virtual_machine" "linvm" {
