@@ -106,37 +106,39 @@ variable "managed_disks" {
   default     = {}
 }
 
+# Splunk UF
 variable "install_splunk_uf" {
   type        = bool
-  description = "Insall splunk uniforwarder on the virtual machine."
-  default     = false
+  description = "Install splunk uniforwarder on the virtual machine."
+  default     = true
 }
 
 variable "splunk_username" {
   type        = string
-  description = "The username to use when communicating with splunk."
-  default     = ""
+  description = "Splunk universal forwarder local admin username."
+  default     = null
 }
 
 variable "splunk_password" {
   type        = string
-  description = "The password to use when communicating with splunk."
-  default     = ""
+  description = "Splunk universal forwarder local admin password."
+  default     = null
 }
 variable "splunk_pass4symmkey" {
   type        = string
-  description = "The pass4symmkey to use when communicating with splunk."
-  default     = ""
+  description = "Splunk universal forwarder communication security key."
+  default     = null
 }
 variable "splunk_group" {
   type        = string
-  description = "The group to use when communicating with splunk."
+  description = "Splunk universal forwarder global target group."
   default     = "hmcts_forwarders"
 }
 
+# Dynatrace OneAgent
 variable "install_dynatrace_oneagent" {
   type        = bool
-  description = "Install dynatrace oneagent on the virtual machine."
+  description = "Install dynatrace OneAgent."
   default     = true
 }
 
@@ -155,7 +157,7 @@ variable "dynatrace_server" {
 variable "dynatrace_tenant_id" {
   type        = string
   description = "The Dynatrace tenant ID."
-  default     = null
+  default     = ""
 }
 
 variable "dynatrace_token" {
@@ -164,10 +166,11 @@ variable "dynatrace_token" {
   default     = ""
 }
 
+# Nessus Agent
 variable "nessus_install" {
-  type        = string
+  type        = bool
   description = "Install Tenable Nessus on the virtual machine."
-  default     = false
+  default     = true
 }
 
 variable "nessus_server" {
@@ -179,21 +182,23 @@ variable "nessus_server" {
 variable "nessus_key" {
   type        = string
   description = "The key to use when communicating with Tenable Nessus."
-  default     = ""
+  default     = null
 }
 
 variable "nessus_groups" {
   type        = string
-  description = "The Tenable Nessus groups."
-  default     = ""
+  description = "The Tenable Nessus group name."
+  default     = "Platform-Operation-Bastions"
 }
 
+# Azure Monitor
 variable "install_azure_monitor" {
   type        = bool
-  description = "Install Azure Monitor on the virtual machine."
+  description = "Install Azure Monitor Agent."
   default     = true
 }
 
+# Run Command Variables
 variable "run_command" {
   type        = bool
   description = "Run a custom command/script against the virtual machine using a run command extension."
