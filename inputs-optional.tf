@@ -115,18 +115,18 @@ variable "install_splunk_uf" {
 
 variable "splunk_username" {
   type        = string
-  description = "Splunk universal forwarder local admin username - read input from keyvault."
+  description = "Splunk universal forwarder local admin username."
   default     = null
 }
 
 variable "splunk_password" {
   type        = string
-  description = "Splunk universal forwarder local admin password - read input from keyvault."
+  description = "Splunk universal forwarder local admin password."
   default     = null
 }
 variable "splunk_pass4symmkey" {
   type        = string
-  description = "Splunk universal forwarder communication security key - read input from keyvault."
+  description = "Splunk universal forwarder communication security key."
   default     = null
 }
 variable "splunk_group" {
@@ -181,7 +181,7 @@ variable "nessus_server" {
 
 variable "nessus_key" {
   type        = string
-  description = "The key to use when communicating with Tenable Nessus - read input from keyvault."
+  description = "The key to use when communicating with Tenable Nessus."
   default     = null
 }
 
