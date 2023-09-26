@@ -56,6 +56,12 @@ variable "os_disk_storage_account_type" {
   default     = "StandardSSD_LRS"
 }
 
+variable "os_disk_size_gb" {
+  type        = string
+  description = "The operating system disk size in GB."
+  default     = "128"
+}
+
 variable "custom_image_id" {
   type        = string
   description = "The ID of a custom image to use."

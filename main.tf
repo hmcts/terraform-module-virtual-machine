@@ -31,6 +31,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     caching                = var.os_disk_type
     storage_account_type   = var.os_disk_storage_account_type
     disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
+    disk_size_gb           = var.os_disk_size_gb
   }
 
   patch_mode = local.patch_mode
@@ -82,6 +83,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     caching                = var.os_disk_type
     storage_account_type   = var.os_disk_storage_account_type
     disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
+    disk_size_gb           = var.os_disk_size_gb
   }
 
   source_image_reference {
