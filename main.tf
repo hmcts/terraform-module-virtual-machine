@@ -3,7 +3,7 @@ locals {
   # Windows Server has a 15 char computer name limit
   # The portal truncates the name to 15 chars, but the API does not do this automatically
   # Also make sure that the name is valid by removing any invalid characters after truncation
-  computer_name_calculated = replace(substr(var.vm_name, 0, 15), "/$-/", "")
+  computer_name_calculated = replace(substr(var.vm_name, 0, 15), "/-$/", "")
   computer_name            = var.computer_name != null ? var.computer_name : local.computer_name_calculated
 
   # https://learn.microsoft.com/en-gb/azure/virtual-machines/automatic-vm-guest-patching#supported-os-images
