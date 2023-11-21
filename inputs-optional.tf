@@ -280,5 +280,5 @@ variable "systemassigned_identity" {
 variable "custom_script_extension_name" {
   description = "Overwrite custom script extension name label in bootstrap module."
   type        = string
-  default     = null
+  default     = "HMCTSVMBootstrap"
 }
