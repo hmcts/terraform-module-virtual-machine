@@ -3,7 +3,7 @@ variable "vm_type" {
   description = "The type of the vm, either 'windows' or 'linux'"
 
   validation {
-    condition = contains(["windows", "linux"], lower(var.vm_type))
+    condition     = contains(["windows", "linux"], lower(var.vm_type))
     error_message = "Unknown VM type. Must be either 'windows' or 'linux'"
   }
 }
