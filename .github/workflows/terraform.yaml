@@ -40,7 +40,7 @@ jobs:
         run: terraform fmt -check
 
       - name: Terraform Test
-        run:  |
+        run: |
           terraform init
           terraform test
         working-directory: ./
