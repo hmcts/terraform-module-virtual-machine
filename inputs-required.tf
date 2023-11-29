@@ -1,6 +1,11 @@
 variable "vm_type" {
   type        = string
-  description = "The type of the vm, either windows or linux"
+  description = "The type of the vm, either 'windows' or 'linux'"
+
+  validation {
+    condition = contains(["windows", "linux"], lower(var.vm_type))
+    error_message = "Unknown VM type. Must be either 'windows' or 'linux'"
+  }
 }
 
 variable "vm_name" {

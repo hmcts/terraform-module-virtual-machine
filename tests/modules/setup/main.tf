@@ -9,12 +9,12 @@ module "common_tags" {
 }
 
 resource "azurerm_resource_group" "test" {
-    name = "vm-test-rg"
+    name = "vm-module-test-rg"
     location = "UK South"
 }
 
 resource "azurerm_virtual_network" "test" {
-  name                = "vm-test-vnet"
+  name                = "vm-module-test-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.test.location
   resource_group_name = azurerm_resource_group.test.name
@@ -22,7 +22,7 @@ resource "azurerm_virtual_network" "test" {
 }
 
 resource "azurerm_subnet" "test" {
-  name                 = "vm-test-subnet"
+  name                 = "vm-module-test-subnet"
   resource_group_name  = azurerm_resource_group.test.name
   virtual_network_name = azurerm_virtual_network.test.name
   address_prefixes     = ["10.0.1.0/24"]

@@ -13,7 +13,7 @@ locals {
 }
 
 resource "azurerm_windows_virtual_machine" "winvm" {
-  count               = var.vm_type == "windows" ? 1 : 0
+  count               = lower(var.vm_type) == "windows" ? 1 : 0
   name                = var.vm_name
   computer_name       = local.computer_name
   resource_group_name = var.vm_resource_group
@@ -65,7 +65,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 }
 
 resource "azurerm_linux_virtual_machine" "linvm" {
-  count                           = var.vm_type == "linux" ? 1 : 0
+  count                           = lower(var.vm_type) == "linux" ? 1 : 0
   name                            = var.vm_name
   resource_group_name             = var.vm_resource_group
   location                        = var.vm_location
