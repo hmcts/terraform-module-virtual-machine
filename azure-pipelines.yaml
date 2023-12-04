@@ -1,0 +1,86 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+
+pr:
+  - master
+
+resources:
+  repositories:
+    - repository: cnp-azuredevops-libraries
+      type: github
+      ref: refs/heads/DTSPO-15698-add-tf-test-support
+      name: hmcts/cnp-azuredevops-libraries
+      endpoint: 'hmcts'
+
+parameters:
+  - name: environment_components
+    type: object
+    default:
+      - deployment: 'prod_general'
+        environment: 'prod'
+        component: 'general'
+        service_connection: 'DTS-HERITAGE-INTSVC-PROD'
+        dependsOn: 'Precheck'
+      - deployment: 'prod_networking'
+        environment: 'prod'
+        component: 'networking'
+        service_connection: 'DTS-HERITAGE-INTSVC-PROD'
+        dependsOn: 'Precheck'
+      - deployment: 'prod_vm'
+        environment: 'prod'
+        component: 'vm'
+        service_connection: 'DTS-HERITAGE-INTSVC-PROD'
+        dependsOn:
+          - 'prod_general'
+          - 'prod_networking'
+
+variables:
+  - name: timeoutInMinutes
+    value: 60
+  - name: agentImage
+    value: ubuntu-20.04
+  - name: product
+    value: sds-platform
+  - name: terraformInitSubscription
+    value: 04d27a32-7a07-48b3-95b8-3c8691e1a263
+  - template: vars/input-variables.yaml@cnp-azuredevops-libraries
+
+stages:
+  - stage: Precheck
+    jobs:
+      - job:
+        pool: 
+          vmImage: ${{ variables.agentImage }}
+        steps:
+          - template: steps/terraform-precheck.yaml@cnp-azuredevops-libraries
+            parameters:
+              keyvaultName: 'infra-vault-nonprod'
+              keyvaultSecret: 'azure-devops-sp-token'
+              serviceConnection: 'azurerm-sandbox'
+              overrideAction: ${{ parameters.overrideAction }}
+
+  - stage: Test
+    dependsOn: Precheck
+    jobs:
+      - job: TerraformTest
+        pool: 
+          vmImage: ${{ variables.agentImage }}
+        timeoutInMinutes: ${{ variables.timeoutInMinutes }}
+        variables:
+          - group: jumpbox-aad-creds
+        steps:
+          - template: steps/terraform-test.yaml@cnp-azuredevops-libraries
+            parameters:
+              overrideAction: ${{ parameters.overrideAction }}
+              environment: ${{ deployment.environment }}
+              component: ${{ deployment.component }}
+              serviceConnection: 'azurerm-sandbox'
+              terraformInitSubscription: ${{ variables.terraformInitSubscription }}
+              product: ${{ variables.product }}
+              ${{ if contains(deployment.deployment, 'prod_vm') }}:
+                planCommandOptions: "-compact-warnings -var domain_username=$(TF_VAR_DOMAIN_USERNAME) -var domain_password=$(TF_VAR_DOMAIN_PASSWORD)"
+              ${{ else }}:
+                planCommandOptions: "-compact-warnings"
