@@ -66,4 +66,4 @@ stages:
               serviceConnection: 'azurerm-sandbox'
               terraformInitSubscription: ${{ variables.terraformInitSubscription }}
               product: ${{ variables.product }}
-              testCommandOptions: "-compact-warnings"
+              testCommandOptions: "-verbose"
