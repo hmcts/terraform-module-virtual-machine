@@ -66,7 +66,4 @@ stages:
               serviceConnection: 'azurerm-sandbox'
               terraformInitSubscription: ${{ variables.terraformInitSubscription }}
               product: ${{ variables.product }}
-              ${{ if contains(deployment.deployment, 'prod_vm') }}:
-                planCommandOptions: "-compact-warnings -var domain_username=$(TF_VAR_DOMAIN_USERNAME) -var domain_password=$(TF_VAR_DOMAIN_PASSWORD)"
-              ${{ else }}:
-                planCommandOptions: "-compact-warnings"
+              testCommandOptions: "-compact-warnings"
