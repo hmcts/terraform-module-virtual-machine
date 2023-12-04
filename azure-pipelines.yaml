@@ -19,23 +19,10 @@ parameters:
   - name: environment_components
     type: object
     default:
-      - deployment: 'prod_general'
-        environment: 'prod'
-        component: 'general'
-        service_connection: 'DTS-HERITAGE-INTSVC-PROD'
-        dependsOn: 'Precheck'
-      - deployment: 'prod_networking'
-        environment: 'prod'
-        component: 'networking'
-        service_connection: 'DTS-HERITAGE-INTSVC-PROD'
-        dependsOn: 'Precheck'
-      - deployment: 'prod_vm'
-        environment: 'prod'
-        component: 'vm'
-        service_connection: 'DTS-HERITAGE-INTSVC-PROD'
-        dependsOn:
-          - 'prod_general'
-          - 'prod_networking'
+      - deployment: 'test'
+        environment: 'sandbox'
+        component: 'test'
+        service_connection: 'DTS-SHAREDSERVICESPTL-SBOX'
 
 variables:
   - name: timeoutInMinutes

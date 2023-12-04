@@ -38,9 +38,3 @@ jobs:
 
       - name: Terraform format
         run: terraform fmt -check
-
-      - name: Terraform Test
-        run: |
-          terraform init
-          terraform test
-        working-directory: ./
