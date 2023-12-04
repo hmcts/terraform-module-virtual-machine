@@ -47,7 +47,7 @@ stages:
               keyvaultName: 'infra-vault-nonprod'
               keyvaultSecret: 'azure-devops-sp-token'
               serviceConnection: 'azurerm-sandbox'
-              overrideAction: ${{ parameters.overrideAction }}
+              overrideAction: 'plan'
 
   - stage: Test
     dependsOn: Precheck
@@ -61,9 +61,8 @@ stages:
         steps:
           - template: steps/terraform-test.yaml@cnp-azuredevops-libraries
             parameters:
-              overrideAction: ${{ parameters.overrideAction }}
-              environment: ${{ deployment.environment }}
-              component: ${{ deployment.component }}
+              environment: sandbox
+              component: test
               serviceConnection: 'azurerm-sandbox'
               terraformInitSubscription: ${{ variables.terraformInitSubscription }}
               product: ${{ variables.product }}
