@@ -91,7 +91,7 @@ run "user_identity" {
     vm_subnet_id      = run.setup.subnet
     tags              = run.setup.common_tags
 
-    systemassigned_identity   = false
+    systemassigned_identity = false
     userassigned_identity_ids = [
       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue1",
       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue2"
@@ -121,7 +121,7 @@ run "both_identities" {
     vm_subnet_id      = run.setup.subnet
     tags              = run.setup.common_tags
 
-    systemassigned_identity   = true
+    systemassigned_identity = true
     userassigned_identity_ids = [
       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue3",
       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue4",

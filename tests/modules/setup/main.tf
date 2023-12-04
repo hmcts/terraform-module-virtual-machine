@@ -9,8 +9,8 @@ module "common_tags" {
 }
 
 resource "azurerm_resource_group" "test" {
-    name = "vm-module-test-rg"
-    location = "UK South"
+  name     = "vm-module-test-rg"
+  location = "UK South"
 }
 
 resource "azurerm_virtual_network" "test" {
