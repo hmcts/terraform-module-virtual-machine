@@ -74,5 +74,6 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                az login --service-principal -u $(ARM_CLIENT_ID) -t $(ARM_TENANT_ID) --password $(ARM_CLIENT_SECRET)
+                az login --service-principal -u azurerm-sandbox # -t $(ARM_TENANT_ID) --password $(ARM_CLIENT_SECRET)
+                terraform init
                 terraform test
