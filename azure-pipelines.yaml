@@ -15,15 +15,6 @@ resources:
       name: hmcts/cnp-azuredevops-libraries
       endpoint: 'hmcts'
 
-parameters:
-  - name: environment_components
-    type: object
-    default:
-      - deployment: 'test'
-        environment: 'sandbox'
-        component: 'test'
-        service_connection: 'DTS-SHAREDSERVICESPTL-SBOX'
-
 variables:
   - name: timeoutInMinutes
     value: 60
@@ -49,6 +40,25 @@ stages:
               serviceConnection: 'azurerm-sandbox'
               overrideAction: 'plan'
 
+  # - stage: Test
+  #   dependsOn: Precheck
+  #   jobs:
+  #     - job: TerraformTest
+  #       pool: 
+  #         vmImage: ${{ variables.agentImage }}
+  #       timeoutInMinutes: ${{ variables.timeoutInMinutes }}
+  #       variables:
+  #         - group: jumpbox-aad-creds
+  #       steps:
+  #         - template: steps/terraform-test.yaml@cnp-azuredevops-libraries
+  #           parameters:
+  #             environment: sandbox
+  #             component: test
+  #             serviceConnection: 'azurerm-sandbox'
+  #             terraformInitSubscription: ${{ variables.terraformInitSubscription }}
+  #             product: ${{ variables.product }}
+  #             testCommandOptions: "-verbose"
+
   - stage: Test
     dependsOn: Precheck
     jobs:
@@ -59,11 +69,10 @@ stages:
         variables:
           - group: jumpbox-aad-creds
         steps:
-          - template: steps/terraform-test.yaml@cnp-azuredevops-libraries
-            parameters:
-              environment: sandbox
-              component: test
-              serviceConnection: 'azurerm-sandbox'
-              terraformInitSubscription: ${{ variables.terraformInitSubscription }}
-              product: ${{ variables.product }}
-              testCommandOptions: "-verbose"
+          - task: CmdLine@2
+            displayName: "Terraform Test"
+            inputs:
+              targetType: 'inline'
+              script: |
+                az login --service-principal -u $(ARM_CLIENT_ID) -t $(ARM_TENANT_ID) --password $(ARM_CLIENT_SECRET)
+                terraform test
