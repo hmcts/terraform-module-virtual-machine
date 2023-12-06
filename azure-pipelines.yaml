@@ -23,7 +23,7 @@ variables:
   - name: product
     value: sds-platform
   - name: terraformInitSubscription
-    value: 04d27a32-7a07-48b3-95b8-3c8691e1a263
+    value: bf308a5c-0624-4334-8ff8-8dca9fd43783
   - template: vars/input-variables.yaml@cnp-azuredevops-libraries
 
 stages:
@@ -40,25 +40,6 @@ stages:
               serviceConnection: 'azurerm-sandbox'
               overrideAction: 'plan'
 
-  # - stage: Test
-  #   dependsOn: Precheck
-  #   jobs:
-  #     - job: TerraformTest
-  #       pool: 
-  #         vmImage: ${{ variables.agentImage }}
-  #       timeoutInMinutes: ${{ variables.timeoutInMinutes }}
-  #       variables:
-  #         - group: jumpbox-aad-creds
-  #       steps:
-  #         - template: steps/terraform-test.yaml@cnp-azuredevops-libraries
-  #           parameters:
-  #             environment: sandbox
-  #             component: test
-  #             serviceConnection: 'azurerm-sandbox'
-  #             terraformInitSubscription: ${{ variables.terraformInitSubscription }}
-  #             product: ${{ variables.product }}
-  #             testCommandOptions: "-verbose"
-
   - stage: Test
     dependsOn: Precheck
     jobs:
@@ -66,14 +47,23 @@ stages:
         pool: 
           vmImage: ${{ variables.agentImage }}
         timeoutInMinutes: ${{ variables.timeoutInMinutes }}
+        workspace:
+          clean: all
         variables:
-          - group: jumpbox-aad-creds
+          ARM_TENANT_ID: $(ado-sp-tenant-id)
+          ARM_CLIENT_ID: $(ado-sp-id)
+          ARM_CLIENT_SECRET: $(ado-sp-secret)
         steps:
-          - task: CmdLine@2
-            displayName: "Terraform Test"
+          - task: AzureKeyVault@2
+            displayName: Read variables from keyvault
             inputs:
-              targetType: 'inline'
-              script: |
-                az login --service-principal -u azurerm-sandbox # -t $(ARM_TENANT_ID) --password $(ARM_CLIENT_SECRET)
-                terraform init
-                terraform test
+              ConnectedServiceName: DCD-CNP-DEV
+              KeyVaultName: infra-vault-nonprod
+              SecretsFilter: '*'
+              RunAsPreJob: false
+          - script: |
+              az login --service-principal -u $(ARM_CLIENT_ID) -p=$(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
+              az account set -s ${{ variables.azureSubscription }}
+              terraform init
+              terraform test
+            displayName: Terraform Test
