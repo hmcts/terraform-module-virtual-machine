@@ -49,21 +49,12 @@ stages:
         timeoutInMinutes: ${{ variables.timeoutInMinutes }}
         workspace:
           clean: all
-        variables:
-          ARM_TENANT_ID: $(ado-sp-tenant-id)
-          ARM_CLIENT_ID: $(ado-sp-id)
-          ARM_CLIENT_SECRET: $(ado-sp-secret)
         steps:
-          - task: AzureKeyVault@2
-            displayName: Read variables from keyvault
-            inputs:
-              ConnectedServiceName: azurerm-sandbox
-              KeyVaultName: infra-vault-nonprod
-              SecretsFilter: 'ado-sp-id,ado-sp-tenant-id,ado-sp-secret'
-              RunAsPreJob: false
-          - script: |
-              az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
-              az account set -s ${{ variables.azureSubscription }}
+        - task: AzureCLI@2
+          inputs:
+            azureSubscription: 'DTS-SHAREDSERVICESPTL-SBOX'
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
               terraform init
               terraform test
-            displayName: Terraform Test
