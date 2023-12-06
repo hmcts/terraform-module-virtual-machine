@@ -57,7 +57,7 @@ stages:
           - task: AzureKeyVault@2
             displayName: Read variables from keyvault
             inputs:
-              ConnectedServiceName: DCD-CNP-DEV
+              ConnectedServiceName: azurerm-sandbox
               KeyVaultName: infra-vault-nonprod
               SecretsFilter: '*'
               RunAsPreJob: false
