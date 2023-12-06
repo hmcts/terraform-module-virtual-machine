@@ -53,7 +53,7 @@ stages:
         steps:
         - task: AzureCLI@2
           inputs:
-            azureSubscription: 'DTS-SHAREDSERVICES-SBOX'
+            azureSubscription: 'DTS-SHAREDSERVICESPTL-SBOX'
             scriptType: 'bash'
             scriptLocation: 'inlineScript'
             inlineScript: |
