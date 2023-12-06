@@ -59,10 +59,10 @@ stages:
             inputs:
               ConnectedServiceName: azurerm-sandbox
               KeyVaultName: infra-vault-nonprod
-              SecretsFilter: '*'
+              SecretsFilter: 'ado-sp-*'
               RunAsPreJob: false
           - script: |
-              az login --service-principal -u $(ARM_CLIENT_ID) -p=$(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
+              az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
               az account set -s ${{ variables.azureSubscription }}
               terraform init
               terraform test
