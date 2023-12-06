@@ -59,7 +59,7 @@ stages:
             inputs:
               ConnectedServiceName: azurerm-sandbox
               KeyVaultName: infra-vault-nonprod
-              SecretsFilter: 'ado-sp-*'
+              SecretsFilter: 'ado-sp-id,ado-sp-tenant-id,ado-sp-secret'
               RunAsPreJob: false
           - script: |
               az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
