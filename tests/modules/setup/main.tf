@@ -3,8 +3,8 @@
 module "common_tags" {
   source = "github.com/hmcts/terraform-module-common-tags?ref=master"
 
-  builtFrom   = "hmcts/terraform-module-postgresql-flexible"
-  environment = "nonprod"
+  builtFrom   = "hmcts/terraform-module-virtual-machine"
+  environment = "sbox"
   product     = "sds-platform"
 }
 
