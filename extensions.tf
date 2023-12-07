@@ -10,13 +10,13 @@ module "vm-bootstrap" {
   source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
 
   virtual_machine_type       = "vm"
-  virtual_machine_id         = var.vm_type == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
+  virtual_machine_id         = lower(var.vm_type) == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
   env                        = var.env
   splunk_username            = var.splunk_username
   splunk_password            = var.splunk_password
   splunk_pass4symmkey        = var.splunk_pass4symmkey
   splunk_group               = var.splunk_group
-  os_type                    = var.vm_type == "linux" ? "Linux" : "Windows"
+  os_type                    = lower(var.vm_type) == "linux" ? "Linux" : "Windows"
   nessus_server              = var.nessus_server
   nessus_key                 = var.nessus_key
   nessus_groups              = var.nessus_groups
