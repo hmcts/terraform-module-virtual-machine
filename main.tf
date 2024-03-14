@@ -36,14 +36,17 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 
   patch_mode = local.patch_mode
 
-  source_image_reference {
-
-    publisher = var.vm_publisher_name
-    offer     = var.vm_offer
-    sku       = var.vm_sku
-    version   = var.vm_version
-
+  dynamic "source_image_reference" {
+    for_each = var.vm_publisher_name != null && var.vm_offer != null && var.vm_sku != null && var.vm_version != null ? [1] : []
+    content {
+      publisher = var.vm_publisher_name
+      offer     = var.vm_offer
+      sku       = var.vm_sku
+      version   = var.vm_version
+    }
   }
+
+  source_image_id = var.vm_image_id != null && (var.vm_publisher_name == null && var.vm_offer == null && var.vm_sku == null && var.vm_version == null) ? var.vm_image_id : null
 
   dynamic "boot_diagnostics" {
     for_each = local.dynamic_boot_diagnostics
@@ -86,13 +89,17 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     disk_size_gb           = var.os_disk_size_gb
   }
 
-  source_image_reference {
-
-    publisher = var.vm_publisher_name
-    offer     = var.vm_offer
-    sku       = var.vm_sku
-    version   = var.vm_version
+  dynamic "source_image_reference" {
+    for_each = var.vm_publisher_name != null && var.vm_offer != null && var.vm_sku != null && var.vm_version != null ? [1] : []
+    content {
+      publisher = var.vm_publisher_name
+      offer     = var.vm_offer
+      sku       = var.vm_sku
+      version   = var.vm_version
+    }
   }
+
+  source_image_id = var.vm_image_id != null && (var.vm_publisher_name == null && var.vm_offer == null && var.vm_sku == null && var.vm_version == null) ? var.vm_image_id : null
 
   dynamic "boot_diagnostics" {
     for_each = local.dynamic_boot_diagnostics
