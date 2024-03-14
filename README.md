@@ -29,13 +29,13 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.58.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | feat%2Fupdate-splunk-clamav |
+| <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | master |
 
 ## Resources
 
@@ -100,18 +100,19 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_vm_admin_name"></a> [vm\_admin\_name](#input\_vm\_admin\_name) | The name of the admin user. | `string` | `"VMAdmin"` | no |
 | <a name="input_vm_admin_password"></a> [vm\_admin\_password](#input\_vm\_admin\_password) | The Admin password for the virtual machine. | `string` | n/a | yes |
 | <a name="input_vm_availabilty_zones"></a> [vm\_availabilty\_zones](#input\_vm\_availabilty\_zones) | The availability zones to deploy the VM in | `string` | n/a | yes |
+| <a name="input_vm_image_id"></a> [vm\_image\_id](#input\_vm\_image\_id) | The ID of the image to use. | `string` | `null` | no |
 | <a name="input_vm_location"></a> [vm\_location](#input\_vm\_location) | The Azure Region to deploy the virtual machine in. | `string` | `"uksouth"` | no |
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | The name of the Virtual Machine | `string` | n/a | yes |
-| <a name="input_vm_offer"></a> [vm\_offer](#input\_vm\_offer) | The offer of the marketplace image to use. | `string` | n/a | yes |
+| <a name="input_vm_offer"></a> [vm\_offer](#input\_vm\_offer) | The offer of the marketplace image to use. | `string` | `null` | no |
 | <a name="input_vm_private_ip"></a> [vm\_private\_ip](#input\_vm\_private\_ip) | The private IP to assign to the virtual machine. | `string` | `null` | no |
 | <a name="input_vm_public_ip_address"></a> [vm\_public\_ip\_address](#input\_vm\_public\_ip\_address) | The public IP address to assign to the virtual machine. | `string` | `null` | no |
-| <a name="input_vm_publisher_name"></a> [vm\_publisher\_name](#input\_vm\_publisher\_name) | The publiser of the marketplace image to use. | `string` | n/a | yes |
+| <a name="input_vm_publisher_name"></a> [vm\_publisher\_name](#input\_vm\_publisher\_name) | The publiser of the marketplace image to use. | `string` | `null` | no |
 | <a name="input_vm_resource_group"></a> [vm\_resource\_group](#input\_vm\_resource\_group) | The name of the resource group to deploy the virtual machine in. | `string` | n/a | yes |
 | <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | The virtual machine Size. | `string` | n/a | yes |
-| <a name="input_vm_sku"></a> [vm\_sku](#input\_vm\_sku) | The SKU of the image to use. | `string` | n/a | yes |
+| <a name="input_vm_sku"></a> [vm\_sku](#input\_vm\_sku) | The SKU of the image to use. | `string` | `null` | no |
 | <a name="input_vm_subnet_id"></a> [vm\_subnet\_id](#input\_vm\_subnet\_id) | The Subnet ID to connect the virtual machine to. | `string` | n/a | yes |
 | <a name="input_vm_type"></a> [vm\_type](#input\_vm\_type) | The type of the vm, either 'windows' or 'linux' | `string` | n/a | yes |
-| <a name="input_vm_version"></a> [vm\_version](#input\_vm\_version) | The version of the image to use. | `string` | n/a | yes |
+| <a name="input_vm_version"></a> [vm\_version](#input\_vm\_version) | The version of the image to use. | `string` | `null` | no |
 
 ## Outputs
 
