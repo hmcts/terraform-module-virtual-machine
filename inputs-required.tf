@@ -34,29 +34,9 @@ variable "vm_subnet_id" {
   description = "The Subnet ID to connect the virtual machine to."
 }
 
-variable "vm_publisher_name" {
-  type        = string
-  description = "The publiser of the marketplace image to use."
-}
-
-variable "vm_offer" {
-  type        = string
-  description = "The offer of the marketplace image to use."
-}
-
-variable "vm_sku" {
-  type        = string
-  description = "The SKU of the image to use."
-}
-
 variable "vm_size" {
   type        = string
   description = "The virtual machine Size."
-}
-
-variable "vm_version" {
-  type        = string
-  description = "The version of the image to use."
 }
 
 variable "vm_availabilty_zones" {

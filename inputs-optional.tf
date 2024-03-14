@@ -282,3 +282,33 @@ variable "custom_script_extension_name" {
   type        = string
   default     = "HMCTSVMBootstrap"
 }
+
+variable "vm_publisher_name" {
+  type        = string
+  description = "The publiser of the marketplace image to use."
+  default     = null
+}
+
+variable "vm_offer" {
+  type        = string
+  description = "The offer of the marketplace image to use."
+  default     = null
+}
+
+variable "vm_sku" {
+  type        = string
+  description = "The SKU of the image to use."
+  default     = null
+}
+
+variable "vm_version" {
+  type        = string
+  description = "The version of the image to use."
+  default     = null
+}
+
+variable "vm_image_id" {
+  type        = string
+  description = "The ID of the image to use."
+  default     = null
+}
