@@ -30,6 +30,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
+| <a name="provider_null"></a> [null](#provider\_null) | n/a |
 
 ## Modules
 
@@ -51,6 +52,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | [azurerm_virtual_machine_data_disk_attachment.data_disk_attachments](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_data_disk_attachment) | resource |
 | [azurerm_windows_virtual_machine.winvm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/windows_virtual_machine) | resource |
 | [azurerm_key_vault.enc_kv](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [null_data_source.tag_defaults](https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source) | data source |
 
 ## Inputs
 
@@ -72,8 +74,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_dynatrace_tenant_id"></a> [dynatrace\_tenant\_id](#input\_dynatrace\_tenant\_id) | The Dynatrace tenant ID. | `string` | `""` | no |
 | <a name="input_dynatrace_token"></a> [dynatrace\_token](#input\_dynatrace\_token) | The token to use when communicating with the Dynatrace ActiveGate. | `string` | `""` | no |
 | <a name="input_encrypt_CMK"></a> [encrypt\_CMK](#input\_encrypt\_CMK) | Encrypt the disks with a customer-managed key. | `bool` | `false` | no |
-| <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
-| <a name="input_environment"></a> [environment](#input\_environment) | n/a | `any` | n/a | yes |
+| <a name="input_env"></a> [env](#input\_env) | n/a | `any` | n/a | yes |
 | <a name="input_install_azure_monitor"></a> [install\_azure\_monitor](#input\_install\_azure\_monitor) | Install Azure Monitor Agent. | `bool` | `true` | no |
 | <a name="input_install_dynatrace_oneagent"></a> [install\_dynatrace\_oneagent](#input\_install\_dynatrace\_oneagent) | Install dynatrace OneAgent. | `bool` | `true` | no |
 | <a name="input_install_splunk_uf"></a> [install\_splunk\_uf](#input\_install\_splunk\_uf) | Install splunk uniforwarder on the virtual machine. | `bool` | `true` | no |
@@ -90,7 +91,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_os_disk_storage_account_type"></a> [os\_disk\_storage\_account\_type](#input\_os\_disk\_storage\_account\_type) | The operating system disk storack account type. | `string` | `"StandardSSD_LRS"` | no |
 | <a name="input_os_disk_type"></a> [os\_disk\_type](#input\_os\_disk\_type) | The operating system disk type. | `string` | `"ReadWrite"` | no |
 | <a name="input_privateip_allocation"></a> [privateip\_allocation](#input\_privateip\_allocation) | The type of private IP allocation, either Static or Dynamic. | `string` | `"Static"` | no |
-| <a name="input_product"></a> [product](#input\_product) | Enforced tags | `any` | n/a | yes |
+| <a name="input_product"></a> [product](#input\_product) | Tags | `any` | n/a | yes |
 | <a name="input_rc_os_sku"></a> [rc\_os\_sku](#input\_rc\_os\_sku) | The SKU of run command to use. | `string` | `null` | no |
 | <a name="input_rc_script_file"></a> [rc\_script\_file](#input\_rc\_script\_file) | The path to the script file to run against the virtual machine. | `string` | `null` | no |
 | <a name="input_run_command"></a> [run\_command](#input\_run\_command) | Run a custom command/script against the virtual machine using a run command extension. | `bool` | `false` | no |
@@ -99,7 +100,13 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_splunk_password"></a> [splunk\_password](#input\_splunk\_password) | Splunk universal forwarder local admin password. | `string` | `null` | no |
 | <a name="input_splunk_username"></a> [splunk\_username](#input\_splunk\_username) | Splunk universal forwarder local admin username. | `string` | `null` | no |
 | <a name="input_systemassigned_identity"></a> [systemassigned\_identity](#input\_systemassigned\_identity) | Enable System Assigned managed identity for the virtual machine. | `bool` | `false` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | The tags to apply to the virtual machine and associated resources. | `map(string)` | n/a | yes |
+| <a name="input_tag_app_operations_owner"></a> [tag\_app\_operations\_owner](#input\_tag\_app\_operations\_owner) | n/a | `any` | n/a | yes |
+| <a name="input_tag_budget_owner"></a> [tag\_budget\_owner](#input\_tag\_budget\_owner) | n/a | `any` | n/a | yes |
+| <a name="input_tag_cost_center"></a> [tag\_cost\_center](#input\_tag\_cost\_center) | n/a | `any` | n/a | yes |
+| <a name="input_tag_environment"></a> [tag\_environment](#input\_tag\_environment) | n/a | `any` | n/a | yes |
+| <a name="input_tag_project_name"></a> [tag\_project\_name](#input\_tag\_project\_name) | n/a | `any` | n/a | yes |
+| <a name="input_tag_service"></a> [tag\_service](#input\_tag\_service) | n/a | `any` | n/a | yes |
+| <a name="input_tag_system_owner"></a> [tag\_system\_owner](#input\_tag\_system\_owner) | n/a | `any` | n/a | yes |
 | <a name="input_userassigned_identity_ids"></a> [userassigned\_identity\_ids](#input\_userassigned\_identity\_ids) | List of User Manager Identity IDs to associate with the virtual machine. | `list(string)` | `[]` | no |
 | <a name="input_vm_admin_name"></a> [vm\_admin\_name](#input\_vm\_admin\_name) | The name of the admin user. | `string` | `"VMAdmin"` | no |
 | <a name="input_vm_admin_password"></a> [vm\_admin\_password](#input\_vm\_admin\_password) | The Admin password for the virtual machine. | `string` | n/a | yes |
