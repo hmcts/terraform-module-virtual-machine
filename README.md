@@ -73,6 +73,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_dynatrace_token"></a> [dynatrace\_token](#input\_dynatrace\_token) | The token to use when communicating with the Dynatrace ActiveGate. | `string` | `""` | no |
 | <a name="input_encrypt_CMK"></a> [encrypt\_CMK](#input\_encrypt\_CMK) | Encrypt the disks with a customer-managed key. | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | n/a | `any` | n/a | yes |
 | <a name="input_install_azure_monitor"></a> [install\_azure\_monitor](#input\_install\_azure\_monitor) | Install Azure Monitor Agent. | `bool` | `true` | no |
 | <a name="input_install_dynatrace_oneagent"></a> [install\_dynatrace\_oneagent](#input\_install\_dynatrace\_oneagent) | Install dynatrace OneAgent. | `bool` | `true` | no |
 | <a name="input_install_splunk_uf"></a> [install\_splunk\_uf](#input\_install\_splunk\_uf) | Install splunk uniforwarder on the virtual machine. | `bool` | `true` | no |
