@@ -13,5 +13,5 @@ resource "azurerm_network_interface" "vm_nic" {
     public_ip_address_id          = var.vm_public_ip_address
   }
 
-  tags = var.tags
+  tags = merge(local.common_tags, local.enforced_tags)
 }

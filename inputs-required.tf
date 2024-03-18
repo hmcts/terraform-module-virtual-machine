@@ -73,7 +73,6 @@ variable "vm_availabilty_zones" {
 variable "product" {}
 variable "builtFrom" {}
 variable "tag_project_name" {}
-variable "env" {}
 variable "tag_service" {}
 
 variable "tag_environment" {}

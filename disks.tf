@@ -17,7 +17,7 @@ resource "azurerm_managed_disk" "managed_disks" {
   os_type                = each.value.os_type
   disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
 
-  tags = var.tags
+  tags = merge(local.common_tags, local.enforced_tags)
 
   depends_on = [
     azurerm_linux_virtual_machine.linvm,
