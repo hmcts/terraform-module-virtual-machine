@@ -64,12 +64,24 @@ variable "vm_availabilty_zones" {
   description = "The availability zones to deploy the VM in"
 }
 
-variable "tags" {
-  type        = map(string)
-  description = "The tags to apply to the virtual machine and associated resources."
-}
+# variable "tags" {
+#   type        = map(string)
+#   description = "The tags to apply to the virtual machine and associated resources."
+# }
 
-# Enforced tags
+# Tags
 variable "product" {}
 variable "builtFrom" {}
-variable "environment" {}
+variable "tag_project_name" {}
+variable "env" {}
+variable "tag_service" {}
+
+variable "tag_environment" {}
+
+variable "tag_cost_center" {}
+
+variable "tag_app_operations_owner" {}
+
+variable "tag_system_owner" {}
+
+variable "tag_budget_owner" {}
