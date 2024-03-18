@@ -60,7 +60,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     }
   }
 
-  tags       = var.tags
+  tags       = merge(local.common_tags, local.enforced_tags)
   depends_on = [azurerm_disk_encryption_set.disk_enc_set, azurerm_key_vault_access_policy.disk_policy]
 }
 
@@ -110,6 +110,6 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     }
   }
 
-  tags       = var.tags
+  tags       = merge(local.common_tags, local.enforced_tags)
   depends_on = [azurerm_disk_encryption_set.disk_enc_set]
 }
