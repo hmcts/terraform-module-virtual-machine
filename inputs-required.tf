@@ -72,3 +72,4 @@ variable "tags" {
 # Enforced tags
 variable "product" {}
 variable "builtFrom" {}
+variable "environment" {}
