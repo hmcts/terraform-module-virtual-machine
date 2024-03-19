@@ -12,5 +12,5 @@ module "ctags" {
   source      = "github.com/hmcts/terraform-module-common-tags?ref=master"
   environment = "ptlsbox"
   product     = "sds-platform"
-  builtFrom   = "hmcts/martha-infra"
+  builtFrom   = "hmcts/terraform-module-virtual-machine"
 }
