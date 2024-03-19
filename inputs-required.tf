@@ -78,6 +78,7 @@ variable "builtFrom" {
 variable "criticality" {
   default = "High"
 }
+
 variable "product" {
   default = "test"
 }
