@@ -21,7 +21,6 @@ variable "vm_resource_group" {
 variable "env" {
   description = "Environment name"
   type        = string
-  default     = "production"
 }
 
 variable "vm_admin_password" {
@@ -68,19 +67,6 @@ variable "vm_availabilty_zones" {
 variable "tags" {
   type        = map(string)
   description = "The tags to apply to the virtual machine and associated resources."
-}
-
-# Tags
-variable "builtFrom" {
-  default     = "hmcts/terraform-module-virtual-machine"
-  description = "What repository this has been built from"
-}
-variable "criticality" {
-  default = "High"
-}
-
-variable "product" {
-  default = "test"
 }
 
 
