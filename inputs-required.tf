@@ -21,6 +21,7 @@ variable "vm_resource_group" {
 variable "env" {
   description = "Environment name"
   type        = string
+  default = "production"
 }
 
 variable "vm_admin_password" {
@@ -70,17 +71,20 @@ variable "vm_availabilty_zones" {
 # }
 
 # Tags
-variable "product" {}
-variable "builtFrom" {}
-variable "tag_project_name" {}
-variable "tag_service" {}
+variable "application" {
+  default = "martha"
+}
+variable "builtFrom" {
+  default = "hmcts/terraform-module-virtual-machine"
+  description = "What repository this has been built from"
+}
+variable "businessArea" {
+  default = "cross-cutting"
+}
 
-variable "tag_environment" {}
+variable "criticality" {
+  default = "High"
+}
 
-variable "tag_cost_center" {}
 
-variable "tag_app_operations_owner" {}
 
-variable "tag_system_owner" {}
-
-variable "tag_budget_owner" {}
