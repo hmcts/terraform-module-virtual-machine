@@ -60,7 +60,16 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     }
   }
 
-  tags       = merge(module.ctags.all_tags, local.enforced_tags)
+  tags = merge(
+    {
+      application  = module.ctags.application
+      businessArea = module.ctags.businessArea
+      builtFrom    = module.ctags.builtFrom
+      criticality  = module.ctags.criticality
+      environment  = module.ctags.environment
+    },
+    local.enforced_tags
+  )
   depends_on = [azurerm_disk_encryption_set.disk_enc_set, azurerm_key_vault_access_policy.disk_policy]
 }
 
@@ -110,6 +119,15 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     }
   }
 
-  tags       = merge(module.ctags.all_tags, local.enforced_tags)
+  tags = merge(
+    {
+      application  = module.ctags.application
+      businessArea = module.ctags.businessArea
+      builtFrom    = module.ctags.builtFrom
+      criticality  = module.ctags.criticality
+      environment  = module.ctags.environment
+    },
+    local.enforced_tags
+  )
   depends_on = [azurerm_disk_encryption_set.disk_enc_set]
 }
