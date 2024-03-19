@@ -21,7 +21,7 @@ variable "vm_resource_group" {
 variable "env" {
   description = "Environment name"
   type        = string
-  default = "production"
+  default     = "production"
 }
 
 variable "vm_admin_password" {
@@ -75,7 +75,7 @@ variable "application" {
   default = "martha"
 }
 variable "builtFrom" {
-  default = "hmcts/terraform-module-virtual-machine"
+  default     = "hmcts/terraform-module-virtual-machine"
   description = "What repository this has been built from"
 }
 variable "businessArea" {
