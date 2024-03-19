@@ -86,5 +86,8 @@ variable "criticality" {
   default = "High"
 }
 
+variable "product" {
+  default = "null"
+}
 
 

@@ -10,7 +10,6 @@ terraform {
 module "ctags" {
   source      = "git::https://github.com/hmcts/terraform-module-common-tags.git?ref=master"
   environment = lower(var.env)
-  application = var.application
+  product     = var.product
   builtFrom   = var.builtFrom
-  criticality = var.criticality
 }
