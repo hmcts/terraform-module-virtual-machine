@@ -8,7 +8,7 @@ terraform {
 }
 
 module "ctags" {
-  source = "github.com/hmcts/terraform-module-common-tags?ref=master"
+  source      = "github.com/hmcts/terraform-module-common-tags?ref=master"
   environment = "Production"
   product     = "sds-platform"
   builtFrom   = "hmcts/martha-infra"
