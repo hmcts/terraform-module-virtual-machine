@@ -12,6 +12,4 @@ module "ctags" {
   environment  = lower(var.env)
   product      = var.product
   builtFrom    = var.builtFrom
-  application  = var.application
-  businessArea = var.businessArea
 }
