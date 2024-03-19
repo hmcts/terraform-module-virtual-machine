@@ -36,7 +36,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_ctags"></a> [ctags](#module\_ctags) | git::https://github.com/hmcts/terraform-module-common-tags.git | master |
+| <a name="module_ctags"></a> [ctags](#module\_ctags) | github.com/hmcts/terraform-module-common-tags | master |
 | <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | master |
 
 ## Resources
