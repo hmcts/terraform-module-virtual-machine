@@ -30,7 +30,6 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
 
 ## Modules
 
@@ -52,7 +51,6 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | [azurerm_virtual_machine_data_disk_attachment.data_disk_attachments](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_data_disk_attachment) | resource |
 | [azurerm_windows_virtual_machine.winvm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/windows_virtual_machine) | resource |
 | [azurerm_key_vault.enc_kv](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
-| [null_data_source.tag_defaults](https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source) | data source |
 
 ## Inputs
 
