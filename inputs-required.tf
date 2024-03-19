@@ -87,7 +87,7 @@ variable "criticality" {
 }
 
 variable "product" {
-  default = "null"
+  default = "test"
 }
 
 
