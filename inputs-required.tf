@@ -71,13 +71,14 @@ variable "tags" {
 }
 
 # Tags
-variable "application" {
-  default = "martha"
-}
 variable "builtFrom" {
   default     = "hmcts/terraform-module-virtual-machine"
   description = "What repository this has been built from"
 }
+variable "application" {
+  default = "martha"
+}
+
 variable "businessArea" {
   default = "cross-cutting"
 }
@@ -85,7 +86,6 @@ variable "businessArea" {
 variable "criticality" {
   default = "High"
 }
-
 
 variable "product" {
   default = "test"
