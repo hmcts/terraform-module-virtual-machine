@@ -10,9 +10,6 @@ locals {
   # TODO switch to strcontains in tf 1.5.x
   automatic_by_platform_supported = can(regex("^2022-datacenter.*", var.vm_sku))
   patch_mode                      = local.automatic_by_platform_supported ? "AutomaticByPlatform" : null
-
-  decoded_yaml = yamldecode(file("${path.module}/team-config.yml"))
-  application  = try(local.decoded_yaml[var.product]["tags"]["application"], null)
 }
 
 resource "azurerm_windows_virtual_machine" "winvm" {
