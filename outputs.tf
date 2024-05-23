@@ -3,7 +3,7 @@ output "vm_id" {
 }
 
 output "nic_id" {
-  value = azurerm_network_interface.vm_nic.internal_domain_name_suffix
+  value = azurerm_network_interface.vm_nic.id
 }
 
 output "vm_private_ip_address" {
