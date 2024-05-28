@@ -7,7 +7,7 @@ module "vm-bootstrap" {
   }
 
   count  = var.install_splunk_uf == true || var.nessus_install == true ? 1 : 0
-  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=DTSPO-17050-splunk-usf-version-update"
+  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
 
   virtual_machine_type       = "vm"
   virtual_machine_id         = lower(var.vm_type) == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
