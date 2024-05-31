@@ -29,13 +29,13 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.58.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | master |
+| <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | DTSPO-17050-splunk-usf-version-update |
 
 ## Resources
 
