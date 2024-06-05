@@ -15,6 +15,18 @@ variable "computer_name" {
   default     = null
 }
 
+variable "provision_vm_agent" {
+  type        = bool
+  description = "If patch_assessment_mode AutomaticByPlatform then the provision_vm_agent field must be set to true."
+  default     = true
+}
+
+variable "patch_assessment_mode" {
+  type        = string
+  description = "Specifies the mode of VM Guest Patching for the Virtual Machine. Possible values are AutomaticByPlatform or ImageDefault. Defaults to ImageDefault"
+  default     = "AutomaticByPlatform"
+}
+
 variable "patch_mode" {
   type        = string
   description = "Used to set Azure Update Manager configuration"
