@@ -9,7 +9,7 @@ locals {
   # https://learn.microsoft.com/en-gb/azure/virtual-machines/automatic-vm-guest-patching#supported-os-images
   # TODO switch to strcontains in tf 1.5.x
   automatic_by_platform_supported = can(regex("^2022-datacenter.*", var.vm_sku))
-  patch_mode                      = local.automatic_by_platform_supported ? "AutomaticByPlatform" : null
+  patch_mode                      = "AutomaticByPlatform"
 }
 
 resource "azurerm_windows_virtual_machine" "winvm" {
