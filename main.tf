@@ -29,9 +29,10 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     disk_size_gb           = var.os_disk_size_gb
   }
 
-  patch_assessment_mode = "AutomaticByPlatform"
-  provision_vm_agent    = true
-  patch_mode            = "AutomaticByPlatform"
+  patch_assessment_mode                                  = "AutomaticByPlatform"
+  bypass_platform_safety_checks_on_user_schedule_enabled = true
+  provision_vm_agent                                     = true
+  patch_mode                                             = "AutomaticByPlatform"
 
   source_image_reference {
 
