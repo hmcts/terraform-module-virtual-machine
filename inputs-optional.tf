@@ -15,6 +15,12 @@ variable "computer_name" {
   default     = null
 }
 
+variable "patch_mode" {
+  type        = string
+  description = "Used to set Azure Update Manager configuration"
+  default     = "AutomaticByPlatform"
+}
+
 variable "dns_servers" {
   type        = list(string)
   description = "DNS servers to use, will override DNS servers set at the VNET level"
