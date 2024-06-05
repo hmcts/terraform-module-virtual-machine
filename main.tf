@@ -5,11 +5,6 @@ locals {
   # Also make sure that the name is valid by removing any invalid characters after truncation
   computer_name_calculated = replace(substr(var.vm_name, 0, 15), "/-$/", "")
   computer_name            = var.computer_name != null ? var.computer_name : local.computer_name_calculated
-
-  # https://learn.microsoft.com/en-gb/azure/virtual-machines/automatic-vm-guest-patching#supported-os-images
-  # TODO switch to strcontains in tf 1.5.x
-  automatic_by_platform_supported = can(regex("^2022-datacenter.*", var.vm_sku))
-  patch_mode                      = "AutomaticByPlatform"
 }
 
 resource "azurerm_windows_virtual_machine" "winvm" {
