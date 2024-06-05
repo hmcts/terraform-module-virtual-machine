@@ -34,7 +34,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     disk_size_gb           = var.os_disk_size_gb
   }
 
-  patch_mode = local.patch_mode
+  patch_mode = "AutomaticByPlatform"
 
   source_image_reference {
 
