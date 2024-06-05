@@ -30,7 +30,6 @@ resource "azurerm_windows_virtual_machine" "winvm" {
   }
 
   patch_assessment_mode                                  = "AutomaticByPlatform"
-  bypass_platform_safety_checks_on_user_schedule_enabled = true
   provision_vm_agent                                     = true
   patch_mode                                             = "AutomaticByPlatform"
 
