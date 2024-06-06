@@ -88,7 +88,9 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     disk_size_gb           = var.os_disk_size_gb
   }
 
-  patch_mode = var.vm_patch_mode
+  patch_assessment_mode = var.vm_patch_assessment_mode
+  provision_vm_agent    = var.provision_vm_agent
+  patch_mode            = var.vm_patch_mode
 
   source_image_reference {
 
