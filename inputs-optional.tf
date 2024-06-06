@@ -15,6 +15,24 @@ variable "computer_name" {
   default     = null
 }
 
+variable "provision_vm_agent" {
+  type        = bool
+  description = "If patch_assessment_mode AutomaticByPlatform then the provision_vm_agent field must be set to true."
+  default     = true
+}
+
+variable "vm_patch_assessment_mode" {
+  type        = string
+  description = "Specifies the mode of VM Guest Patching for the Virtual Machine. Possible values are AutomaticByPlatform or ImageDefault. Defaults to ImageDefault"
+  default     = "AutomaticByPlatform"
+}
+
+variable "vm_patch_mode" {
+  type        = string
+  description = "Used to set Azure Update Manager configuration. Possible values are Manual, AutomaticByOS and AutomaticByPlatform. Defaults to AutomaticByOS."
+  default     = "AutomaticByPlatform"
+}
+
 variable "dns_servers" {
   type        = list(string)
   description = "DNS servers to use, will override DNS servers set at the VNET level"
