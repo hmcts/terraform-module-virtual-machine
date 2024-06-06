@@ -29,7 +29,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.58.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
 
 ## Modules
 
@@ -87,6 +87,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_os_disk_storage_account_type"></a> [os\_disk\_storage\_account\_type](#input\_os\_disk\_storage\_account\_type) | The operating system disk storack account type. | `string` | `"StandardSSD_LRS"` | no |
 | <a name="input_os_disk_type"></a> [os\_disk\_type](#input\_os\_disk\_type) | The operating system disk type. | `string` | `"ReadWrite"` | no |
 | <a name="input_privateip_allocation"></a> [privateip\_allocation](#input\_privateip\_allocation) | The type of private IP allocation, either Static or Dynamic. | `string` | `"Static"` | no |
+| <a name="input_provision_vm_agent"></a> [provision\_vm\_agent](#input\_provision\_vm\_agent) | If patch\_assessment\_mode AutomaticByPlatform then the provision\_vm\_agent field must be set to true. | `bool` | `true` | no |
 | <a name="input_rc_os_sku"></a> [rc\_os\_sku](#input\_rc\_os\_sku) | The SKU of run command to use. | `string` | `null` | no |
 | <a name="input_rc_script_file"></a> [rc\_script\_file](#input\_rc\_script\_file) | The path to the script file to run against the virtual machine. | `string` | `null` | no |
 | <a name="input_run_command"></a> [run\_command](#input\_run\_command) | Run a custom command/script against the virtual machine using a run command extension. | `bool` | `false` | no |
@@ -103,6 +104,8 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_vm_location"></a> [vm\_location](#input\_vm\_location) | The Azure Region to deploy the virtual machine in. | `string` | `"uksouth"` | no |
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | The name of the Virtual Machine | `string` | n/a | yes |
 | <a name="input_vm_offer"></a> [vm\_offer](#input\_vm\_offer) | The offer of the marketplace image to use. | `string` | n/a | yes |
+| <a name="input_vm_patch_assessment_mode"></a> [vm\_patch\_assessment\_mode](#input\_vm\_patch\_assessment\_mode) | Specifies the mode of VM Guest Patching for the Virtual Machine. Possible values are AutomaticByPlatform or ImageDefault. Defaults to ImageDefault | `string` | `"AutomaticByPlatform"` | no |
+| <a name="input_vm_patch_mode"></a> [vm\_patch\_mode](#input\_vm\_patch\_mode) | Used to set Azure Update Manager configuration. Possible values are Manual, AutomaticByOS and AutomaticByPlatform. Defaults to AutomaticByOS. | `string` | `"AutomaticByPlatform"` | no |
 | <a name="input_vm_private_ip"></a> [vm\_private\_ip](#input\_vm\_private\_ip) | The private IP to assign to the virtual machine. | `string` | `null` | no |
 | <a name="input_vm_public_ip_address"></a> [vm\_public\_ip\_address](#input\_vm\_public\_ip\_address) | The public IP address to assign to the virtual machine. | `string` | `null` | no |
 | <a name="input_vm_publisher_name"></a> [vm\_publisher\_name](#input\_vm\_publisher\_name) | The publiser of the marketplace image to use. | `string` | n/a | yes |
