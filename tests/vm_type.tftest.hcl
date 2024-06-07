@@ -168,4 +168,8 @@ run "unknown_vm" {
     condition     = length(azurerm_linux_virtual_machine.linvm) == 0
     error_message = "Module stood up a linux virtual machine"
   }
+
+  expect_failures = [
+    var.vm_type,
+  ]
 }
