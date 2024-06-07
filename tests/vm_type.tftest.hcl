@@ -170,6 +170,6 @@ run "unknown_vm" {
   }
 
   expect_failures = [
-    var.vm_type
+    var.vm_type,
   ]
 }
