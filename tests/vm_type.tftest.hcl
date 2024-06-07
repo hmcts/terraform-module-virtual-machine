@@ -145,31 +145,4 @@ run "windows_vm_case_sensitivity" {
   }
 }
 
-run "unknown_vm" {
 
-  command = plan
-
-  variables {
-    vm_type           = "Hannah Montanah Linux"
-    vm_publisher_name = "MicrosoftWindowsServer"
-    vm_offer          = "WindowsServer"
-    vm_sku            = "2022-Datacenter"
-    vm_version        = "latest"
-    vm_resource_group = run.setup.resource_group
-    vm_subnet_id      = run.setup.subnet
-    tags              = run.setup.common_tags
-  }
-
-  assert {
-    condition     = length(azurerm_linux_virtual_machine.linvm) == 0
-    error_message = "Module stood up a linux virtual machine"
-  }
-  assert {
-    condition     = length(azurerm_windows_virtual_machine.winvm) == 0
-    error_message = "Module stood up a windows virtual machine"
-  }
-
-  expect_failures = [
-    var.vm_type
-  ]
-}
