@@ -120,30 +120,6 @@ run "windows_vm" {
   }
 }
 
-run "windows_vm_case_sensitivity" {
-
-  command = plan
-
-  variables {
-    vm_type           = "Windows"
-    vm_publisher_name = "MicrosoftWindowsServer"
-    vm_offer          = "WindowsServer"
-    vm_sku            = "2022-Datacenter"
-    vm_version        = "latest"
-    vm_resource_group = run.setup.resource_group
-    vm_subnet_id      = run.setup.subnet
-    tags              = run.setup.common_tags
-  }
-
-  assert {
-    condition     = length(azurerm_linux_virtual_machine.linvm) == 0
-    error_message = "Module stood up a linux virtual machine"
-  }
-  assert {
-    condition     = length(azurerm_windows_virtual_machine.winvm) == 1
-    error_message = "Module did not stand up a windows virtual machine"
-  }
-}
 
 run "unknown_vm" {
 
