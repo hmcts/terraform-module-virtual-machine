@@ -37,7 +37,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 
   patch_assessment_mode = local.include_patch_settings ? var.vm_patch_assessment_mode : null
   provision_vm_agent    = local.include_patch_settings ? var.provision_vm_agent : null
-  patch_mode            = local.include_patch_settings ? var.vm_patch_mode : null
+  patch_mode            = var.vm_patch_mode
   source_image_reference {
 
     publisher = var.vm_publisher_name
