@@ -20,7 +20,9 @@ module "virtual_machine" {
   tags                 = var.common_tags
 }
 ```
-An example can be found [here](https://github.com/hmcts/terraform-module-virtual-machine/tree/master/example).
+An example can be found in the [example directory of this repo](https://github.com/hmcts/terraform-module-virtual-machine/tree/master/example).
+
+This module enforces automatic patching by default. If you need to use a virtual machine image that doesn't support this feature, you can add your image type to the locals block in main.tf. To find out if your image is supported, check the [Microsoft documentation](https://learn.microsoft.com/en-gb/azure/virtual-machines/automatic-vm-guest-patching#supported-os-images).
 
 <!-- BEGIN_TF_DOCS -->
 
