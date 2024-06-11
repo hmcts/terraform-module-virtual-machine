@@ -10,6 +10,7 @@ locals {
   # TODO switch to strcontains in tf 1.5.x
   automatic_by_platform_supported = can(regex("^2022-datacenter.*", var.vm_sku))
   patch_mode                      = local.automatic_by_platform_supported ? "AutomaticByPlatform" : null
+  include_patch_settings          = local.automatic_by_platform_supported
 }
 
 resource "azurerm_windows_virtual_machine" "winvm" {
@@ -34,10 +35,9 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     disk_size_gb           = var.os_disk_size_gb
   }
 
-  patch_assessment_mode = var.vm_patch_assessment_mode
-  provision_vm_agent    = var.provision_vm_agent
+  patch_assessment_mode = local.include_patch_settings ? var.vm_patch_assessment_mode : null
+  provision_vm_agent    = local.include_patch_settings ? var.provision_vm_agent : null
   patch_mode            = var.vm_patch_mode
-
   source_image_reference {
 
     publisher = var.vm_publisher_name

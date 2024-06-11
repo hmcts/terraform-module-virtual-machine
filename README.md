@@ -20,7 +20,7 @@ module "virtual_machine" {
   tags                 = var.common_tags
 }
 ```
-An example can be found [here](https://github.com/hmcts/terraform-module-virtual-machine/tree/master/example).
+An example can be found in the [example directory of this repo](https://github.com/hmcts/terraform-module-virtual-machine/tree/master/example).
 
 <!-- BEGIN_TF_DOCS -->
 
