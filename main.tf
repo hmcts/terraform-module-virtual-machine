@@ -47,6 +47,14 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 
   }
 
+  dynamic "patch_settings" {
+    for_each = var.vm_offer != "windows-10" ? [1] : []
+    content {
+      patch_assessment_mode = var.vm_patch_assessment_mode
+      provision_vm_agent    = var.provision_vm_agent
+      patch_mode            = var.vm_patch_mode
+    }
+  }
   dynamic "boot_diagnostics" {
     for_each = local.dynamic_boot_diagnostics
     content {
@@ -87,10 +95,6 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
     disk_size_gb           = var.os_disk_size_gb
   }
-
-  patch_assessment_mode = var.vm_patch_assessment_mode
-  provision_vm_agent    = var.provision_vm_agent
-  patch_mode            = var.vm_patch_mode
 
   source_image_reference {
 
