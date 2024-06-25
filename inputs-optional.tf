@@ -33,6 +33,12 @@ variable "vm_patch_mode" {
   default     = "AutomaticByPlatform"
 }
 
+variable "aum_schedule_enable" {
+  type        = bool
+  description = "Specifies whether to skip platform scheduled patching when a user schedule is associated with the VM. Defaults to false. HMCTS use this to set AUM as Customer Managed Schedules"
+  default     = true
+}
+
 variable "dns_servers" {
   type        = list(string)
   description = "DNS servers to use, will override DNS servers set at the VNET level"
