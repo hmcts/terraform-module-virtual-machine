@@ -34,9 +34,10 @@ resource "azurerm_windows_virtual_machine" "winvm" {
     disk_size_gb           = var.os_disk_size_gb
   }
 
-  patch_assessment_mode = var.vm_patch_assessment_mode
-  provision_vm_agent    = var.provision_vm_agent
-  patch_mode            = var.vm_patch_mode
+  patch_assessment_mode                                  = var.vm_patch_assessment_mode
+  provision_vm_agent                                     = var.provision_vm_agent
+  patch_mode                                             = var.vm_patch_mode
+  bypass_platform_safety_checks_on_user_schedule_enabled = var.aum_schedule_enable
 
   source_image_reference {
 
@@ -88,9 +89,10 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     disk_size_gb           = var.os_disk_size_gb
   }
 
-  patch_assessment_mode = var.vm_patch_assessment_mode
-  provision_vm_agent    = var.provision_vm_agent
-  patch_mode            = var.vm_patch_mode
+  patch_assessment_mode                                  = var.vm_patch_assessment_mode
+  provision_vm_agent                                     = var.provision_vm_agent
+  patch_mode                                             = var.vm_patch_mode
+  bypass_platform_safety_checks_on_user_schedule_enabled = var.aum_schedule_enable
 
   source_image_reference {
 
