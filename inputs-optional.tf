@@ -247,6 +247,12 @@ variable "rc_os_sku" {
   default     = null
 }
 
+variable "run_command_sa_key" {
+  description = "SA key for the run command"
+  default     = null
+  sensitive   = true
+}
+
 variable "encrypt_CMK" {
   type        = bool
   description = "Encrypt the disks with a customer-managed key."
