@@ -91,7 +91,11 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_provision_vm_agent"></a> [provision\_vm\_agent](#input\_provision\_vm\_agent) | If patch\_assessment\_mode AutomaticByPlatform then the provision\_vm\_agent field must be set to true. | `bool` | `true` | no |
 | <a name="input_rc_os_sku"></a> [rc\_os\_sku](#input\_rc\_os\_sku) | The SKU of run command to use. | `string` | `null` | no |
 | <a name="input_rc_script_file"></a> [rc\_script\_file](#input\_rc\_script\_file) | The path to the script file to run against the virtual machine. | `string` | `null` | no |
+| <a name="input_run_cis"></a> [run\_cis](#input\_run\_cis) | Install CIS hardening using run command script? | `bool` | `false` | no |
 | <a name="input_run_command"></a> [run\_command](#input\_run\_command) | Run a custom command/script against the virtual machine using a run command extension. | `bool` | `false` | no |
+| <a name="input_run_command_sa_key"></a> [run\_command\_sa\_key](#input\_run\_command\_sa\_key) | SA key for the run command | `string` | `""` | no |
+| <a name="input_run_xdr_agent"></a> [run\_xdr\_agent](#input\_run\_xdr\_agent) | Install XDR agents using run command script? | `bool` | `false` | no |
+| <a name="input_run_xdr_collector"></a> [run\_xdr\_collector](#input\_run\_xdr\_collector) | Install XDR collectors using run command script? | `bool` | `false` | no |
 | <a name="input_splunk_group"></a> [splunk\_group](#input\_splunk\_group) | Splunk universal forwarder global target group. | `string` | `"hmcts_forwarders"` | no |
 | <a name="input_splunk_pass4symmkey"></a> [splunk\_pass4symmkey](#input\_splunk\_pass4symmkey) | Splunk universal forwarder communication security key. | `string` | `null` | no |
 | <a name="input_splunk_password"></a> [splunk\_password](#input\_splunk\_password) | Splunk universal forwarder local admin password. | `string` | `null` | no |
