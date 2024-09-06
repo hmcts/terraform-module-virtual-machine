@@ -16,7 +16,8 @@ provider "azurerm" {
   alias = "cnp"
   features {}
   subscription_id                 = "1c4f0704-a29e-403d-b719-b90c34ef14c9"
-  resource_provider_registrations = ["none"]}
+  resource_provider_registrations = ["none"]
+}
 
 # Default variables for this test
 variables {
