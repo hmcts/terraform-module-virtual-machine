@@ -37,7 +37,7 @@ module "vm-bootstrap" {
   run_xdr_collector  = var.run_xdr_collector
   run_xdr_agent      = var.run_xdr_agent
   run_cis            = var.run_cis
-  xdr_tags           = join(",", [for key, value in var.tags : "${key}=${value}"])
+  xdr_tags           = local.xdr_tags
 
   additional_script_uri        = var.additional_script_uri
   additional_script_name       = var.additional_script_name
