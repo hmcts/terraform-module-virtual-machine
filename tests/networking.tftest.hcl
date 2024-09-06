@@ -8,15 +8,15 @@ provider "azurerm" {
 provider "azurerm" {
   alias = "soc"
   features {}
-  subscription_id            = "8ae5b3b6-0b12-4888-b894-4cec33c92292"
-  skip_provider_registration = true
+  subscription_id                 = "8ae5b3b6-0b12-4888-b894-4cec33c92292"
+  resource_provider_registrations = true
 }
 
 provider "azurerm" {
   alias = "cnp"
   features {}
-  subscription_id            = "1c4f0704-a29e-403d-b719-b90c34ef14c9"
-  skip_provider_registration = true
+  subscription_id                 = "1c4f0704-a29e-403d-b719-b90c34ef14c9"
+  resource_provider_registrations = true
 }
 
 # Default variables for this test
