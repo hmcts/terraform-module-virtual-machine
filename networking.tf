@@ -1,9 +1,9 @@
 resource "azurerm_network_interface" "vm_nic" {
-  name                            = var.nic_name == null ? "${var.vm_name}-nic" : var.nic_name
-  location                        = var.vm_location
-  resource_group_name             = var.vm_resource_group
-  accelerated_networking_enabled  = var.accelerated_networking_enabled
-  dns_servers                     = var.dns_servers
+  name                           = var.nic_name == null ? "${var.vm_name}-nic" : var.nic_name
+  location                       = var.vm_location
+  resource_group_name            = var.vm_resource_group
+  accelerated_networking_enabled = var.accelerated_networking_enabled
+  dns_servers                    = var.dns_servers
 
   ip_configuration {
     name                          = var.ipconfig_name == null ? "${var.vm_name}-ipconfig" : var.ipconfig_name
