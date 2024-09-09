@@ -9,3 +9,7 @@ output "nic_id" {
 output "vm_private_ip_address" {
   value = azurerm_network_interface.vm_nic.private_ip_address
 }
+
+output "xdr_tags" {
+  value = module.vm-bootstrap[0].XDR_TAGS
+}

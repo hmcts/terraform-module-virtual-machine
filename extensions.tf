@@ -6,7 +6,7 @@ module "vm-bootstrap" {
     azurerm.soc = azurerm.soc
   }
 
-  count  = var.install_splunk_uf == true || var.nessus_install == true ? 1 : 0
+  count  = var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true ? 1 : 0
   source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
 
   virtual_machine_type       = "vm"
@@ -37,6 +37,7 @@ module "vm-bootstrap" {
   run_xdr_collector  = var.run_xdr_collector
   run_xdr_agent      = var.run_xdr_agent
   run_cis            = var.run_cis
+  xdr_tags           = local.xdr_tags
 
   additional_script_uri        = var.additional_script_uri
   additional_script_name       = var.additional_script_name

@@ -264,7 +264,6 @@ variable "run_xdr_collector" {
   description = "Install XDR collectors using run command script?"
 }
 
-
 variable "run_xdr_agent" {
   type        = bool
   default     = false

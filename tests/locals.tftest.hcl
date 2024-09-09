@@ -2,20 +2,21 @@
 
 provider "azurerm" {
   features {}
+  subscription_id = "64b1c6d6-1481-44ad-b620-d8fe26a2c768"
 }
 
 provider "azurerm" {
   alias = "soc"
   features {}
-  subscription_id            = "8ae5b3b6-0b12-4888-b894-4cec33c92292"
-  skip_provider_registration = true
+  subscription_id                 = "8ae5b3b6-0b12-4888-b894-4cec33c92292"
+  resource_provider_registrations = "none"
 }
 
 provider "azurerm" {
   alias = "cnp"
   features {}
-  subscription_id            = "1c4f0704-a29e-403d-b719-b90c34ef14c9"
-  skip_provider_registration = true
+  subscription_id                 = "1c4f0704-a29e-403d-b719-b90c34ef14c9"
+  resource_provider_registrations = "none"
 }
 
 # Default variables for this test
