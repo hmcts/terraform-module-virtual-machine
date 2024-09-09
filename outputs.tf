@@ -11,5 +11,5 @@ output "vm_private_ip_address" {
 }
 
 output "xdr_tags" {
-  value = module.vm-bootstrap[0].XDR_TAGS
+  value = var.run_command ? module.vm-bootstrap[0].XDR_TAGS : null
 }
