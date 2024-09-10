@@ -58,6 +58,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_accelerated_networking_enabled"></a> [accelerated\_networking\_enabled](#input\_accelerated\_networking\_enabled) | Enable accelerated networks on the NIC for the virtual machine. | `bool` | `false` | no |
 | <a name="input_additional_script_name"></a> [additional\_script\_name](#input\_additional\_script\_name) | The path to a script to run against the virtual machine. | `string` | `null` | no |
 | <a name="input_additional_script_uri"></a> [additional\_script\_uri](#input\_additional\_script\_uri) | URI of a publically accessible script to run against the virtual machine. | `string` | `null` | no |
+| <a name="input_aum_schedule_enable"></a> [aum\_schedule\_enable](#input\_aum\_schedule\_enable) | Specifies whether to skip platform scheduled patching when a user schedule is associated with the VM. Defaults to false. HMCTS use this to set AUM as Customer Managed Schedules | `bool` | `true` | no |
 | <a name="input_boot_diagnostics_enabled"></a> [boot\_diagnostics\_enabled](#input\_boot\_diagnostics\_enabled) | Whether to enable boot diagnostics. | `bool` | `true` | no |
 | <a name="input_boot_storage_uri"></a> [boot\_storage\_uri](#input\_boot\_storage\_uri) | The URI of the storage to use for boot diagnostics. | `string` | `null` | no |
 | <a name="input_computer_name"></a> [computer\_name](#input\_computer\_name) | Override the computer name of the VM. If not set, the computer name will be the same as the VM name truncated to 15 characters (Windows only). | `any` | `null` | no |
@@ -87,9 +88,14 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_os_disk_storage_account_type"></a> [os\_disk\_storage\_account\_type](#input\_os\_disk\_storage\_account\_type) | The operating system disk storack account type. | `string` | `"StandardSSD_LRS"` | no |
 | <a name="input_os_disk_type"></a> [os\_disk\_type](#input\_os\_disk\_type) | The operating system disk type. | `string` | `"ReadWrite"` | no |
 | <a name="input_privateip_allocation"></a> [privateip\_allocation](#input\_privateip\_allocation) | The type of private IP allocation, either Static or Dynamic. | `string` | `"Static"` | no |
+| <a name="input_provision_vm_agent"></a> [provision\_vm\_agent](#input\_provision\_vm\_agent) | If patch\_assessment\_mode AutomaticByPlatform then the provision\_vm\_agent field must be set to true. | `bool` | `true` | no |
 | <a name="input_rc_os_sku"></a> [rc\_os\_sku](#input\_rc\_os\_sku) | The SKU of run command to use. | `string` | `null` | no |
 | <a name="input_rc_script_file"></a> [rc\_script\_file](#input\_rc\_script\_file) | The path to the script file to run against the virtual machine. | `string` | `null` | no |
+| <a name="input_run_cis"></a> [run\_cis](#input\_run\_cis) | Install CIS hardening using run command script? | `bool` | `false` | no |
 | <a name="input_run_command"></a> [run\_command](#input\_run\_command) | Run a custom command/script against the virtual machine using a run command extension. | `bool` | `false` | no |
+| <a name="input_run_command_sa_key"></a> [run\_command\_sa\_key](#input\_run\_command\_sa\_key) | SA key for the run command | `string` | `""` | no |
+| <a name="input_run_xdr_agent"></a> [run\_xdr\_agent](#input\_run\_xdr\_agent) | Install XDR agents using run command script? | `bool` | `false` | no |
+| <a name="input_run_xdr_collector"></a> [run\_xdr\_collector](#input\_run\_xdr\_collector) | Install XDR collectors using run command script? | `bool` | `false` | no |
 | <a name="input_splunk_group"></a> [splunk\_group](#input\_splunk\_group) | Splunk universal forwarder global target group. | `string` | `"hmcts_forwarders"` | no |
 | <a name="input_splunk_pass4symmkey"></a> [splunk\_pass4symmkey](#input\_splunk\_pass4symmkey) | Splunk universal forwarder communication security key. | `string` | `null` | no |
 | <a name="input_splunk_password"></a> [splunk\_password](#input\_splunk\_password) | Splunk universal forwarder local admin password. | `string` | `null` | no |
@@ -103,6 +109,8 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_vm_location"></a> [vm\_location](#input\_vm\_location) | The Azure Region to deploy the virtual machine in. | `string` | `"uksouth"` | no |
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | The name of the Virtual Machine | `string` | n/a | yes |
 | <a name="input_vm_offer"></a> [vm\_offer](#input\_vm\_offer) | The offer of the marketplace image to use. | `string` | n/a | yes |
+| <a name="input_vm_patch_assessment_mode"></a> [vm\_patch\_assessment\_mode](#input\_vm\_patch\_assessment\_mode) | Specifies the mode of VM Guest Patching for the Virtual Machine. Possible values are AutomaticByPlatform or ImageDefault. Defaults to ImageDefault | `string` | `"AutomaticByPlatform"` | no |
+| <a name="input_vm_patch_mode"></a> [vm\_patch\_mode](#input\_vm\_patch\_mode) | Used to set Azure Update Manager configuration. Possible values are Manual, AutomaticByOS and AutomaticByPlatform. Defaults to AutomaticByOS. | `string` | `"AutomaticByPlatform"` | no |
 | <a name="input_vm_private_ip"></a> [vm\_private\_ip](#input\_vm\_private\_ip) | The private IP to assign to the virtual machine. | `string` | `null` | no |
 | <a name="input_vm_public_ip_address"></a> [vm\_public\_ip\_address](#input\_vm\_public\_ip\_address) | The public IP address to assign to the virtual machine. | `string` | `null` | no |
 | <a name="input_vm_publisher_name"></a> [vm\_publisher\_name](#input\_vm\_publisher\_name) | The publiser of the marketplace image to use. | `string` | n/a | yes |
@@ -117,6 +125,8 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Description |
 |------|-------------|
+| <a name="output_nic_id"></a> [nic\_id](#output\_nic\_id) | n/a |
 | <a name="output_vm_id"></a> [vm\_id](#output\_vm\_id) | n/a |
 | <a name="output_vm_private_ip_address"></a> [vm\_private\_ip\_address](#output\_vm\_private\_ip\_address) | n/a |
+| <a name="output_xdr_tags"></a> [xdr\_tags](#output\_xdr\_tags) | n/a |
 <!-- END_TF_DOCS -->

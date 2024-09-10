@@ -241,6 +241,29 @@ variable "rc_os_sku" {
   default     = null
 }
 
+variable "run_command_sa_key" {
+  description = "SA key for the run command"
+  default     = ""
+  sensitive   = true
+}
+
+variable "run_cis" {
+  type        = bool
+  default     = false
+  description = "Install CIS hardening using run command script?"
+}
+variable "run_xdr_collector" {
+  type        = bool
+  default     = false
+  description = "Install XDR collectors using run command script?"
+}
+
+variable "run_xdr_agent" {
+  type        = bool
+  default     = false
+  description = "Install XDR agents using run command script?"
+}
+
 variable "encrypt_CMK" {
   type        = bool
   description = "Encrypt the disks with a customer-managed key."

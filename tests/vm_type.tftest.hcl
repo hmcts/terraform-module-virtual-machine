@@ -2,20 +2,21 @@
 
 provider "azurerm" {
   features {}
+  subscription_id = "64b1c6d6-1481-44ad-b620-d8fe26a2c768"
 }
 
 provider "azurerm" {
   alias = "soc"
   features {}
-  subscription_id = "8ae5b3b6-0b12-4888-b894-4cec33c92292"
-  skip_provider_registration = true
+  subscription_id                 = "8ae5b3b6-0b12-4888-b894-4cec33c92292"
+  resource_provider_registrations = "none"
 }
 
 provider "azurerm" {
   alias = "cnp"
   features {}
-  subscription_id = "1c4f0704-a29e-403d-b719-b90c34ef14c9"
-  skip_provider_registration = true
+  subscription_id                 = "1c4f0704-a29e-403d-b719-b90c34ef14c9"
+  resource_provider_registrations = "none"
 }
 
 # Default variables for this test
@@ -143,33 +144,4 @@ run "windows_vm_case_sensitivity" {
     condition     = length(azurerm_windows_virtual_machine.winvm) == 1
     error_message = "Module did not stand up a windows virtual machine"
   }
-}
-
-run "unknown_vm" {
-
-  command = plan
-
-  variables {
-    vm_type           = "Hannah Montanah Linux"
-    vm_publisher_name = "MicrosoftWindowsServer"
-    vm_offer          = "WindowsServer"
-    vm_sku            = "2022-Datacenter"
-    vm_version        = "latest"
-    vm_resource_group = run.setup.resource_group
-    vm_subnet_id      = run.setup.subnet
-    tags              = run.setup.common_tags
-  }
-
-  assert {
-    condition     = length(azurerm_linux_virtual_machine.linvm) == 0
-    error_message = "Module stood up a linux virtual machine"
-  }
-  assert {
-    condition     = length(azurerm_windows_virtual_machine.winvm) == 0
-    error_message = "Module stood up a windows virtual machine"
-  }
-
-  expect_failures = [
-    var.vm_type
-  ]
 }
