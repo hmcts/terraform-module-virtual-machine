@@ -4,11 +4,10 @@ module "vm-bootstrap" {
     azurerm     = azurerm
     azurerm.cnp = azurerm.cnp
     azurerm.soc = azurerm.soc
-    azurerm.dcr = azurerm.dcr
   }
 
   count  = var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true ? 1 : 0
-  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=ieuanb74-patch-1"
+  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
 
   virtual_machine_type       = "vm"
   virtual_machine_id         = lower(var.vm_type) == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
