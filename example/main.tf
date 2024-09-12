@@ -3,6 +3,7 @@ module "virtual-machine" {
     azurerm     = azurerm
     azurerm.cnp = azurerm.cnp
     azurerm.soc = azurerm.soc
+    azurerm.dcr = azurerm.dcr
   }
 
   source = "../"
