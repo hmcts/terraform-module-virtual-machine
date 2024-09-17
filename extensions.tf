@@ -24,7 +24,7 @@ module "vm-bootstrap" {
   install_dynatrace_oneagent = var.install_dynatrace_oneagent
   install_azure_monitor      = var.install_azure_monitor
   install_nessus_agent       = var.nessus_install
-
+  install_docker             = var.install_docker
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
   dynatrace_server    = var.dynatrace_server
