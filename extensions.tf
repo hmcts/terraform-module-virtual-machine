@@ -7,7 +7,7 @@ module "vm-bootstrap" {
     azurerm.dcr = azurerm.dcr
   }
 
-  count  = var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true ? 1 : 0
+  count  = var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true || var.install_azure_monitor == true ? 1 : 0
   source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=ieuanb74-patch-1"
 
   virtual_machine_type       = "vm"
