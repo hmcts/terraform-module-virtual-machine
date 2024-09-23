@@ -68,3 +68,13 @@ variable "tags" {
   type        = map(string)
   description = "The tags to apply to the virtual machine and associated resources."
 }
+
+variable "activityName" {
+  type        = string
+  description = "The name of the activity"
+}
+
+variable "activityType" {
+  type        = string
+  description = "The type of the activity"
+}
