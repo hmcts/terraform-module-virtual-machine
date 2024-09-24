@@ -69,12 +69,7 @@ variable "tags" {
   description = "The tags to apply to the virtual machine and associated resources."
 }
 
-variable "activityName" {
+variable "xdr_tags" {
   type        = string
-  description = "The name of the activity"
-}
-
-variable "application" {
-  type        = string
-  description = "The type of the activity"
+  description = "The tags to apply to the virtual machine and associated resources."
 }
