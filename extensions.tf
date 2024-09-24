@@ -25,6 +25,7 @@ module "vm-bootstrap" {
   install_azure_monitor      = var.install_azure_monitor
   install_nessus_agent       = var.nessus_install
   install_docker             = var.install_docker
+  install_splunk_uf          = var.install_splunk_uf
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
   dynatrace_server    = var.dynatrace_server
