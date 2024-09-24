@@ -70,6 +70,7 @@ variable "tags" {
 }
 
 variable "xdr_tags" {
+  description = "XDR specific Tags"
   type        = string
-  description = "The tags to apply to the virtual machine and associated resources."
+  default     = ""
 }
