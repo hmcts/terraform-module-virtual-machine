@@ -93,13 +93,18 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   provision_vm_agent                                     = var.provision_vm_agent
   patch_mode                                             = var.vm_patch_mode
   bypass_platform_safety_checks_on_user_schedule_enabled = var.aum_schedule_enable
+  
+  # Conditionally set the custom_image_id if provided
+  source_image_id = var.custom_image_id != "" ? var.custom_image_id : null
 
-  source_image_reference {
-
-    publisher = var.vm_publisher_name
-    offer     = var.vm_offer
-    sku       = var.vm_sku
-    version   = var.vm_version
+  dynamic "source_image_reference" {
+    for_each = var.custom_image_id == "" ? [1] : []
+    content {
+      publisher = var.vm_publisher_name
+      offer     = var.vm_offer
+      sku       = var.vm_sku
+      version   = var.vm_version
+    }
   }
 
   dynamic "boot_diagnostics" {
