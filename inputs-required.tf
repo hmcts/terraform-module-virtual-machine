@@ -74,7 +74,7 @@ variable "activityName" {
   description = "The name of the activity"
 }
 
-variable "activityType" {
+variable "application" {
   type        = string
   description = "The type of the activity"
 }
