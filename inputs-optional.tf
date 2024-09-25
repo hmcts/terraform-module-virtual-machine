@@ -329,3 +329,9 @@ variable "custom_script_extension_name" {
   type        = string
   default     = "HMCTSVMBootstrap"
 }
+
+variable "xdr_tags" {
+  description = "XDR specific Tags"
+  type        = string
+  default     = ""
+}

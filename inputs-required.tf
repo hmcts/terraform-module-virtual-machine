@@ -68,9 +68,3 @@ variable "tags" {
   type        = map(string)
   description = "The tags to apply to the virtual machine and associated resources."
 }
-
-variable "xdr_tags" {
-  description = "XDR specific Tags"
-  type        = string
-  default     = ""
-}
