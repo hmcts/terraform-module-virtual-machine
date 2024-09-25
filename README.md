@@ -121,6 +121,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_vm_subnet_id"></a> [vm\_subnet\_id](#input\_vm\_subnet\_id) | The Subnet ID to connect the virtual machine to. | `string` | n/a | yes |
 | <a name="input_vm_type"></a> [vm\_type](#input\_vm\_type) | The type of the vm, either 'windows' or 'linux' | `string` | n/a | yes |
 | <a name="input_vm_version"></a> [vm\_version](#input\_vm\_version) | The version of the image to use. | `string` | n/a | yes |
+| <a name="input_xdr_tags"></a> [xdr\_tags](#input\_xdr\_tags) | XDR specific Tags | `string` | `""` | no |
 
 ## Outputs
 
