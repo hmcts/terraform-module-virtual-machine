@@ -4,6 +4,7 @@ module "vm-bootstrap" {
     azurerm     = azurerm
     azurerm.cnp = azurerm.cnp
     azurerm.soc = azurerm.soc
+    azurerm.dcr = azurerm.dcr
   }
 
   count  = var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true ? 1 : 0
