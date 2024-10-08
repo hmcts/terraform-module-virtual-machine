@@ -35,7 +35,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | ieuanb74-patch-1 |
+| <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | master |
 
 ## Resources
 
