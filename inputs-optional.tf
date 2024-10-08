@@ -270,6 +270,12 @@ variable "run_xdr_agent" {
   description = "Install XDR agents using run command script?"
 }
 
+variable "install_docker" {
+  type        = bool
+  description = "Install Docker and Docker Compose - Ubuntu only 20.04+"
+  default     = false
+}
+
 variable "encrypt_CMK" {
   type        = bool
   description = "Encrypt the disks with a customer-managed key."
@@ -328,4 +334,10 @@ variable "custom_script_extension_name" {
   description = "Overwrite custom script extension name label in bootstrap module."
   type        = string
   default     = "HMCTSVMBootstrap"
+}
+
+variable "xdr_tags" {
+  description = "XDR specific Tags"
+  type        = string
+  default     = ""
 }

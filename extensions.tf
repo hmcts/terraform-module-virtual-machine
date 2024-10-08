@@ -4,9 +4,10 @@ module "vm-bootstrap" {
     azurerm     = azurerm
     azurerm.cnp = azurerm.cnp
     azurerm.soc = azurerm.soc
+    azurerm.dcr = azurerm.dcr
   }
 
-  count  = var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true ? 1 : 0
+  count  = var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true || var.install_azure_monitor == true ? 1 : 0
   source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
 
   virtual_machine_type       = "vm"
@@ -23,8 +24,8 @@ module "vm-bootstrap" {
   install_dynatrace_oneagent = var.install_dynatrace_oneagent
   install_azure_monitor      = var.install_azure_monitor
   install_nessus_agent       = var.nessus_install
+  install_docker             = var.install_docker
   install_splunk_uf          = var.install_splunk_uf
-
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
   dynatrace_server    = var.dynatrace_server
@@ -38,7 +39,7 @@ module "vm-bootstrap" {
   run_xdr_collector  = var.run_xdr_collector
   run_xdr_agent      = var.run_xdr_agent
   run_cis            = var.run_cis
-  xdr_tags           = local.xdr_tags
+  xdr_tags           = var.xdr_tags
 
   additional_script_uri        = var.additional_script_uri
   additional_script_name       = var.additional_script_name
