@@ -30,6 +30,7 @@ variables {
   vm_name              = "example-vm"
   env                  = "nonprod"
   vm_admin_password    = "example-$uper-$EcUrE-password" # ideally from a secret store
+  vm_admin_ssh_key     = null
   vm_size              = "D2ds_v5"
   vm_availabilty_zones = "1"
 }
