@@ -10,6 +10,33 @@ variable "vm_admin_name" {
   default     = "VMAdmin"
 }
 
+variable "vm_admin_password" {
+  type        = string
+  sensitive   = true
+  description = "The Admin password for the virtual machine."
+  default     = null
+  validation {
+    condition     = var.vm_admin_ssh_key == null && var.disable_password_authentication == false ? var.vm_admin_password != null : true
+    error_message = "The admin password must be set."
+  }
+}
+
+variable "vm_admin_ssh_key" {
+  type        = string
+  description = "The SSH public key to use for the admin user."
+  default     = null
+  validation {
+    condition     = var.vm_admin_password == null && var.disable_password_authentication == true ? var.vm_admin_ssh_key != null : true
+    error_message = "The SSH public key must be set."
+  }
+}
+
+variable "disable_password_authentication" {
+  type        = bool
+  description = "Disable password authentication on the virtual machine."
+  default     = false
+}
+
 variable "computer_name" {
   description = "Override the computer name of the VM. If not set, the computer name will be the same as the VM name truncated to 15 characters (Windows only)."
   default     = null
