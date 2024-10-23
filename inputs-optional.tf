@@ -16,7 +16,7 @@ variable "vm_admin_password" {
   description = "The Admin password for the virtual machine."
   default     = null
   validation {
-    condition     = var.vm_admin_ssh_key == null && var.disable_password_authentication == false ? var.vm_admin_password != null : true
+    condition     = local.vm_password_required ? var.vm_admin_password != null : true
     error_message = "The admin password must be set."
   }
 }
@@ -26,7 +26,7 @@ variable "vm_admin_ssh_key" {
   description = "The SSH public key to use for the admin user."
   default     = null
   validation {
-    condition     = var.vm_admin_password == null && var.disable_password_authentication == true ? var.vm_admin_ssh_key != null : true
+    condition     = local.vm_ssh_key_required ? var.vm_admin_ssh_key != null : true
     error_message = "The SSH public key must be set."
   }
 }
