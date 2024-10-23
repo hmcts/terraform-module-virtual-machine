@@ -32,6 +32,7 @@ variables {
   vm_name              = "disk-test"
   vm_admin_password    = "example-$uper-$EcUrE-password" # ideally from a secret store
   vm_admin_ssh_key     = null
+  disable_password_authentication = false
   vm_type              = "windows"
   vm_publisher_name    = "MicrosoftWindowsServer"
   vm_offer             = "WindowsServer"
