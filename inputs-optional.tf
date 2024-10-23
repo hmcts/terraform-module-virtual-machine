@@ -13,7 +13,7 @@ variable "vm_admin_name" {
 variable "vm_admin_password" {
   type        = string
   sensitive   = true
-  description = "The Admin password for the virtual machine."
+  description = "The Admin password for the virtual machine. This or vm_admin_ssh_key must be set."
   default     = null
   validation {
     condition     = var.disable_password_authentication ? true : var.vm_admin_password != null
@@ -23,7 +23,7 @@ variable "vm_admin_password" {
 
 variable "vm_admin_ssh_key" {
   type        = string
-  description = "The SSH public key to use for the admin user."
+  description = "The SSH public key to use for the admin user. This or vm_admin_password must be set."
   default     = null
   validation {
     condition     = var.disable_password_authentication ? var.vm_admin_ssh_key != null : true
