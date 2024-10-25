@@ -3,14 +3,14 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias = "soc"
+  alias                           = "soc"
   resource_provider_registrations = "all"
   features {}
   subscription_id = "8ae5b3b6-0b12-4888-b894-4cec33c92292"
 }
 
 provider "azurerm" {
-  alias = "cnp"
+  alias                           = "cnp"
   resource_provider_registrations = "all"
   features {}
   subscription_id = "1c4f0704-a29e-403d-b719-b90c34ef14c9"
