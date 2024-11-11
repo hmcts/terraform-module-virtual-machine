@@ -77,7 +77,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   admin_password                  = var.vm_admin_password
   zone                            = var.vm_availabilty_zones
   custom_data                     = var.custom_data
-  disable_password_authentication = false
+  disable_password_authentication = var.disable_password_authentication
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
   ]
@@ -100,6 +100,15 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     offer     = var.vm_offer
     sku       = var.vm_sku
     version   = var.vm_version
+  }
+
+  dynamic "admin_ssh_key" {
+    for_each = local.admin_ssh_key
+
+    content {
+      username   = var.vm_admin_name
+      public_key = var.vm_admin_ssh_key
+    }
   }
 
   dynamic "boot_diagnostics" {

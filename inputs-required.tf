@@ -23,12 +23,6 @@ variable "env" {
   type        = string
 }
 
-variable "vm_admin_password" {
-  type        = string
-  sensitive   = true
-  description = "The Admin password for the virtual machine."
-}
-
 variable "vm_subnet_id" {
   type        = string
   description = "The Subnet ID to connect the virtual machine to."
