@@ -26,7 +26,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
   ]
-
+  availability_set_id = var.enable_availability_set ? azurerm_availability_set.set.id : null
   os_disk {
     caching                = var.os_disk_type
     storage_account_type   = var.os_disk_storage_account_type
@@ -93,7 +93,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   provision_vm_agent                                     = var.provision_vm_agent
   patch_mode                                             = var.vm_patch_mode
   bypass_platform_safety_checks_on_user_schedule_enabled = var.aum_schedule_enable
-
+  availability_set_id                                    = var.enable_availability_set ? azurerm_availability_set.set.id : null
   source_image_reference {
 
     publisher = var.vm_publisher_name
@@ -129,4 +129,14 @@ resource "azurerm_linux_virtual_machine" "linvm" {
 
   tags       = var.tags
   depends_on = [azurerm_disk_encryption_set.disk_enc_set]
+}
+
+
+resource "azurerm_availability_set" "set" {
+  count               = var.enable_availability_set ? 1 : 0
+  name                = var.availability_set_name
+  location            = var.vm_location
+  resource_group_name = var.vm_resource_group
+
+  tags = var.tags
 }
