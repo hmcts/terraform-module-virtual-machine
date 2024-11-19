@@ -41,6 +41,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Type |
 |------|------|
+| [azurerm_availability_set.set](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/availability_set) | resource |
 | [azurerm_disk_encryption_set.disk_enc_set](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/disk_encryption_set) | resource |
 | [azurerm_key_vault_access_policy.disk_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azurerm_key_vault_key.disk_enc_key](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key) | resource |
@@ -59,6 +60,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_additional_script_name"></a> [additional\_script\_name](#input\_additional\_script\_name) | The path to a script to run against the virtual machine. | `string` | `null` | no |
 | <a name="input_additional_script_uri"></a> [additional\_script\_uri](#input\_additional\_script\_uri) | URI of a publically accessible script to run against the virtual machine. | `string` | `null` | no |
 | <a name="input_aum_schedule_enable"></a> [aum\_schedule\_enable](#input\_aum\_schedule\_enable) | Specifies whether to skip platform scheduled patching when a user schedule is associated with the VM. Defaults to false. HMCTS use this to set AUM as Customer Managed Schedules | `bool` | `true` | no |
+| <a name="input_availability_set_name"></a> [availability\_set\_name](#input\_availability\_set\_name) | Name of the availability\_set | `string` | `""` | no |
 | <a name="input_boot_diagnostics_enabled"></a> [boot\_diagnostics\_enabled](#input\_boot\_diagnostics\_enabled) | Whether to enable boot diagnostics. | `bool` | `true` | no |
 | <a name="input_boot_storage_uri"></a> [boot\_storage\_uri](#input\_boot\_storage\_uri) | The URI of the storage to use for boot diagnostics. | `string` | `null` | no |
 | <a name="input_computer_name"></a> [computer\_name](#input\_computer\_name) | Override the computer name of the VM. If not set, the computer name will be the same as the VM name truncated to 15 characters (Windows only). | `any` | `null` | no |
@@ -71,6 +73,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_dynatrace_server"></a> [dynatrace\_server](#input\_dynatrace\_server) | The Dynatrace ActiveGate server URL. | `string` | `null` | no |
 | <a name="input_dynatrace_tenant_id"></a> [dynatrace\_tenant\_id](#input\_dynatrace\_tenant\_id) | The Dynatrace tenant ID. | `string` | `""` | no |
 | <a name="input_dynatrace_token"></a> [dynatrace\_token](#input\_dynatrace\_token) | The token to use when communicating with the Dynatrace ActiveGate. | `string` | `""` | no |
+| <a name="input_enable_availability_set"></a> [enable\_availability\_set](#input\_enable\_availability\_set) | Enable availability set or not, default is false | `bool` | `false` | no |
 | <a name="input_encrypt_CMK"></a> [encrypt\_CMK](#input\_encrypt\_CMK) | Encrypt the disks with a customer-managed key. | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
 | <a name="input_install_azure_monitor"></a> [install\_azure\_monitor](#input\_install\_azure\_monitor) | Install Azure Monitor Agent. | `bool` | `true` | no |
