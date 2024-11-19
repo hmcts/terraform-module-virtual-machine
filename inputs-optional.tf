@@ -368,3 +368,21 @@ variable "xdr_tags" {
   type        = string
   default     = ""
 }
+
+variable "enable_availability_set" {
+  description = "Enable availability set or not, default is false"
+  type        = bool
+  default     = false
+}
+
+variable "availability_set_name" {
+  description = "Name of the availability_set"
+  type        = string
+  default     = ""
+}
+
+variable "platform_fault_domain_count" {
+  description = "Specifies the number of fault domains that are used. Defaults to 2"
+  type        = number
+  default     = 2
+}
