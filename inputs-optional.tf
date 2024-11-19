@@ -380,3 +380,9 @@ variable "availability_set_name" {
   type        = string
   default     = ""
 }
+
+variable "platform_fault_domain_count" {
+  description = "Specifies the number of fault domains that are used. Defaults to 2"
+  type        = number
+  default     = 2
+}
