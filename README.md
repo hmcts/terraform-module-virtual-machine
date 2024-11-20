@@ -35,7 +35,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | master |
+| <a name="module_vm-bootstrap"></a> [vm-bootstrap](#module\_vm-bootstrap) | git::https://github.com/hmcts/terraform-module-vm-bootstrap.git | enable-winrm-custom-script |
 
 ## Resources
 
@@ -74,6 +74,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_dynatrace_tenant_id"></a> [dynatrace\_tenant\_id](#input\_dynatrace\_tenant\_id) | The Dynatrace tenant ID. | `string` | `""` | no |
 | <a name="input_dynatrace_token"></a> [dynatrace\_token](#input\_dynatrace\_token) | The token to use when communicating with the Dynatrace ActiveGate. | `string` | `""` | no |
 | <a name="input_enable_availability_set"></a> [enable\_availability\_set](#input\_enable\_availability\_set) | Enable availability set or not, default is false | `bool` | `false` | no |
+| <a name="input_enable_winrm"></a> [enable\_winrm](#input\_enable\_winrm) | Enable WinRM for Windows VMs. Used by Ansible. | `bool` | `false` | no |
 | <a name="input_encrypt_CMK"></a> [encrypt\_CMK](#input\_encrypt\_CMK) | Encrypt the disks with a customer-managed key. | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
 | <a name="input_install_azure_monitor"></a> [install\_azure\_monitor](#input\_install\_azure\_monitor) | Install Azure Monitor Agent. | `bool` | `true` | no |
