@@ -303,6 +303,12 @@ variable "install_docker" {
   default     = false
 }
 
+variable "enable_winrm" {
+  description = "Enable WinRM for Windows VMs. Used by Ansible."
+  type        = bool
+  default     = false
+}
+
 variable "encrypt_CMK" {
   type        = bool
   description = "Encrypt the disks with a customer-managed key."

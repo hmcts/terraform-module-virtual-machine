@@ -26,6 +26,7 @@ module "vm-bootstrap" {
   install_nessus_agent       = var.nessus_install
   install_docker             = var.install_docker
   install_splunk_uf          = var.install_splunk_uf
+  enable_winrm               = var.enable_winrm
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
   dynatrace_server    = var.dynatrace_server
