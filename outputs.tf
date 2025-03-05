@@ -3,7 +3,7 @@ output "vm_id" {
 }
 
 output "system_assigned_identity_oid" {
-  value = var.vm_type == "windows" && var.systemassigned_identity == true ? azurerm_windows_virtual_machine.winvm[0].identity.principal_id : var.vm_type == "linux" && var.systemassigned_identity == true ? azurerm_linux_virtual_machine.linvm[0].identity.principal_id : null
+  value = var.vm_type == "windows" && var.systemassigned_identity == true ? azurerm_windows_virtual_machine.winvm[0].identity[0].principal_id : var.vm_type == "linux" && var.systemassigned_identity == true ? azurerm_linux_virtual_machine.linvm[0].identity[0].principal_id : null
 }
 
 output "nic_id" {
