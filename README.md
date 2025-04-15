@@ -90,6 +90,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_nessus_key"></a> [nessus\_key](#input\_nessus\_key) | The key to use when communicating with Tenable Nessus. | `string` | `null` | no |
 | <a name="input_nessus_server"></a> [nessus\_server](#input\_nessus\_server) | The Tenable Nessus server URL. | `string` | `""` | no |
 | <a name="input_nic_name"></a> [nic\_name](#input\_nic\_name) | The name of the NIC to create & associate with the virtual machine. | `string` | `null` | no |
+| <a name="input_os_disk_name"></a> [os\_disk\_name](#input\_os\_disk\_name) | Name of the OS disk | `string` | `null` | no |
 | <a name="input_os_disk_size_gb"></a> [os\_disk\_size\_gb](#input\_os\_disk\_size\_gb) | The operating system disk size in GB. | `string` | `"128"` | no |
 | <a name="input_os_disk_storage_account_type"></a> [os\_disk\_storage\_account\_type](#input\_os\_disk\_storage\_account\_type) | The operating system disk storack account type. | `string` | `"StandardSSD_LRS"` | no |
 | <a name="input_os_disk_type"></a> [os\_disk\_type](#input\_os\_disk\_type) | The operating system disk type. | `string` | `"ReadWrite"` | no |
