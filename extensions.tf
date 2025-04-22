@@ -45,6 +45,9 @@ module "vm-bootstrap" {
   additional_script_uri        = var.additional_script_uri
   additional_script_name       = var.additional_script_name
   custom_script_extension_name = var.custom_script_extension_name
-  common_tags                  = var.tags
+  soc_vault_rg                 = var.soc_vault_rg
+  soc_vault_name               = var.soc_vault_name
+
+  common_tags = var.tags
 }
 
