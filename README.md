@@ -104,6 +104,8 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_run_command_sa_key"></a> [run\_command\_sa\_key](#input\_run\_command\_sa\_key) | SA key for the run command | `string` | `""` | no |
 | <a name="input_run_xdr_agent"></a> [run\_xdr\_agent](#input\_run\_xdr\_agent) | Install XDR agents using run command script? | `bool` | `false` | no |
 | <a name="input_run_xdr_collector"></a> [run\_xdr\_collector](#input\_run\_xdr\_collector) | Install XDR collectors using run command script? | `bool` | `false` | no |
+| <a name="input_soc_vault_name"></a> [soc\_vault\_name](#input\_soc\_vault\_name) | The name of the SOC Key Vault. | `string` | `"soc-prod"` | no |
+| <a name="input_soc_vault_rg"></a> [soc\_vault\_rg](#input\_soc\_vault\_rg) | The name of the resource group where the SOC Key Vault is located. | `string` | `"soc-core-infra-prod-rg"` | no |
 | <a name="input_splunk_group"></a> [splunk\_group](#input\_splunk\_group) | Splunk universal forwarder global target group. | `string` | `"hmcts_forwarders"` | no |
 | <a name="input_splunk_pass4symmkey"></a> [splunk\_pass4symmkey](#input\_splunk\_pass4symmkey) | Splunk universal forwarder communication security key. | `string` | `null` | no |
 | <a name="input_splunk_password"></a> [splunk\_password](#input\_splunk\_password) | Splunk universal forwarder local admin password. | `string` | `null` | no |
