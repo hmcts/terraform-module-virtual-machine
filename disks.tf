@@ -17,6 +17,8 @@ resource "azurerm_managed_disk" "managed_disks" {
   os_type                = each.value.os_type
   disk_encryption_set_id = var.encrypt_CMK ? azurerm_disk_encryption_set.disk_enc_set[0].id : null
 
+  disk_iops_read_write = null
+
   tags = var.tags
 
   depends_on = [
