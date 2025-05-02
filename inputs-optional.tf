@@ -409,3 +409,25 @@ variable "soc_vault_name" {
   type        = string
   default     = "soc-prod"
 }
+
+variable "deploy_entra_extension" {
+  description = "Install Entra Extension linux VM"
+  default     = false
+}
+
+variable "rbac_config" {
+  type = map(object({
+    scope                = string
+    role_definition_name = string
+    principal_id         = string
+  }))
+  description = "Map containing the RBAC configuration for the VM"
+  default     = {}
+}
+
+variable "aad_type_handler_version" {
+  description = "AADSSHLoginForLinux type handler version"
+  type        = string
+  default     = "1.0"
+
+}
