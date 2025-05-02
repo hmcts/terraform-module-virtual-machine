@@ -55,15 +55,15 @@ module "vm-bootstrap" {
 #--------------------------------------------------------------
 # AADSSHLoginForLinux for Linux extension
 #--------------------------------------------------------------
-resource "azurerm_virtual_machine_extension" "entra" {
-  count                      = var.deploy_entra_extension && lower(var.vm_type) == "linux" ? 1 : 0
-  name                       = "AADSSHLoginForLinux"
-  virtual_machine_id         = azurerm_linux_virtual_machine.linvm[0].id
-  publisher                  = "Microsoft.Azure.ActiveDirectory"
-  type                       = "AADSSHLoginForLinux"
-  type_handler_version       = var.aad_type_handler_version
-  auto_upgrade_minor_version = true
-}
+# resource "azurerm_virtual_machine_extension" "entra" {
+#   count                       = var.deploy_entra_extension && lower(var.vm_type) == "linux" ? 1 : 0
+#   name                       = "AADSSHLoginForLinux"
+#   virtual_machine_id         = azurerm_linux_virtual_machine.linvm[0].id
+#   publisher                  = "Microsoft.Azure.ActiveDirectory"
+#   type                       = "AADSSHLoginForLinux"
+#   type_handler_version       = var.aad_type_handler_version
+#   auto_upgrade_minor_version = true
+# }
 
 resource "azurerm_role_assignment" "admin-user" {
   for_each             = var.deploy_entra_extension && lower(var.vm_type) == "linux" ? { for key, value in var.rbac_config : key => value } : {}
