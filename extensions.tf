@@ -7,7 +7,7 @@ module "vm-bootstrap" {
     azurerm.dcr = azurerm.dcr
   }
 
-  count  = var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true || var.install_azure_monitor == true ? 1 : 0
+  count  = var.remove_splunk_uf == true || var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true || var.install_azure_monitor == true ? 1 : 0
   source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
 
   virtual_machine_type       = "vm"
@@ -26,6 +26,7 @@ module "vm-bootstrap" {
   install_nessus_agent       = var.nessus_install
   install_docker             = var.install_docker
   install_splunk_uf          = var.install_splunk_uf
+  remove_splunk_uf           = var.remove_splunk_uf
   enable_winrm               = var.enable_winrm
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
