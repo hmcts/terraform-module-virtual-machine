@@ -104,6 +104,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_rbac_config"></a> [rbac\_config](#input\_rbac\_config) | Map containing the RBAC configuration for the VM | <pre>map(object({<br/>    scope                = string<br/>    role_definition_name = string<br/>    principal_id         = string<br/>  }))</pre> | `{}` | no |
 | <a name="input_rc_os_sku"></a> [rc\_os\_sku](#input\_rc\_os\_sku) | The SKU of run command to use. | `string` | `null` | no |
 | <a name="input_rc_script_file"></a> [rc\_script\_file](#input\_rc\_script\_file) | The path to the script file to run against the virtual machine. | `string` | `null` | no |
+| <a name="input_remove_splunk_uf"></a> [remove\_splunk\_uf](#input\_remove\_splunk\_uf) | Remove splunk uniforwarder on the virtual machine. | `bool` | `true` | no |
 | <a name="input_run_cis"></a> [run\_cis](#input\_run\_cis) | Install CIS hardening using run command script? | `bool` | `false` | no |
 | <a name="input_run_command"></a> [run\_command](#input\_run\_command) | Run a custom command/script against the virtual machine using a run command extension. | `bool` | `false` | no |
 | <a name="input_run_command_sa_key"></a> [run\_command\_sa\_key](#input\_run\_command\_sa\_key) | SA key for the run command | `string` | `""` | no |

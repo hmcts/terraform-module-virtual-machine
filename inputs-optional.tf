@@ -170,6 +170,12 @@ variable "install_splunk_uf" {
   default     = true
 }
 
+variable "remove_splunk_uf" {
+  type        = bool
+  description = "Remove splunk uniforwarder on the virtual machine."
+  default     = true
+}
+
 variable "splunk_username" {
   type        = string
   description = "Splunk universal forwarder local admin username."
