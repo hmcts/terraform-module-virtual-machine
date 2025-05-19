@@ -29,7 +29,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.58.0 |
 
 ## Modules
 
@@ -112,6 +112,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_run_xdr_collector"></a> [run\_xdr\_collector](#input\_run\_xdr\_collector) | Install XDR collectors using run command script? | `bool` | `false` | no |
 | <a name="input_soc_vault_name"></a> [soc\_vault\_name](#input\_soc\_vault\_name) | The name of the SOC Key Vault. | `string` | `"soc-prod"` | no |
 | <a name="input_soc_vault_rg"></a> [soc\_vault\_rg](#input\_soc\_vault\_rg) | The name of the resource group where the SOC Key Vault is located. | `string` | `"soc-core-infra-prod-rg"` | no |
+| <a name="input_source_image_id"></a> [source\_image\_id](#input\_source\_image\_id) | ID of an image to use for the VM, can be a marketplace image or a customer managed image. | `string` | `null` | no |
 | <a name="input_splunk_group"></a> [splunk\_group](#input\_splunk\_group) | Splunk universal forwarder global target group. | `string` | `"hmcts_forwarders"` | no |
 | <a name="input_splunk_pass4symmkey"></a> [splunk\_pass4symmkey](#input\_splunk\_pass4symmkey) | Splunk universal forwarder communication security key. | `string` | `null` | no |
 | <a name="input_splunk_password"></a> [splunk\_password](#input\_splunk\_password) | Splunk universal forwarder local admin password. | `string` | `null` | no |
@@ -130,7 +131,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_vm_patch_mode"></a> [vm\_patch\_mode](#input\_vm\_patch\_mode) | Used to set Azure Update Manager configuration. Possible values are Manual, AutomaticByOS and AutomaticByPlatform. Defaults to AutomaticByOS. | `string` | `"AutomaticByPlatform"` | no |
 | <a name="input_vm_private_ip"></a> [vm\_private\_ip](#input\_vm\_private\_ip) | The private IP to assign to the virtual machine. | `string` | `null` | no |
 | <a name="input_vm_public_ip_address"></a> [vm\_public\_ip\_address](#input\_vm\_public\_ip\_address) | The public IP address to assign to the virtual machine. | `string` | `null` | no |
-| <a name="input_vm_publisher_name"></a> [vm\_publisher\_name](#input\_vm\_publisher\_name) | The publiser of the marketplace image to use. | `string` | n/a | yes |
+| <a name="input_vm_publisher_name"></a> [vm\_publisher\_name](#input\_vm\_publisher\_name) | The publisher of the marketplace image to use. | `string` | n/a | yes |
 | <a name="input_vm_resource_group"></a> [vm\_resource\_group](#input\_vm\_resource\_group) | The name of the resource group to deploy the virtual machine in. | `string` | n/a | yes |
 | <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | The virtual machine Size. | `string` | n/a | yes |
 | <a name="input_vm_sku"></a> [vm\_sku](#input\_vm\_sku) | The SKU of the image to use. | `string` | n/a | yes |
