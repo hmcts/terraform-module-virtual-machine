@@ -442,3 +442,9 @@ variable "source_image_id" {
   type        = string
   default     = null
 }
+
+variable "secure_boot_enabled" {
+  description = "Enable secure boot for the virtual machine."
+  type        = bool
+  default     = false
+}
