@@ -40,6 +40,7 @@ resource "azurerm_windows_virtual_machine" "winvm" {
   patch_mode                                             = var.vm_patch_mode
   bypass_platform_safety_checks_on_user_schedule_enabled = var.aum_schedule_enable
   source_image_id                                        = var.source_image_id
+  secure_boot_enabled                                    = var.secure_boot_enabled
 
   dynamic "source_image_reference" {
     for_each = var.source_image_id == null ? { using : "marketplace image" } : {}

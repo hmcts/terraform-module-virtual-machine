@@ -457,6 +457,12 @@ variable "source_image_id" {
   default     = null
 }
 
+variable "secure_boot_enabled" {
+  description = "Enable secure boot for the virtual machine."
+  type        = bool
+  default     = false
+}
+
 variable "enable_fileshare" {
   type        = bool
   default     = false
