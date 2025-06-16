@@ -8,7 +8,7 @@ module "vm-bootstrap" {
   }
 
   count  = var.remove_splunk_uf == true || var.install_splunk_uf == true || var.nessus_install == true || var.run_command == true || var.install_azure_monitor == true ? 1 : 0
-  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=master"
+  source = "git::https://github.com/hmcts/terraform-module-vm-bootstrap.git?ref=DTSPO-25962-modifying-run-command-for-glimr "
 
   virtual_machine_type       = "vm"
   virtual_machine_id         = lower(var.vm_type) == "linux" ? azurerm_linux_virtual_machine.linvm[0].id : azurerm_windows_virtual_machine.winvm[0].id
@@ -28,6 +28,7 @@ module "vm-bootstrap" {
   install_splunk_uf          = var.install_splunk_uf
   remove_splunk_uf           = var.remove_splunk_uf
   enable_winrm               = var.enable_winrm
+  enable_port80              = var.enable_port80
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
   dynatrace_server    = var.dynatrace_server

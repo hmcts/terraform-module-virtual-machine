@@ -315,6 +315,13 @@ variable "enable_winrm" {
   default     = false
 }
 
+variable "enable_port80" {
+  description = "Enable port 80 for Windows VMs using run command script?"
+  type        = bool
+  default     = false
+
+}
+
 variable "encrypt_CMK" {
   type        = bool
   description = "Encrypt the disks with a customer-managed key."
