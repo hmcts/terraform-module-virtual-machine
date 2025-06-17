@@ -29,6 +29,9 @@ module "vm-bootstrap" {
   remove_splunk_uf           = var.remove_splunk_uf
   enable_winrm               = var.enable_winrm
   enable_port80              = var.enable_port80
+  enable_fileshare           = var.enable_fileshare
+  mount_sa                   = var.mount_sa
+  mount_fs                   = var.mount_fs
 
   dynatrace_hostgroup = var.dynatrace_hostgroup
   dynatrace_server    = var.dynatrace_server
