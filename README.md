@@ -78,6 +78,8 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_dynatrace_tenant_id"></a> [dynatrace\_tenant\_id](#input\_dynatrace\_tenant\_id) | The Dynatrace tenant ID. | `string` | `""` | no |
 | <a name="input_dynatrace_token"></a> [dynatrace\_token](#input\_dynatrace\_token) | The token to use when communicating with the Dynatrace ActiveGate. | `string` | `""` | no |
 | <a name="input_enable_availability_set"></a> [enable\_availability\_set](#input\_enable\_availability\_set) | Enable availability set or not, default is false | `bool` | `false` | no |
+| <a name="input_enable_fileshare"></a> [enable\_fileshare](#input\_enable\_fileshare) | Enabling port 80 Glimr using run command script? | `bool` | `false` | no |
+| <a name="input_enable_port80"></a> [enable\_port80](#input\_enable\_port80) | Enable port 80 for Windows VMs using run command script? | `bool` | `false` | no |
 | <a name="input_enable_winrm"></a> [enable\_winrm](#input\_enable\_winrm) | Enable WinRM for Windows VMs. Used by Ansible. | `bool` | `false` | no |
 | <a name="input_encrypt_CMK"></a> [encrypt\_CMK](#input\_encrypt\_CMK) | Encrypt the disks with a customer-managed key. | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
@@ -89,6 +91,8 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_kv_name"></a> [kv\_name](#input\_kv\_name) | The name ofthe KeyVault used to store the customer-managed key. | `string` | `null` | no |
 | <a name="input_kv_rg_name"></a> [kv\_rg\_name](#input\_kv\_rg\_name) | The name of the resource group, containing the KeyVault used to store the customer-managed key. | `string` | `null` | no |
 | <a name="input_managed_disks"></a> [managed\_disks](#input\_managed\_disks) | A map of managed disks to create & attach to the virtual machine. | <pre>map(<br/>    object(<br/>      {<br/>        name                     = string,<br/>        location                 = string,<br/>        resource_group_name      = string,<br/>        storage_account_type     = string,<br/>        disk_create_option       = string,<br/>        disk_size_gb             = string,<br/>        disk_tier                = string,<br/>        disk_zone                = string,<br/>        source_resource_id       = string,<br/>        storage_account_id       = string,<br/>        hyper_v_generation       = string,<br/>        os_type                  = string,<br/>        disk_lun                 = string,<br/>        disk_caching             = string,<br/>        attachment_create_option = string<br/>      }<br/>    )<br/>  )</pre> | `{}` | no |
+| <a name="input_mount_fs"></a> [mount\_fs](#input\_mount\_fs) | File share name to mount | `string` | `""` | no |
+| <a name="input_mount_sa"></a> [mount\_sa](#input\_mount\_sa) | Storage account name to mount file share | `string` | `""` | no |
 | <a name="input_nessus_groups"></a> [nessus\_groups](#input\_nessus\_groups) | The Tenable Nessus group name. | `string` | `"Platform-Operation-Bastions"` | no |
 | <a name="input_nessus_install"></a> [nessus\_install](#input\_nessus\_install) | Install Tenable Nessus on the virtual machine. | `bool` | `true` | no |
 | <a name="input_nessus_key"></a> [nessus\_key](#input\_nessus\_key) | The key to use when communicating with Tenable Nessus. | `string` | `null` | no |

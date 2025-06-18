@@ -315,6 +315,13 @@ variable "enable_winrm" {
   default     = false
 }
 
+variable "enable_port80" {
+  description = "Enable port 80 for Windows VMs using run command script?"
+  type        = bool
+  default     = false
+
+}
+
 variable "encrypt_CMK" {
   type        = bool
   description = "Encrypt the disks with a customer-managed key."
@@ -436,4 +443,23 @@ variable "aad_type_handler_version" {
   type        = string
   default     = "1.0"
 
+}
+
+variable "enable_fileshare" {
+  type        = bool
+  default     = false
+  description = "Enabling port 80 Glimr using run command script?"
+}
+
+variable "mount_sa" {
+  type        = string
+  default     = ""
+  description = "Storage account name to mount file share"
+
+}
+
+variable "mount_fs" {
+  type        = string
+  default     = ""
+  description = "File share name to mount"
 }
