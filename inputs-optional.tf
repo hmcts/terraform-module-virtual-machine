@@ -406,6 +406,13 @@ variable "platform_fault_domain_count" {
   default     = 2
 }
 
+variable "platform_update_domain_count" {
+  description = "Specifies the number of update domains that are used. Defaults to 5"
+  type        = number
+  default     = 5
+
+}
+
 variable "os_disk_name" {
   description = "Name of the OS disk"
   type        = string
