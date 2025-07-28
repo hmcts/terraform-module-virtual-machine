@@ -135,10 +135,11 @@ resource "azurerm_linux_virtual_machine" "linvm" {
 
 
 resource "azurerm_availability_set" "set" {
-  count                       = var.enable_availability_set ? 1 : 0
-  name                        = var.availability_set_name
-  location                    = var.vm_location
-  resource_group_name         = var.vm_resource_group
-  platform_fault_domain_count = var.platform_fault_domain_count
-  tags                        = var.tags
+  count                        = var.enable_availability_set ? 1 : 0
+  name                         = var.availability_set_name
+  location                     = var.vm_location
+  resource_group_name          = var.vm_resource_group
+  platform_fault_domain_count  = var.platform_fault_domain_count
+  platform_update_domain_count = var.platform_update_domain_count
+  tags                         = var.tags
 }
