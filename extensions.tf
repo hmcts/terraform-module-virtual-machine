@@ -54,6 +54,9 @@ module "vm-bootstrap" {
   soc_vault_rg   = var.soc_vault_rg
   soc_vault_name = var.soc_vault_name
 
+  azure_monitor_auto_upgrade_minor_version = var.azure_monitor_auto_upgrade_minor_version
+  azure_monitor_type_handler_version       = var.azure_monitor_type_handler_version
+
   common_tags = var.tags
 }
 

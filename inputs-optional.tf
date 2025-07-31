@@ -470,3 +470,15 @@ variable "mount_fs" {
   default     = ""
   description = "File share name to mount"
 }
+
+variable "azure_monitor_auto_upgrade_minor_version" {
+  description = "Specifies if the platform deploys the latest minor version Azure Monitor update to the type_handler_version specified."
+  type        = bool
+  default     = true
+}
+
+variable "azure_monitor_type_handler_version" {
+  description = "Version of Azure Monitor - To find: az vm extension image list --location uksouth -p Microsoft.Azure.Monitor -o table"
+  type        = string
+  default     = "1.9"
+}
