@@ -29,7 +29,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.58.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
 
 ## Modules
 
