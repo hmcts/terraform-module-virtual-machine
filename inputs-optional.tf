@@ -449,7 +449,18 @@ variable "aad_type_handler_version" {
   description = "AADSSHLoginForLinux type handler version"
   type        = string
   default     = "1.0"
+}
 
+variable "source_image_id" {
+  description = "ID of an image to use for the VM, can be a marketplace image or a customer managed image."
+  type        = string
+  default     = null
+}
+
+variable "secure_boot_enabled" {
+  description = "Enable secure boot for the virtual machine."
+  type        = bool
+  default     = false
 }
 
 variable "enable_fileshare" {

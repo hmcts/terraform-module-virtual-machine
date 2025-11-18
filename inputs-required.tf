@@ -30,7 +30,7 @@ variable "vm_subnet_id" {
 
 variable "vm_publisher_name" {
   type        = string
-  description = "The publiser of the marketplace image to use."
+  description = "The publisher of the marketplace image to use."
 }
 
 variable "vm_offer" {
