@@ -59,7 +59,7 @@ module "virtual_machine" {
 }
 ```
 
-Existing callers that do not set `service_criticality`, `rsv_name`, or `rsv_resource_group_name` are unaffected — no backup resources are created.
+Existing module users that do not set `service_criticality`, `rsv_name`, or `rsv_resource_group_name` are unaffected — no backups will be created.
 
 <!-- BEGIN_TF_DOCS -->
 
