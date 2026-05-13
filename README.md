@@ -22,6 +22,43 @@ module "virtual_machine" {
 ```
 An example can be found [here](https://github.com/hmcts/terraform-module-virtual-machine/tree/master/example).
 
+## Backup Enrollment
+
+VMs with `service_criticality >= 4` can be automatically enrolled into a Recovery Services Vault by providing the vault name and resource group. The backup policy is selected automatically based on criticality — criticality 4 and 5 use the `vm-crit4-5` policy.
+
+```terraform
+module "recovery_services_vault" {
+  source = "git::https://github.com/hmcts/module-terraform-azurerm-recovery-services-vault.git?ref=main"
+
+  name                = "{var.product}-rsv-{var.env}"
+  resource_group_name = azurerm_resource_group.rg.name
+  tags                = var.common_tags
+}
+
+module "virtual_machine" {
+  source = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
+  #...
+
+  service_criticality     = 5
+  rsv_name                = module.recovery_services_vault.recovery_vault_name
+  rsv_resource_group_name = module.recovery_services_vault.recovery_vault_resource_group_name
+}
+```
+
+If the RSV is managed in a separate repository, pass the vault details as plain strings:
+
+```terraform
+module "virtual_machine" {
+  source = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
+  # ...
+  service_criticality     = 5
+  rsv_name                = "<name>"
+  rsv_resource_group_name = "<resource_group>"
+}
+```
+
+Existing callers that do not set `service_criticality`, `rsv_name`, or `rsv_resource_group_name` are unaffected — no backup resources are created.
+
 <!-- BEGIN_TF_DOCS -->
 
 
