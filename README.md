@@ -24,7 +24,9 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 ## Backup Enrollment
 
-VMs with `service_criticality >= 4` can be automatically enrolled into a Recovery Services Vault by providing the vault name and resource group. The backup policy is selected automatically based on criticality — criticality 4 and 5 use the `vm-crit4-5` policy.
+VMs with `service_criticality >= 4` can be automatically enrolled into a Recovery Services Vault by providing the vault name and resource group. The backup policy is selected automatically based on criticality. 
+
+To enroll, use recovery service vault module to create the vault and policy and pass the following vars to this module call:
 
 ```terraform
 module "recovery_services_vault" {
