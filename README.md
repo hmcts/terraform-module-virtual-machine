@@ -24,9 +24,11 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 ## Backup Enrollment
 
-Production VMs with `service_criticality` set to `4` or `5` can be automatically enrolled into a Recovery Services Vault by providing the vault name and resource group. The module selects the `vm-crit4-5` backup policy automatically. Non-production VMs are outside the scope of this enrolment.
+Product and System Owners define the business criticality rating for each application. The latest ratings are available on the Ardoq [Application Criticality Dashboard](https://hmcts.ardoq.com/discover/dashboard/878620fdaa449ae487fa04a2). If you are unsure of your application's rating, speak to your Product Manager.
 
-Before enabling backup, confirm that the service criticality is correct in Ardoq and agree the recovery requirements with the Product Manager and BCDR team. Recovery Services Vault immutability cannot be disabled after it is set to `Locked`, so confirm the requirement before locking the vault.
+Production VMs with `service_criticality` set to `4` or `5` can be automatically enrolled into a Recovery Services Vault by providing the vault name and resource group. The module selects the `vm-crit4-5` backup policy automatically. Non-production VMs are outside the current scope. Teams should prioritise this enrolment as part of HMCTS Business Continuity & Disaster Recovery Planning.
+
+Recovery Services Vault immutability cannot be disabled after it is set to `Locked`. Confirm the production recovery requirements with the Product Manager and BCDR team before locking the vault.
 
 To enrol a production VM, use the [Recovery Services Vault module](https://github.com/hmcts/terraform-module-recovery-services-vault) to create the vault and policy, then pass its details to this module. The conditions below prevent the vault and backup enrolment from being created in non-production environments:
 
@@ -38,6 +40,8 @@ module "recovery_services_vault" {
 
   name                = "${var.product}-rsv-${var.env}"
   resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  immutability        = "Locked"
   tags                = var.common_tags
 }
 
