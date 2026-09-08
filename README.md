@@ -24,13 +24,11 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 ## Backup Enrollment
 
-Product and System Owners define the business criticality rating for each application. The latest ratings are available on the Ardoq [Application Criticality Dashboard](https://hmcts.ardoq.com/discover/dashboard/878620fdaa449ae487fa04a2). If you are unsure of your application's rating, speak to your Product Manager.
+**Production** VMs for services with service criticality of 4 or 5 should enrol for VM backups into a Recovery Services Vault. Non-production VMs are outside scope. Teams should prioritise this enrolment as part of HMCTS Business Continuity & Disaster Recovery Planning.
 
-Production VMs with `service_criticality` set to `4` or `5` can be automatically enrolled into a Recovery Services Vault by providing the vault name and resource group. The module selects the `vm-crit4-5` backup policy automatically. Non-production VMs are outside the current scope. Teams should prioritise this enrolment as part of HMCTS Business Continuity & Disaster Recovery Planning.
+Before enrolling, confirm your service criticality rating. The latest ratings are available on the Ardoq [Application Criticality Dashboard](https://hmcts.ardoq.com/discover/dashboard/878620fdaa449ae487fa04a2). If you are unsure of your application's rating, speak to your Product Manager.
 
-Recovery Services Vault immutability cannot be disabled after it is set to `Locked`. Confirm the production recovery requirements with the Product Manager and BCDR team before locking the vault.
-
-To enrol a production VM, use the [Recovery Services Vault module](https://github.com/hmcts/terraform-module-recovery-services-vault) to create the vault and policy, then pass its details to this module. The conditions below prevent the vault and backup enrolment from being created in non-production environments:
+To enrol a production VM, use the [Recovery Services Vault module](https://github.com/hmcts/terraform-module-recovery-services-vault) to create the vault and policy, then pass its details to this module. The virtual machine module selects the `vm-crit4-5` backup policy automatically. The conditions below prevent the vault and backup enrolment from being created in non-production environments:
 
 ```terraform
 module "recovery_services_vault" {
@@ -49,7 +47,7 @@ module "virtual_machine" {
   source = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
   #...
 
-  service_criticality     = 5
+  service_criticality     = var.env == "prod" ? var.service_criticality : 1
   rsv_name                = var.env == "prod" ? module.recovery_services_vault[0].recovery_vault_name : null
   rsv_resource_group_name = var.env == "prod" ? module.recovery_services_vault[0].recovery_vault_resource_group_name : null
 }
@@ -61,7 +59,7 @@ If the Recovery Services Vault is managed in a separate repository, pass its det
 module "virtual_machine" {
   source = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
   # ...
-  service_criticality     = 5
+  service_criticality     = var.env == "prod" ? var.service_criticality : 1
   rsv_name                = var.env == "prod" ? "<name>" : null
   rsv_resource_group_name = var.env == "prod" ? "<resource-group>" : null
 }
