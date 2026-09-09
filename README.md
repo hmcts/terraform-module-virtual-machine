@@ -24,16 +24,21 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 
 ## Backup Enrollment
 
-VMs with `service_criticality >= 4` can be automatically enrolled into a Recovery Services Vault by providing the vault name and resource group. The backup policy is selected automatically based on criticality. 
+**Production** VMs for services with service criticality of 4 or 5 should enrol for VM backups into a Recovery Services Vault. Non-production VMs are outside scope. Teams should prioritise this enrolment as part of HMCTS Business Continuity & Disaster Recovery Planning.
 
-To enroll, use the [recovery service vault module](https://github.com/hmcts/terraform-module-recovery-services-vault) to create the vault and policy and pass the following vars to this module call:
+Before enrolling, confirm your service criticality rating. The latest ratings are available on the Ardoq [Application Criticality Dashboard](https://hmcts.ardoq.com/discover/dashboard/878620fdaa449ae487fa04a2). If you are unsure of your application's rating, speak to your Product Manager.
+
+To enrol a production VM, use the [Recovery Services Vault module](https://github.com/hmcts/terraform-module-recovery-services-vault) to create the vault and policy, then pass its details to this module. The virtual machine module selects the `vm-crit4-5` backup policy automatically. The conditions below prevent the vault and backup enrolment from being created in non-production environments:
 
 ```terraform
 module "recovery_services_vault" {
-  source = "git::https://github.com/hmcts/module-terraform-azurerm-recovery-services-vault.git?ref=main"
+  count = var.env == "prod" ? 1 : 0
 
-  name                = "{var.product}-rsv-{var.env}"
+  source = "git::https://github.com/hmcts/terraform-module-recovery-services-vault.git?ref=master"
+
+  name                = "${var.product}-rsv-${var.env}"
   resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   tags                = var.common_tags
 }
 
@@ -41,25 +46,25 @@ module "virtual_machine" {
   source = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
   #...
 
-  service_criticality     = 5
-  rsv_name                = module.recovery_services_vault.recovery_vault_name
-  rsv_resource_group_name = module.recovery_services_vault.recovery_vault_resource_group_name
+  service_criticality     = var.env == "prod" ? var.service_criticality : 1
+  rsv_name                = var.env == "prod" ? module.recovery_services_vault[0].recovery_vault_name : null
+  rsv_resource_group_name = var.env == "prod" ? module.recovery_services_vault[0].recovery_vault_resource_group_name : null
 }
 ```
 
-If the RSV is managed in a separate repository, pass the vault details as plain strings:
+If the Recovery Services Vault is managed in a separate repository, pass its details conditionally:
 
 ```terraform
 module "virtual_machine" {
   source = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
   # ...
-  service_criticality     = 5
-  rsv_name                = "<name>"
-  rsv_resource_group_name = "<resource_group>"
+  service_criticality     = var.env == "prod" ? var.service_criticality : 1
+  rsv_name                = var.env == "prod" ? "<name>" : null
+  rsv_resource_group_name = var.env == "prod" ? "<resource-group>" : null
 }
 ```
 
-Existing module users that do not set `service_criticality`, `rsv_name`, or `rsv_resource_group_name` are unaffected — no backups will be created.
+Existing module users that do not set `service_criticality`, `rsv_name`, or `rsv_resource_group_name` are unaffected. No backups will be created.
 
 <!-- BEGIN_TF_DOCS -->
 
