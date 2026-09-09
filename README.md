@@ -22,6 +22,50 @@ module "virtual_machine" {
 ```
 An example can be found [here](https://github.com/hmcts/terraform-module-virtual-machine/tree/master/example).
 
+## Backup Enrollment
+
+**Production** VMs for services with service criticality of 4 or 5 should enrol for VM backups into a Recovery Services Vault. Non-production VMs are outside scope. Teams should prioritise this enrolment as part of HMCTS Business Continuity & Disaster Recovery Planning.
+
+Before enrolling, confirm your service criticality rating. The latest ratings are available on the Ardoq [Application Criticality Dashboard](https://hmcts.ardoq.com/discover/dashboard/878620fdaa449ae487fa04a2). If you are unsure of your application's rating, speak to your Product Manager.
+
+To enrol a production VM, use the [Recovery Services Vault module](https://github.com/hmcts/terraform-module-recovery-services-vault) to create the vault and policy, then pass its details to this module. The virtual machine module selects the `vm-crit4-5` backup policy automatically. The conditions below prevent the vault and backup enrolment from being created in non-production environments:
+
+```terraform
+module "recovery_services_vault" {
+  count = var.env == "prod" ? 1 : 0
+
+  source = "git::https://github.com/hmcts/terraform-module-recovery-services-vault.git?ref=master"
+
+  name                = "${var.product}-rsv-${var.env}"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  tags                = var.common_tags
+}
+
+module "virtual_machine" {
+  source = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
+  #...
+
+  service_criticality     = var.env == "prod" ? var.service_criticality : 1
+  rsv_name                = var.env == "prod" ? module.recovery_services_vault[0].recovery_vault_name : null
+  rsv_resource_group_name = var.env == "prod" ? module.recovery_services_vault[0].recovery_vault_resource_group_name : null
+}
+```
+
+If the Recovery Services Vault is managed in a separate repository, pass its details conditionally:
+
+```terraform
+module "virtual_machine" {
+  source = "git::https://github.com/hmcts/terraform-module-virtual-machine.git?ref=master"
+  # ...
+  service_criticality     = var.env == "prod" ? var.service_criticality : 1
+  rsv_name                = var.env == "prod" ? "<name>" : null
+  rsv_resource_group_name = var.env == "prod" ? "<resource-group>" : null
+}
+```
+
+Existing module users that do not set `service_criticality`, `rsv_name`, or `rsv_resource_group_name` are unaffected. No backups will be created.
+
 <!-- BEGIN_TF_DOCS -->
 
 
@@ -42,6 +86,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | Name | Type |
 |------|------|
 | [azurerm_availability_set.set](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/availability_set) | resource |
+| [azurerm_backup_protected_vm.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/backup_protected_vm) | resource |
 | [azurerm_disk_encryption_set.disk_enc_set](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/disk_encryption_set) | resource |
 | [azurerm_key_vault_access_policy.disk_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azurerm_key_vault_key.disk_enc_key](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key) | resource |
@@ -52,6 +97,7 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | [azurerm_virtual_machine_data_disk_attachment.data_disk_attachments](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_data_disk_attachment) | resource |
 | [azurerm_virtual_machine_extension.entra](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) | resource |
 | [azurerm_windows_virtual_machine.winvm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/windows_virtual_machine) | resource |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_key_vault.enc_kv](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 
 ## Inputs
@@ -112,11 +158,14 @@ An example can be found [here](https://github.com/hmcts/terraform-module-virtual
 | <a name="input_rc_os_sku"></a> [rc\_os\_sku](#input\_rc\_os\_sku) | The SKU of run command to use. | `string` | `null` | no |
 | <a name="input_rc_script_file"></a> [rc\_script\_file](#input\_rc\_script\_file) | The path to the script file to run against the virtual machine. | `string` | `null` | no |
 | <a name="input_remove_splunk_uf"></a> [remove\_splunk\_uf](#input\_remove\_splunk\_uf) | Remove splunk uniforwarder on the virtual machine. | `bool` | `true` | no |
+| <a name="input_rsv_name"></a> [rsv\_name](#input\_rsv\_name) | Name of the Recovery Services Vault to enroll this VM in. Required when service\_criticality >= 4. | `string` | `null` | no |
+| <a name="input_rsv_resource_group_name"></a> [rsv\_resource\_group\_name](#input\_rsv\_resource\_group\_name) | Resource group name of the Recovery Services Vault. Required when service\_criticality >= 4. | `string` | `null` | no |
 | <a name="input_run_cis"></a> [run\_cis](#input\_run\_cis) | Install CIS hardening using run command script? | `bool` | `false` | no |
 | <a name="input_run_command"></a> [run\_command](#input\_run\_command) | Run a custom command/script against the virtual machine using a run command extension. | `bool` | `false` | no |
 | <a name="input_run_command_sa_key"></a> [run\_command\_sa\_key](#input\_run\_command\_sa\_key) | SA key for the run command | `string` | `""` | no |
 | <a name="input_run_xdr_agent"></a> [run\_xdr\_agent](#input\_run\_xdr\_agent) | Install XDR agents using run command script? | `bool` | `false` | no |
 | <a name="input_run_xdr_collector"></a> [run\_xdr\_collector](#input\_run\_xdr\_collector) | Install XDR collectors using run command script? | `bool` | `false` | no |
+| <a name="input_service_criticality"></a> [service\_criticality](#input\_service\_criticality) | Service criticality rating from 1-5. VMs with criticality >= 4 are enrolled in Recovery Services Vault backup when rsv\_name and rsv\_resource\_group\_name are provided. | `number` | `1` | no |
 | <a name="input_soc_vault_name"></a> [soc\_vault\_name](#input\_soc\_vault\_name) | The name of the SOC Key Vault. | `string` | `"soc-prod"` | no |
 | <a name="input_soc_vault_rg"></a> [soc\_vault\_rg](#input\_soc\_vault\_rg) | The name of the resource group where the SOC Key Vault is located. | `string` | `"soc-core-infra-prod-rg"` | no |
 | <a name="input_splunk_group"></a> [splunk\_group](#input\_splunk\_group) | Splunk universal forwarder global target group. | `string` | `"hmcts_forwarders"` | no |
