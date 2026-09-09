@@ -39,7 +39,6 @@ module "recovery_services_vault" {
   name                = "${var.product}-rsv-${var.env}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  immutability        = "Locked"
   tags                = var.common_tags
 }
 
