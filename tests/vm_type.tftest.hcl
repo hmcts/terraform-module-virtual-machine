@@ -20,8 +20,8 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias                      = "dcr"
-  skip_provider_registration = "true"
+  alias                           = "dcr"
+  resource_provider_registrations = "none"
   features {}
   subscription_id = var.env == "prod" || var.env == "production" ? "8999dec3-0104-4a27-94ee-6588559729d1" : var.env == "sbox" || var.env == "sandbox" ? "bf308a5c-0624-4334-8ff8-8dca9fd43783" : "1c4f0704-a29e-403d-b719-b90c34ef14c9"
 }
@@ -75,6 +75,44 @@ run "linux_vm" {
     condition     = length(azurerm_windows_virtual_machine.winvm) == 0
     error_message = "Module stood up a windows virtual machine"
   }
+  assert {
+    condition     = length(azurerm_linux_virtual_machine.linvm[0].plan) == 0
+    error_message = "Module added a Marketplace plan when none was configured"
+  }
+}
+
+run "linux_vm_with_marketplace_plan" {
+
+  command = plan
+
+  variables {
+    vm_type           = "linux"
+    vm_publisher_name = "tenable"
+    vm_offer          = "tenablecorenessus"
+    vm_sku            = "tenablecoreol8nessusbyol"
+    vm_version        = "2026.08.13"
+    vm_resource_group = run.setup.resource_group
+    vm_subnet_id      = run.setup.subnet
+    tags              = run.setup.common_tags
+    marketplace_plan = {
+      name      = "tenablecoreol8nessusbyol"
+      product   = "tenablecorenessus"
+      publisher = "tenable"
+    }
+  }
+
+  assert {
+    condition     = azurerm_linux_virtual_machine.linvm[0].plan[0].name == "tenablecoreol8nessusbyol"
+    error_message = "Module did not configure the Marketplace plan name"
+  }
+  assert {
+    condition     = azurerm_linux_virtual_machine.linvm[0].plan[0].product == "tenablecorenessus"
+    error_message = "Module did not configure the Marketplace plan product"
+  }
+  assert {
+    condition     = azurerm_linux_virtual_machine.linvm[0].plan[0].publisher == "tenable"
+    error_message = "Module did not configure the Marketplace plan publisher"
+  }
 }
 
 run "linux_vm_case_sensitivity" {
@@ -124,6 +162,40 @@ run "windows_vm" {
   assert {
     condition     = length(azurerm_windows_virtual_machine.winvm) == 1
     error_message = "Module did not stand up a windows virtual machine"
+  }
+}
+
+run "windows_vm_with_marketplace_plan" {
+
+  command = plan
+
+  variables {
+    vm_type           = "windows"
+    vm_publisher_name = "example-publisher"
+    vm_offer          = "example-offer"
+    vm_sku            = "example-sku"
+    vm_version        = "latest"
+    vm_resource_group = run.setup.resource_group
+    vm_subnet_id      = run.setup.subnet
+    tags              = run.setup.common_tags
+    marketplace_plan = {
+      name      = "example-plan"
+      product   = "example-product"
+      publisher = "example-publisher"
+    }
+  }
+
+  assert {
+    condition     = azurerm_windows_virtual_machine.winvm[0].plan[0].name == "example-plan"
+    error_message = "Module did not configure the Marketplace plan name"
+  }
+  assert {
+    condition     = azurerm_windows_virtual_machine.winvm[0].plan[0].product == "example-product"
+    error_message = "Module did not configure the Marketplace plan product"
+  }
+  assert {
+    condition     = azurerm_windows_virtual_machine.winvm[0].plan[0].publisher == "example-publisher"
+    error_message = "Module did not configure the Marketplace plan publisher"
   }
 }
 

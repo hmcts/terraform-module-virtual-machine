@@ -49,6 +49,15 @@ resource "azurerm_windows_virtual_machine" "winvm" {
 
   }
 
+  dynamic "plan" {
+    for_each = var.marketplace_plan == null ? [] : [var.marketplace_plan]
+    content {
+      name      = plan.value.name
+      product   = plan.value.product
+      publisher = plan.value.publisher
+    }
+  }
+
   dynamic "boot_diagnostics" {
     for_each = local.dynamic_boot_diagnostics
     content {
@@ -102,6 +111,15 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     offer     = var.vm_offer
     sku       = var.vm_sku
     version   = var.vm_version
+  }
+
+  dynamic "plan" {
+    for_each = var.marketplace_plan == null ? [] : [var.marketplace_plan]
+    content {
+      name      = plan.value.name
+      product   = plan.value.product
+      publisher = plan.value.publisher
+    }
   }
 
   dynamic "admin_ssh_key" {
