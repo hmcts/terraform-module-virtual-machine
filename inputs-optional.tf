@@ -119,6 +119,16 @@ variable "custom_image_id" {
   default     = ""
 }
 
+variable "marketplace_plan" {
+  type = object({
+    name      = string
+    product   = string
+    publisher = string
+  })
+  description = "The Marketplace plan metadata required by images with purchase terms."
+  default     = null
+}
+
 variable "boot_diagnostics_enabled" {
   type        = bool
   description = "Whether to enable boot diagnostics."
