@@ -71,6 +71,7 @@ resource "azurerm_virtual_machine_extension" "entra" {
   type                       = "AADSSHLoginForLinux"
   type_handler_version       = var.aad_type_handler_version
   auto_upgrade_minor_version = true
+  tags                       = var.tags
 }
 
 resource "azurerm_role_assignment" "admin-user" {
