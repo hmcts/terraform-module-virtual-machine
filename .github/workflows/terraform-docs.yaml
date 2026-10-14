@@ -5,8 +5,9 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
 
     - name: Render terraform docs inside the README.md and push changes back to PR branch
@@ -14,4 +15,4 @@ jobs:
       with:
         working-dir: .
         config-file: .terraform-docs.yml
-        git-push: "true"
+        git-push: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
